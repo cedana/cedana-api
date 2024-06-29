@@ -1,0 +1,2 @@
+# cedana-api
+proto store
