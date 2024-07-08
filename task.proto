@@ -46,6 +46,7 @@ message CRIOImagePushArgs {
   string OriginalImageRef = 1;
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
+  string ContainerStorage = 4;
 }
 
 message CRIOImagePushResp {
