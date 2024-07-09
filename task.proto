@@ -38,7 +38,7 @@ service TaskService {
   rpc ProcessStateStreaming(ProcessStateStreamingArgs) returns (stream ProcessState);
 
   // Health
-  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
+  rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
 }
 
 /////////////////////
