@@ -36,6 +36,9 @@ service TaskService {
   // Streaming
   rpc LogStreaming(stream LogStreamingResp) returns (stream LogStreamingArgs);
   rpc ProcessStateStreaming(ProcessStateStreamingArgs) returns (stream ProcessState);
+
+  // Health
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
 }
 
 /////////////////////
@@ -418,11 +421,6 @@ message ProcessStateStreamingArgs {
   string JID = 1;
 }
 
-message MetaStateStreamingArgs {
-  ProviderEvent Event = 1;
-  CheckpointReason CheckpointReason = 2;
-}
-
 message CheckpointReason {
   enum CheckpointReasonEnum {
     INSTANCE_TERMINATION = 0;
@@ -432,20 +430,28 @@ message CheckpointReason {
   CheckpointReasonEnum Reason = 1;
 }
 
-message ProviderEvent {
-  string InstanceID = 1;
-  string FaultCode = 2;
-  bool MarkedForTermination = 3;
-  int64 TerminationTime = 4;
-}
-
-message MetaStateStreamingResp {
-  string Status = 1;
-}
-
 enum CheckpointState {
   CHECKPOINTED = 0;
   CHECKPOINT_FAILED = 1;
   RESTORED = 2;
   RESTORE_FAILED = 3;
+}
+
+
+/////////////////////
+///////Health////////
+/////////////////////
+
+message HealthCheckRequest {
+}
+
+message HealthCheckResponse {
+   bool isHealthy = 1;
+   string reason = 2;
+}
+
+message HealthCheckStats {
+   string criuVersion = 1;
+   bool isCedanaGPU = 2;
+   string cedanaGPUVersion = 3;
 }
