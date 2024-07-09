@@ -442,16 +442,24 @@ enum CheckpointState {
 ///////Health////////
 /////////////////////
 
-message HealthCheckRequest {
+message DetailedHealthCheckRequest {
 }
 
-message HealthCheckResponse {
-   bool isHealthy = 1;
-   string reason = 2;
+message DetailedHealthCheckResponse {
+    HealthCheckStats HealthCheckStats = 1;
 }
 
 message HealthCheckStats {
    string criuVersion = 1;
    bool isCedanaGPU = 2;
    string cedanaGPUVersion = 3;
+   AvailableCUDAAPIs availableCUDAAPIs = 4;
+   string nvidiaDriverVersion = 5;
+}
+
+message AvailableCUDAAPIs {
+   bool cuDNN = 1;
+   bool cuBLAS = 2;
+   bool driverAPI = 3;
+   bool runtimeAPI = 4;
 }
