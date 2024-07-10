@@ -8,6 +8,7 @@ service CedanaGPU {
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};
   rpc Restore(RestoreRequest) returns (RestoreResponse) {};
   rpc StartupPoll(StartupPollRequest) returns (StartupPollResponse) {};
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
 }
 
 message CheckpointRequest { string directory = 1; }
@@ -25,3 +26,18 @@ message RestoreResponse { bool success = 1; }
 message StartupPollRequest {}
 
 message StartupPollResponse { bool success = 1; }
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+    bool success = 1;
+    string version = 2;
+    AvailableCUDAAPIs availableCUDAAPIs = 3;
+}
+
+message AvailableCUDAAPIs {
+    int32 cuDNNVersion = 1;
+    int32 cuBLASVersion = 2;
+    int32 driverVersion = 3;
+    int32 runtimeVersion = 4;
+}
