@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import gpu.proto;
 package cedana.services.task;
 
 option go_package = "github.com/cedana/cedana/api/services/task";
@@ -455,15 +456,6 @@ message DetailedHealthCheckResponse {
 
 message HealthCheckStats {
    string criuVersion = 1;
-   bool isCedanaGPU = 2;
-   string cedanaGPUVersion = 3;
-   AvailableCUDAAPIs availableCUDAAPIs = 4;
-}
-
-message AvailableCUDAAPIs {
-    int32 cuDNNVersion = 1;
-    int32 cuBLASVersion = 2;
-    int32 ncclVersion = 3;
-    int32 driverVersion = 4;
-    int32 runtimeVersion = 5;
+   string cedanaGPUVersion = 2;
+   cedanagpu.HealthCheckResponse GPUHealthCheck = 3;
 }
