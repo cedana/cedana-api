@@ -32,12 +32,15 @@ message HealthCheckRequest {}
 message HealthCheckResponse {
     bool success = 1;
     string version = 2;
-    AvailableCUDAAPIs availableCUDAAPIs = 3;
+    int32 deviceCount = 3;
+    int32 deviceIndex = 4;
+    AvailableCUDAAPIs availableCUDAAPIs = 5;
 }
 
 message AvailableCUDAAPIs {
     int32 cuDNNVersion = 1;
     int32 cuBLASVersion = 2;
-    int32 driverVersion = 3;
-    int32 runtimeVersion = 4;
+    int32 ncclVersion = 3;
+    int32 driverVersion = 4;
+    int32 runtimeVersion = 5;
 }
