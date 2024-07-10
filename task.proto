@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import gpu.proto;
+import "gpu.proto";
 package cedana.services.task;
 
 option go_package = "github.com/cedana/cedana/api/services/task";
