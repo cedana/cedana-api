@@ -49,6 +49,7 @@ message CRIOImagePushArgs {
   string OriginalImageRef = 1;
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
+  string ContainerStorage = 4;
 }
 
 message CRIOImagePushResp {
@@ -98,6 +99,7 @@ message DumpArgs {
   CRType Type = 3;
   string JID = 4;
   bool GPU = 5;
+  bool TcpEstablished = 6;
 }
 
 message DumpResp {
@@ -116,6 +118,7 @@ message RestoreArgs {
   uint32 UID = 5;
   uint32 GID = 6;
   repeated uint32 Groups = 7;
+  bool TcpEstablished = 8;
 }
 
 message RestoreResp {
