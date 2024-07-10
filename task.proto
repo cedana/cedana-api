@@ -447,7 +447,7 @@ message DetailedHealthCheckRequest {
 
 message DetailedHealthCheckResponse {
     HealthCheckStats HealthCheckStats = 1;
-    string unhealthyReason = 2;
+    repeated string unhealthyReasons = 2;
 }
 
 message HealthCheckStats {
