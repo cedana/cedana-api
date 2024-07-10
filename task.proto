@@ -458,12 +458,12 @@ message HealthCheckStats {
    bool isCedanaGPU = 2;
    string cedanaGPUVersion = 3;
    AvailableCUDAAPIs availableCUDAAPIs = 4;
-   string nvidiaDriverVersion = 5;
 }
 
 message AvailableCUDAAPIs {
-   bool cuDNN = 1;
-   bool cuBLAS = 2;
-   bool driverAPI = 3;
-   bool runtimeAPI = 4;
+    int32 cuDNNVersion = 1;
+    int32 cuBLASVersion = 2;
+    int32 ncclVersion = 3;
+    int32 driverVersion = 4;
+    int32 runtimeVersion = 5;
 }
