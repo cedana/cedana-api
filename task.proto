@@ -447,6 +447,9 @@ enum CheckpointState {
 /////////////////////
 
 message DetailedHealthCheckRequest {
+    uint32 UID = 1;
+    uint32 GID = 2;
+    repeated uint32 Groups = 3;
 }
 
 message DetailedHealthCheckResponse {
