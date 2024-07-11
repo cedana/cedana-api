@@ -459,6 +459,5 @@ message DetailedHealthCheckResponse {
 
 message HealthCheckStats {
    string criuVersion = 1;
-   string cedanaGPUVersion = 2;
-   cedanagpu.HealthCheckResponse GPUHealthCheck = 3;
+   cedanagpu.HealthCheckResponse GPUHealthCheck = 2;
 }
