@@ -232,6 +232,7 @@ message CriuOpts {
   bool ShellJob = 7;
   bool FileLocks = 8;
   bool PreDump = 9;
+  bool Stream = 10;
   int32 EmptyNs = 12;
   bool AutoDedup = 13;
   bool LazyPages = 14;
