@@ -101,6 +101,7 @@ message DumpArgs {
   string JID = 4;
   bool GPU = 5;
   bool TcpEstablished = 6;
+  bool Stream = 7;
 }
 
 message DumpResp {
