@@ -2,8 +2,8 @@
 
 syntax = "proto2";
 
-package cedana.services.api;
-option go_package = "github.com/cedana/cedana/api";
+package cedana.services.rpc;
+option go_package = "github.com/cedana/cedana/api/services/rpc";
 
 message criu_page_server_info {
 	optional string		address	= 1;
