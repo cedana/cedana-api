@@ -40,6 +40,9 @@ service TaskService {
 
   // Health
   rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
+
+  // Kata
+  rpc KataDump(DumpArgs) returns (DumpResp);
 }
 
 /////////////////////
