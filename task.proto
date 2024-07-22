@@ -121,6 +121,7 @@ message RestoreArgs {
   uint32 GID = 6;
   repeated uint32 Groups = 7;
   bool TcpEstablished = 8;
+  bool Stream = 9;
 }
 
 message RestoreResp {
