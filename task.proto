@@ -354,10 +354,6 @@ message LogStreamingResp {
   string Status = 1;
 }
 
-enum ContainerRuntimeOpts {
-  CONTAINERD = 0;
-  RUNC = 1;
-}
 
 message ProcessState {
   int32 PID = 1;
