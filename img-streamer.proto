@@ -2,8 +2,8 @@
 
 syntax = "proto2";
 
-package cedana.services.img-streamer;
-option go_package = "github.com/cedana/cedana/api/services/img-streamer";
+package cedana.services.img_streamer;
+option go_package = "github.com/cedana/cedana/api/services/img_streamer";
 
 // This message is sent from CRIU to the streamer.
 // * During dump, it communicates the name of the file that is about to be sent
