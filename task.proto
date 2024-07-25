@@ -358,7 +358,6 @@ message LogStreamingResp {
 message ProcessState {
   int32 PID = 1;
   string Task = 2;
-  ContainerRuntimeOpts ContainerRuntime = 3;
   string ContainerID = 4;
   string StartedAt = 5;
   ProcessInfo ProcessInfo = 6;
