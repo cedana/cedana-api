@@ -43,6 +43,7 @@ service TaskService {
 
   // Kata
   rpc KataDump(DumpArgs) returns (DumpResp);
+  rpc KataRestore(RestoreArgs) returns (RestoreResp);
 }
 
 /////////////////////
