@@ -49,6 +49,7 @@ message CRIOImagePushArgs {
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
   string ContainerStorage = 4;
+  bool   ECRNodeIAMPolicy = 5;
 }
 
 message CRIOImagePushResp {
