@@ -49,7 +49,8 @@ message CRIOImagePushArgs {
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
   string ContainerStorage = 4;
-  string RegistryAuthToken = 5;
+  string PullRegistryAuthToken = 5;
+  string PushRegistryAuthToken = 6;
 }
 
 message CRIOImagePushResp {
@@ -60,7 +61,8 @@ message CRIORootfsDumpArgs {
   string ContainerID = 1;
   string Dest = 2;
   string ContainerStorage = 3;
-  string RegistryAuthToken = 4;
+  string PullRegistryAuthToken = 4;
+  string PushRegistryAuthToken = 5;
 }
 
 message CRIORootfsDumpResp {
