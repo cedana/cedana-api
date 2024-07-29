@@ -44,32 +44,35 @@ service TaskService {
 ////// Stats ////////
 /////////////////////
 
-message CheckpointOperationStats {
+message DumpStats {
     DumpType DumpType = 1;
     uint64 PrepareDuration = 2;
     uint64 CRIUDuration = 3;
     uint64 GPUDuration = 4;
     ContainerRuntime ContainerRuntime = 5;
     bool Kubernetes = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
 }
 
-message CheckpointStats {
+message CheckpointFileStats {
     uint64 Size = 1;
     uint64 Duration = 2;
 }
 
-message RestoreOperationStats {
+message RestoreStats {
     DumpType DumpType = 1;
     ContainerRuntime ContainerRuntime = 2;
     uint64 PrepareDuration = 3;
     uint64 CRIUDuration = 4;
     uint64 GPUDuration = 5;
+    CheckpointFileStats CheckpointFileStats = 6;
 }
 
 enum DumpType {
      PROCESS = 0;
      RUNC = 1;
      KATA = 2;
+     ROOTFS = 3;
 }
 
 enum ContainerRuntime {
@@ -145,6 +148,7 @@ message DumpResp {
   string CheckpointID = 2;
   string UploadID = 3;
   ProcessState State = 4;
+  DumpStats DumpStats = 5;
 }
 
 
@@ -163,6 +167,7 @@ message RestoreResp {
   string Message = 1;
   int32 NewPID = 2;
   ProcessState State = 3;
+  RestoreStats RestoreStats = 6;
 }
 
 message QueryArgs {
