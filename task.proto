@@ -38,6 +38,9 @@ service TaskService {
 
   // Health
   rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
+
+  // Config
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
 }
 
 /////////////////////
@@ -460,4 +463,15 @@ message DetailedHealthCheckResponse {
 message HealthCheckStats {
    string criuVersion = 1;
    cedanagpu.HealthCheckResponse GPUHealthCheck = 2;
+}
+
+/////////////////////
+///////Config////////
+/////////////////////
+
+message GetConfigRequest {
+}
+
+message GetConfigResponse {
+  string JSON = 1;
 }
