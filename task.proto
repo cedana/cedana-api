@@ -473,5 +473,5 @@ message GetConfigRequest {
 }
 
 message GetConfigResponse {
-  google.protobuf.Struct Config = 1;
+  string JSON = 1;
 }
