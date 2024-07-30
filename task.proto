@@ -49,9 +49,10 @@ message DumpStats {
     int64 PrepareDuration = 2;
     int64 CRIUDuration = 3;
     int64 GPUDuration = 4;
-    ContainerRuntime ContainerRuntime = 5;
-    bool Kubernetes = 6;
-    CheckpointFileStats CheckpointFileStats = 7;
+    int64 UploadDuration = 5;
+    ContainerRuntime ContainerRuntime = 6;
+    bool Kubernetes = 7;
+    CheckpointFileStats CheckpointFileStats = 8;
 }
 
 message CheckpointFileStats {
@@ -65,7 +66,8 @@ message RestoreStats {
     int64 PrepareDuration = 3;
     int64 CRIUDuration = 4;
     int64 GPUDuration = 5;
-    CheckpointFileStats CheckpointFileStats = 6;
+    int64 DownloadDuration = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
 }
 
 enum DumpType {
