@@ -38,6 +38,9 @@ service TaskService {
 
   // Health
   rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
+
+  // Config
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
 }
 
 /////////////////////
@@ -92,6 +95,7 @@ message CRIOImagePushArgs {
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
   string ContainerStorage = 4;
+  string RegistryAuthToken = 5;
 }
 
 message CRIOImagePushResp {
@@ -102,6 +106,7 @@ message CRIORootfsDumpArgs {
   string ContainerID = 1;
   string Dest = 2;
   string ContainerStorage = 3;
+  string RegistryAuthToken = 4;
 }
 
 message CRIORootfsDumpResp {
@@ -499,4 +504,15 @@ message DetailedHealthCheckResponse {
 message HealthCheckStats {
    string criuVersion = 1;
    cedanagpu.HealthCheckResponse GPUHealthCheck = 2;
+}
+
+/////////////////////
+///////Config////////
+/////////////////////
+
+message GetConfigRequest {
+}
+
+message GetConfigResponse {
+  string JSON = 1;
 }
