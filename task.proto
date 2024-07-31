@@ -44,6 +44,49 @@ service TaskService {
 }
 
 /////////////////////
+////// Stats ////////
+/////////////////////
+
+message DumpStats {
+    DumpType DumpType = 1;
+    int64 PrepareDuration = 2;
+    int64 CRIUDuration = 3;
+    int64 GPUDuration = 4;
+    int64 UploadDuration = 5;
+    ContainerRuntime ContainerRuntime = 6;
+    bool Kubernetes = 7;
+    CheckpointFileStats CheckpointFileStats = 8;
+}
+
+message CheckpointFileStats {
+    int64 Size = 1;
+    int64 Duration = 2;
+}
+
+message RestoreStats {
+    DumpType DumpType = 1;
+    ContainerRuntime ContainerRuntime = 2;
+    int64 PrepareDuration = 3;
+    int64 CRIUDuration = 4;
+    int64 GPUDuration = 5;
+    int64 DownloadDuration = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
+}
+
+enum DumpType {
+     PROCESS = 0;
+     RUNC = 1;
+     KATA = 2;
+     ROOTFS = 3;
+}
+
+enum ContainerRuntime {
+     CRIO = 0;
+     CONTAINERD = 1;
+}
+
+
+/////////////////////
 /////// CRIO ////////
 /////////////////////
 
@@ -69,6 +112,7 @@ message CRIORootfsDumpArgs {
 message CRIORootfsDumpResp {
   string Dest = 1;
 }
+
 
 /////////////////////
 ////// Process //////
@@ -111,6 +155,7 @@ message DumpResp {
   string CheckpointID = 2;
   string UploadID = 3;
   ProcessState State = 4;
+  DumpStats DumpStats = 5;
 }
 
 
@@ -129,6 +174,7 @@ message RestoreResp {
   string Message = 1;
   int32 NewPID = 2;
   ProcessState State = 3;
+  RestoreStats RestoreStats = 6;
 }
 
 message QueryArgs {
@@ -320,15 +366,10 @@ message LogStreamingResp {
   string Status = 1;
 }
 
-enum ContainerRuntimeOpts {
-  CONTAINERD = 0;
-  RUNC = 1;
-}
 
 message ProcessState {
   int32 PID = 1;
   string Task = 2;
-  ContainerRuntimeOpts ContainerRuntime = 3;
   string ContainerID = 4;
   string StartedAt = 5;
   ProcessInfo ProcessInfo = 6;
