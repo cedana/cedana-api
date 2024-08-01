@@ -129,10 +129,10 @@ message StartArgs {
   string WorkingDir = 3;
   repeated string Env = 4;
   string LogOutputFile = 5;
-  uint32 UID = 6;
-  uint32 GID = 7;
+  int32 UID = 6;
+  int32 GID = 7;
   bool GPU = 8;
-  repeated uint32 Groups = 9;
+  repeated int32 Groups = 9;
 }
 
 message StartResp {
@@ -164,9 +164,9 @@ message RestoreArgs {
   string CheckpointID = 2;
   string CheckpointPath = 3;
   string JID = 4;
-  uint32 UID = 5;
-  uint32 GID = 6;
-  repeated uint32 Groups = 7;
+  int32 UID = 5;
+  int32 GID = 6;
+  repeated int32 Groups = 7;
   bool TcpEstablished = 8;
 }
 
@@ -382,6 +382,9 @@ message ProcessState {
   HostInfo HostInfo = 13;
   CPUInfo CPUInfo = 14;
   MemoryInfo MemoryInfo = 15;
+  repeated int32 UIDs = 16;
+  repeated int32 GIDs = 17;
+  repeated int32 Groups = 18;
 }
 
 message RemoteState {
@@ -491,9 +494,9 @@ enum CheckpointState {
 /////////////////////
 
 message DetailedHealthCheckRequest {
-    uint32 UID = 1;
-    uint32 GID = 2;
-    repeated uint32 Groups = 3;
+    int32 UID = 1;
+    int32 GID = 2;
+    repeated int32 Groups = 3;
 }
 
 message DetailedHealthCheckResponse {
