@@ -382,9 +382,9 @@ message ProcessState {
   HostInfo HostInfo = 13;
   CPUInfo CPUInfo = 14;
   MemoryInfo MemoryInfo = 15;
-  repeated uint32 UIDs = 16;
-  repeated uint32 GIDs = 17;
-  repeated uint32 Groups = 18;
+  repeated int32 UIDs = 16;
+  repeated int32 GIDs = 17;
+  repeated int32 Groups = 18;
 }
 
 message RemoteState {
