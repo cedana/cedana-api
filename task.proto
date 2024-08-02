@@ -71,6 +71,7 @@ message RestoreStats {
     int64 GPUDuration = 5;
     int64 DownloadDuration = 6;
     CheckpointFileStats CheckpointFileStats = 7;
+    cedanagpu.GPURestoreStats GPURestoreStats = 8;
 }
 
 enum DumpType {
