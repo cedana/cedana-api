@@ -192,8 +192,8 @@ message QueryResp {
 /////////////////////////
 
 message ContainerdDumpArgs {
-  string ContainerID = 1;
-  string Ref = 2;
+  RuncDumpArgs RuncDumpArgs = 1;
+  ContainerdRootfsDumpArgs ContainerdRootfsDumpArgs = 2;
 }
 
 message ContainerdDumpResp {
