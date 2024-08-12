@@ -500,7 +500,7 @@ message StartAttachArgs {
 message StartAttachResp {
   string Stdout = 1;
   string Stderr = 2;
-  int ExitCode = 3;
+  int32 ExitCode = 3;
 }
 
 /////////////////////
