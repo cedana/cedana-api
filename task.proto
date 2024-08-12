@@ -9,7 +9,7 @@ package cedana.services.task;
 
 service TaskService {
   // Process
-  rpc Start(StartArgs) returns (StartResp);
+  rpc Start(stream StartArgs) returns (stream StartResp);
   rpc Dump(DumpArgs) returns (DumpResp);
   rpc Restore(RestoreArgs) returns (RestoreResp);
   rpc Query(QueryArgs) returns (QueryResp);
