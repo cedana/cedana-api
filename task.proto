@@ -3,8 +3,6 @@ syntax = "proto3";
 import "gpu.proto";
 package cedana.services.task;
 
-option go_package = "github.com/cedana/cedana/api/services/task";
-
 // Query functions here work just like your familiar query functions in HTTP GET requests,
 // where if you don't specify anything in the query, it will return all the valid results,
 // but if you do it will filter out based on the query parameters.
@@ -35,12 +33,61 @@ service TaskService {
   rpc CRIOImagePush(CRIOImagePushArgs) returns (CRIOImagePushResp);
 
   // Streaming
+  rpc StartAttach(stream StartAttachArgs) returns (stream StartAttachResp);
+  rpc RestoreAttach(stream RestoreAttachArgs) returns (stream RestoreAttachResp);
   rpc LogStreaming(stream LogStreamingResp) returns (stream LogStreamingArgs);
   rpc ProcessStateStreaming(ProcessStateStreamingArgs) returns (stream ProcessState);
 
   // Health
   rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
+
+  // Config
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
 }
+
+/////////////////////
+////// Stats ////////
+/////////////////////
+
+message DumpStats {
+    DumpType DumpType = 1;
+    int64 PrepareDuration = 2;
+    int64 CRIUDuration = 3;
+    int64 GPUDuration = 4;
+    int64 UploadDuration = 5;
+    ContainerRuntime ContainerRuntime = 6;
+    bool Kubernetes = 7;
+    CheckpointFileStats CheckpointFileStats = 8;
+}
+
+message CheckpointFileStats {
+    int64 Size = 1;
+    int64 Duration = 2;
+}
+
+message RestoreStats {
+    DumpType DumpType = 1;
+    ContainerRuntime ContainerRuntime = 2;
+    int64 PrepareDuration = 3;
+    int64 CRIUDuration = 4;
+    int64 GPUDuration = 5;
+    int64 DownloadDuration = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
+    cedanagpu.GPURestoreStats GPURestoreStats = 8;
+}
+
+enum DumpType {
+     PROCESS = 0;
+     RUNC = 1;
+     KATA = 2;
+     ROOTFS = 3;
+}
+
+enum ContainerRuntime {
+     CRIO = 0;
+     CONTAINERD = 1;
+}
+
 
 /////////////////////
 /////// CRIO ////////
@@ -51,6 +98,7 @@ message CRIOImagePushArgs {
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
   string ContainerStorage = 4;
+  string RegistryAuthToken = 5;
 }
 
 message CRIOImagePushResp {
@@ -61,11 +109,13 @@ message CRIORootfsDumpArgs {
   string ContainerID = 1;
   string Dest = 2;
   string ContainerStorage = 3;
+  string RegistryAuthToken = 4;
 }
 
 message CRIORootfsDumpResp {
   string Dest = 1;
 }
+
 
 /////////////////////
 ////// Process //////
@@ -82,10 +132,10 @@ message StartArgs {
   string WorkingDir = 3;
   repeated string Env = 4;
   string LogOutputFile = 5;
-  uint32 UID = 6;
-  uint32 GID = 7;
+  int32 UID = 6;
+  int32 GID = 7;
   bool GPU = 8;
-  repeated uint32 Groups = 9;
+  repeated int32 Groups = 9;
 }
 
 message StartResp {
@@ -109,6 +159,7 @@ message DumpResp {
   string CheckpointID = 2;
   string UploadID = 3;
   ProcessState State = 4;
+  DumpStats DumpStats = 5;
 }
 
 
@@ -117,9 +168,9 @@ message RestoreArgs {
   string CheckpointID = 2;
   string CheckpointPath = 3;
   string JID = 4;
-  uint32 UID = 5;
-  uint32 GID = 6;
-  repeated uint32 Groups = 7;
+  int32 UID = 5;
+  int32 GID = 6;
+  repeated int32 Groups = 7;
   bool TcpEstablished = 8;
   bool Stream = 9;
 }
@@ -128,6 +179,7 @@ message RestoreResp {
   string Message = 1;
   int32 NewPID = 2;
   ProcessState State = 3;
+  RestoreStats RestoreStats = 6;
 }
 
 message QueryArgs {
@@ -144,8 +196,8 @@ message QueryResp {
 /////////////////////////
 
 message ContainerdDumpArgs {
-  string ContainerID = 1;
-  string Ref = 2;
+  RuncDumpArgs RuncDumpArgs = 1;
+  ContainerdRootfsDumpArgs ContainerdRootfsDumpArgs = 2;
 }
 
 message ContainerdDumpResp {
@@ -320,15 +372,10 @@ message LogStreamingResp {
   string Status = 1;
 }
 
-enum ContainerRuntimeOpts {
-  CONTAINERD = 0;
-  RUNC = 1;
-}
 
 message ProcessState {
   int32 PID = 1;
   string Task = 2;
-  ContainerRuntimeOpts ContainerRuntime = 3;
   string ContainerID = 4;
   string StartedAt = 5;
   ProcessInfo ProcessInfo = 6;
@@ -341,6 +388,9 @@ message ProcessState {
   HostInfo HostInfo = 13;
   CPUInfo CPUInfo = 14;
   MemoryInfo MemoryInfo = 15;
+  repeated int32 UIDs = 16;
+  repeated int32 GIDs = 17;
+  repeated int32 Groups = 18;
 }
 
 message RemoteState {
@@ -445,14 +495,37 @@ enum CheckpointState {
 }
 
 
+message StartAttachArgs {
+  StartArgs Args = 1;
+  string Stdin = 2;
+  // TODO:add signals
+}
+
+message StartAttachResp {
+  string Stdout = 1;
+  string Stderr = 2;
+  int32 ExitCode = 3;
+}
+
+message RestoreAttachArgs {
+  RestoreArgs Args = 1;
+  string Stdin = 2;
+}
+
+message RestoreAttachResp {
+  string Stdout = 1;
+  string Stderr = 2;
+  int32 ExitCode = 3;
+}
+
 /////////////////////
 ///////Health////////
 /////////////////////
 
 message DetailedHealthCheckRequest {
-    uint32 UID = 1;
-    uint32 GID = 2;
-    repeated uint32 Groups = 3;
+    int32 UID = 1;
+    int32 GID = 2;
+    repeated int32 Groups = 3;
 }
 
 message DetailedHealthCheckResponse {
@@ -463,4 +536,15 @@ message DetailedHealthCheckResponse {
 message HealthCheckStats {
    string criuVersion = 1;
    cedanagpu.HealthCheckResponse GPUHealthCheck = 2;
+}
+
+/////////////////////
+///////Config////////
+/////////////////////
+
+message GetConfigRequest {
+}
+
+message GetConfigResponse {
+  string JSON = 1;
 }

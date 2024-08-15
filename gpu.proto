@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package cedanagpu;
 
-option go_package = "github.com/cedana/cedana/api/services/gpu";
-
 service CedanaGPU {
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};
   rpc Restore(RestoreRequest) returns (RestoreResponse) {};
@@ -21,7 +19,10 @@ message CheckpointResponse {
 
 message RestoreRequest { string directory = 1; }
 
-message RestoreResponse { bool success = 1; }
+message RestoreResponse { 
+    bool success = 1;
+    GPURestoreStats gpuRestoreStats = 2;
+}
 
 message StartupPollRequest {}
 
@@ -42,4 +43,9 @@ message AvailableCUDAAPIs {
     int32 ncclVersion = 3;
     int32 driverVersion = 4;
     int32 runtimeVersion = 5;
+}
+
+message GPURestoreStats {
+    int64 copyMemTime = 1;
+    int64 replayCallsTime = 2;
 }
