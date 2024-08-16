@@ -41,6 +41,10 @@ service TaskService {
   // Health
   rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
 
+  // Kata
+  rpc KataDump(DumpArgs) returns (DumpResp);
+  rpc KataRestore(RestoreArgs) returns (RestoreResp);
+  
   // Config
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
 }
