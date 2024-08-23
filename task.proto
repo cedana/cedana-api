@@ -1,6 +1,10 @@
 syntax = "proto3";
 
+import "google/protobuf/wrappers.proto";
 import "gpu.proto";
+
+option go_package = "github.com/cedana/cedana/pkg/api/services/task";
+
 package cedana.services.task;
 
 // Query functions here work just like your familiar query functions in HTTP GET requests,
@@ -44,9 +48,14 @@ service TaskService {
   // Kata
   rpc KataDump(DumpArgs) returns (DumpResp);
   rpc KataRestore(RestoreArgs) returns (RestoreResp);
-  
+
   // Config
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
+
+  // JobQueue
+  rpc QueueCheckpoint(QueueJobCheckpointRequest) returns (google.protobuf.BoolValue);
+  rpc QueueRestore(QueueJobRestoreRequest) returns (google.protobuf.BoolValue);
+  rpc JobStatus(QueueJobID) returns (QueueJobStatus);
 }
 
 /////////////////////
@@ -551,4 +560,38 @@ message GetConfigRequest {
 
 message GetConfigResponse {
   string JSON = 1;
+}
+
+/////////////////////
+//////JobQueue///////
+/////////////////////
+
+message QueueJobCheckpointRequest {
+    string ContainerName = 1;
+    string Namespace = 2;
+    string PodName = 3;
+}
+
+message QueueJobRestoreRequest {
+    string ContainerName = 1;
+    string Namespace = 2;
+    string PodName = 3;
+}
+
+message QueueJobID {
+    string JobID = 1;
+}
+
+enum QueueJobStatusEnum {
+	StatusUnvalidated = 0;
+	StatusWaiting = 1;
+	StatusActive = 2;
+	StatusFail = 3;
+	StatusSuccess = 4;
+	StatusInvalid = 5;
+	StatusEnded = 6;
+	StatusUnknown = 7;
+}
+message QueueJobStatus {
+  QueueJobStatusEnum Status = 1;
 }
