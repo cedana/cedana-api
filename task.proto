@@ -102,7 +102,8 @@ message CRIOImagePushArgs {
   string NewImageRef = 2;
   string RootfsDiffPath = 3;
   string ContainerStorage = 4;
-  string RegistryAuthToken = 5;
+  string RegistryAuthTokenPush = 5;
+  string RegistryAuthTokenPull = 6;
 }
 
 message CRIOImagePushResp {
@@ -113,7 +114,6 @@ message CRIORootfsDumpArgs {
   string ContainerID = 1;
   string Dest = 2;
   string ContainerStorage = 3;
-  string RegistryAuthToken = 4;
 }
 
 message CRIORootfsDumpResp {
@@ -155,6 +155,7 @@ message DumpArgs {
   string JID = 4;
   bool GPU = 5;
   bool TcpEstablished = 6;
+  bool Stream = 7;
 }
 
 message DumpResp {
@@ -175,6 +176,7 @@ message RestoreArgs {
   int32 GID = 6;
   repeated int32 Groups = 7;
   bool TcpEstablished = 8;
+  bool Stream = 9;
 }
 
 message RestoreResp {
@@ -288,6 +290,7 @@ message CriuOpts {
   bool ShellJob = 7;
   bool FileLocks = 8;
   bool PreDump = 9;
+  bool Stream = 10;
   int32 EmptyNs = 12;
   bool AutoDedup = 13;
   bool LazyPages = 14;
