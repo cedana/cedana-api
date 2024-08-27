@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "gpu.proto";
+package cedana.services.task;
+
+// Query functions here work just like your familiar query functions in HTTP GET requests,
+// where if you don't specify anything in the query, it will return all the valid results,
+// but if you do it will filter out based on the query parameters.
+
+service TaskService {
+  // Health
+  rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
+
+  // Kata
+  rpc KataDump(DumpArgs) returns (DumpResp);
+  rpc KataRestore(RestoreArgs) returns (RestoreResp);
+  
+  // Config
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
+}
+
+message DumpArgs {
+  int32 PID = 1;
+  string Dir = 2;
+  CRType Type = 3;
+  string JID = 4;
+  bool GPU = 5;
+  bool TcpEstablished = 6;
+  bool Stream = 7;
+}
+
+message RestoreArgs {
+  CRType Type = 1;
+  string CheckpointID = 2;
+  string CheckpointPath = 3;
+  string JID = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+  repeated int32 Groups = 7;
+  bool TcpEstablished = 8;
+  bool Stream = 9;
+}
+
+message DumpResp {
+  string Message = 1;
+  string CheckpointID = 2;
+  string UploadID = 3;
+  ProcessState State = 4;
+  DumpStats DumpStats = 5;
+}
+
+message RestoreResp {
+  string Message = 1;
+  int32 NewPID = 2;
+  ProcessState State = 3;
+  RestoreStats RestoreStats = 6;
+}
