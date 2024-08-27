@@ -19,10 +19,35 @@ service TaskService {
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
 }
 
+/////////////////////
+///////Health////////
+/////////////////////
+
 message DetailedHealthCheckRequest {
     int32 UID = 1;
     int32 GID = 2;
     repeated int32 Groups = 3;
+}
+
+message DetailedHealthCheckResponse {
+    HealthCheckStats HealthCheckStats = 1;
+    repeated string unhealthyReasons = 2;
+}
+
+message HealthCheckStats {
+   string criuVersion = 1;
+   cedanagpu.HealthCheckResponse GPUHealthCheck = 2;
+}
+
+/////////////////////
+///////Config////////
+/////////////////////
+
+message GetConfigRequest {
+}
+
+message GetConfigResponse {
+  string JSON = 1;
 }
 
 ///////////////////////
@@ -134,6 +159,54 @@ message MemoryInfo {
   uint64 Total = 1;
   uint64 Available = 2;
   uint64 Used = 3;
+}
+
+/////////////////
+////// C/R //////
+/////////////////
+
+message DumpStats {
+    DumpType DumpType = 1;
+    int64 PrepareDuration = 2;
+    int64 CRIUDuration = 3;
+    int64 GPUDuration = 4;
+    int64 UploadDuration = 5;
+    ContainerRuntime ContainerRuntime = 6;
+    bool Kubernetes = 7;
+    CheckpointFileStats CheckpointFileStats = 8;
+}
+
+message RestoreStats {
+    DumpType DumpType = 1;
+    ContainerRuntime ContainerRuntime = 2;
+    int64 PrepareDuration = 3;
+    int64 CRIUDuration = 4;
+    int64 GPUDuration = 5;
+    int64 DownloadDuration = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
+    cedanagpu.GPURestoreStats GPURestoreStats = 8;
+}
+
+message CheckpointFileStats {
+    int64 Size = 1;
+    int64 Duration = 2;
+}
+
+enum ContainerRuntime {
+     CRIO = 0;
+     CONTAINERD = 1;
+}
+
+enum CRType {
+  LOCAL = 0;
+  REMOTE = 1;
+}
+
+enum DumpType {
+     PROCESS = 0;
+     RUNC = 1;
+     KATA = 2;
+     ROOTFS = 3;
 }
 
 ///////////////////////
