@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "gpu.proto";
-package cedana.services.task;
+package cedana.services.agent_task;
 
 // Query functions here work just like your familiar query functions in HTTP GET requests,
 // where if you don't specify anything in the query, it will return all the valid results,
@@ -18,6 +18,127 @@ service TaskService {
   // Config
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
 }
+
+message DetailedHealthCheckRequest {
+    int32 UID = 1;
+    int32 GID = 2;
+    repeated int32 Groups = 3;
+}
+
+///////////////////////
+/////// PROCESS ///////
+///////////////////////
+
+message ProcessState {
+  int32 PID = 1;
+  string Task = 2;
+  string ContainerID = 4;
+  string StartedAt = 5;
+  ProcessInfo ProcessInfo = 6;
+  string CheckpointPath = 7;
+  CheckpointState CheckpointState = 8;
+  JobState JobState = 9;
+  repeated RemoteState RemoteState = 10;
+  bool GPUCheckpointed = 11;
+  string JID = 12;
+  HostInfo HostInfo = 13;
+  CPUInfo CPUInfo = 14;
+  MemoryInfo MemoryInfo = 15;
+  repeated int32 UIDs = 16;
+  repeated int32 GIDs = 17;
+  repeated int32 Groups = 18;
+}
+
+message ProcessInfo {
+  int32 PID = 1;
+  bool AttachedToHardwareAccel = 2;
+  repeated OpenFilesStat OpenFds = 3;
+  string WorkingDir = 4;
+  repeated ConnectionStat OpenConnections = 5;
+  float MemoryPercent = 6;
+  bool IsRunning = 7;
+  string Status = 8;
+}
+
+message OpenFilesStat {
+  string Path = 1;
+  uint64 Fd = 2;
+  string Mode = 3;
+  StreamType Stream = 5;
+  enum StreamType {
+    STDIN = 0;
+    STDOUT = 1;
+    STDERR = 2;
+    NONE = 3;
+  }
+}
+
+message ConnectionStat {
+  uint32 Fd = 1;
+  uint32 Family = 2;
+  uint32 Type = 3;
+  Addr Laddr = 4;
+  Addr Raddr = 5;
+  string Status = 6;
+  repeated int32 UIDs = 7;
+  int32 PID = 8;
+}
+
+message Addr {
+  string IP = 1;
+  uint32 Port = 2;
+}
+
+enum CheckpointState {
+  CHECKPOINTED = 0;
+  CHECKPOINT_FAILED = 1;
+  RESTORED = 2;
+  RESTORE_FAILED = 3;
+}
+
+enum JobState {
+  JOB_STARTUP_FAILED = 0;
+  JOB_KILLED = 1;
+  JOB_IDLE = 2;
+  JOB_RUNNING = 3;
+  JOB_PENDING = 4;
+  JOB_DONE = 5;
+}
+
+message RemoteState {
+  string CheckpointID = 1;
+  string UploadID = 2;
+  int64 Timestamp = 3;
+}
+
+message HostInfo {
+  string HostID = 1;
+  string Hostname = 4;
+  string OS = 5;
+  string Platform = 6;
+  string KernelVersion = 7;
+  string KernelArch = 8;
+  string VirtualizationSystem = 9;
+  string VirtualizationRole = 10;
+}
+
+message CPUInfo {
+  int32 Count = 1;
+  int32 CPU = 2;
+  string VendorID = 3;
+  string Family = 4;
+  string PhysicalID = 5;
+}
+
+message MemoryInfo {
+  uint64 Total = 1;
+  uint64 Available = 2;
+  uint64 Used = 3;
+}
+
+///////////////////////
+////// KATA ARGS //////
+///////////////////////
 
 message DumpArgs {
   int32 PID = 1;
