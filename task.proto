@@ -3,8 +3,6 @@ syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "gpu.proto";
 
-option go_package = "github.com/cedana/cedana/pkg/api/services/task";
-
 package cedana.services.task;
 
 // Query functions here work just like your familiar query functions in HTTP GET requests,
@@ -571,12 +569,15 @@ message QueueJobCheckpointRequest {
     string Namespace = 2;
     string PodName = 3;
     string ImageName = 4;
+    string Id = 5;
 }
 
 message QueueJobRestoreRequest {
     string ContainerName = 1;
     string Namespace = 2;
     string PodName = 3;
+    string SourceName = 4;
+    string Id = 5;
 }
 
 message QueueJobID {
