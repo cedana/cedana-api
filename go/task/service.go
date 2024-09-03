@@ -4,7 +4,11 @@ package task
 
 import (
 	"context"
+	"fmt"
+	"net"
 	"time"
+
+	"github.com/mdlayher/vsock"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -25,7 +29,28 @@ type ServiceClient struct {
 func NewClient(address string) (*ServiceClient, error) {
 	var opts []grpc.DialOption
 	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	taskConn, err := grpc.Dial(address, opts...)
+	taskConn, err := grpc.NewClient(address, opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	taskClient := NewTaskServiceClient(taskConn)
+
+	client := &ServiceClient{
+		TaskService: taskClient,
+		TaskConn:    taskConn,
+	}
+	return client, err
+}
+
+func NewVSockClient(cid uint32, port uint32) (*ServiceClient, error) {
+	var opts []grpc.DialOption
+	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	opts = append(opts, grpc.WithContextDialer(func(ctx context.Context, addr string) (net.Conn, error) {
+		return vsock.Dial(cid, port, nil)
+	}))
+	// extract cid from the process tree on host
+	taskConn, err := grpc.NewClient(fmt.Sprintf("vsock://%d:%d", cid, port), opts...)
 	if err != nil {
 		return nil, err
 	}
