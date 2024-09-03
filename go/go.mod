@@ -1,4 +1,4 @@
-module github.com/cedana/cedana-api-go
+module github.com/cedana/cedana-api/go
 
 go 1.22
 
