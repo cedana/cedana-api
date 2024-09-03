@@ -308,6 +308,7 @@ message RuncRestoreArgs {
   RuncOpts Opts = 4;
   CRType Type = 5;
   string CheckpointID = 6;
+  CriuOpts CriuOpts = 7;
 }
 
 message RuncRestoreResp {
