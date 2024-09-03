@@ -7,7 +7,7 @@
 package task
 
 import (
-	gpu "github.com/cedana/cedana-api-go/gpu"
+	gpu "github.com/cedana/cedana-api/go/gpu"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
