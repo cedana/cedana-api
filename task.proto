@@ -285,6 +285,7 @@ message RuncDumpResp {
   string CheckpointID = 2;
   string UploadID = 3;
   ProcessState State = 4;
+  DumpStats DumpStats = 5;
 }
 
 message CriuOpts {
@@ -310,15 +311,16 @@ message CriuOpts {
 message RuncRestoreArgs {
   string ContainerID = 1;
   string ImagePath = 2;
-  bool IsK3s = 3;
-  RuncOpts Opts = 4;
-  CRType Type = 5;
-  string CheckpointID = 6;
+  RuncOpts Opts = 3;
+  CRType Type = 4;
+  string CheckpointID = 5;
+  CriuOpts CriuOpts = 6;
 }
 
 message RuncRestoreResp {
   string Message = 1;
   ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
 }
 
 message RuncOpts {
