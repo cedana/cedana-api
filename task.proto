@@ -278,6 +278,7 @@ message RuncDumpResp {
   string CheckpointID = 2;
   string UploadID = 3;
   ProcessState State = 4;
+  DumpStats DumpStats = 5;
 }
 
 message CriuOpts {
@@ -312,6 +313,7 @@ message RuncRestoreArgs {
 message RuncRestoreResp {
   string Message = 1;
   ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
 }
 
 message RuncOpts {
