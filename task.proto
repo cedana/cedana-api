@@ -56,7 +56,7 @@ service TaskService {
   rpc JobStatus(QueueJobID) returns (QueueJobStatus);
 
   // ASR
-  rpc GetContainerInfo(ContainerInfoRequest) returns (stream ContainerInfo);
+  rpc GetContainerInfo(ContainerInfoRequest) returns (ContainersInfo);
 }
 
 /////////////////////
@@ -618,4 +618,8 @@ message ContainerInfo {
   double CurrentMemory = 4;
   double NetworkIO = 5;
   double DiskIO = 6;
+}
+
+message ContainersInfo {
+    repeated ContainerInfo containers = 1;
 }
