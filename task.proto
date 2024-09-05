@@ -54,6 +54,9 @@ service TaskService {
   rpc QueueCheckpoint(QueueJobCheckpointRequest) returns (google.protobuf.BoolValue);
   rpc QueueRestore(QueueJobRestoreRequest) returns (google.protobuf.BoolValue);
   rpc JobStatus(QueueJobID) returns (QueueJobStatus);
+
+  // ASR
+  rpc GetContainerInfo(ContainerInfoRequest) returns (stream ContainerInfo);
 }
 
 /////////////////////
@@ -596,6 +599,23 @@ enum QueueJobStatusEnum {
 	StatusEnded = 6;
 	StatusUnknown = 7;
 }
+
 message QueueJobStatus {
   QueueJobStatusEnum Status = 1;
+}
+
+/////////////////////////
+//////////ASR////////////
+/////////////////////////
+
+message ContainerInfoRequest {
+}
+
+message ContainerInfo {
+  double CpuTime = 1;
+  double CpuLoadAvg = 2;
+  double MaxMemory = 3;
+  double CurrentMemory = 4;
+  double NetworkIO = 5;
+  double DiskIO = 6;
 }
