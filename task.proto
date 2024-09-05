@@ -154,8 +154,8 @@ message DumpArgs {
   CRType Type = 3;
   string JID = 4;
   bool GPU = 5;
-  bool TcpEstablished = 6;
-  bool Stream = 7;
+  bool Stream = 6;
+  CriuOpts CriuOpts = 7;
 }
 
 message DumpResp {
@@ -175,8 +175,8 @@ message RestoreArgs {
   int32 UID = 5;
   int32 GID = 6;
   repeated int32 Groups = 7;
-  bool TcpEstablished = 8;
-  bool Stream = 9;
+  bool Stream = 8;
+  CriuOpts CriuOpts = 9;
 }
 
 message RestoreResp {
