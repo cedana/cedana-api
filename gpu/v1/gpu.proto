@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package gpu.v1;
+
+service CedanaGPU {
+  rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {}
+  rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+  rpc StartupPoll(StartupPollRequest) returns (StartupPollResponse) {}
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
+}
+
+message CheckpointRequest {
+  string directory = 1;
+}
+
+message CheckpointResponse {
+  bool success = 1;
+  string memPath = 2;
+  string ckptPath = 3;
+}
+
+message RestoreRequest {
+  string directory = 1;
+}
+
+message RestoreResponse {
+  bool success = 1;
+  GPURestoreStats gpuRestoreStats = 2;
+}
+
+message StartupPollRequest {}
+
+message StartupPollResponse {
+  bool success = 1;
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+  bool success = 1;
+  string version = 2;
+  int32 deviceCount = 3;
+  AvailableCUDAAPIs availableCUDAAPIs = 4;
+}
+
+message AvailableCUDAAPIs {
+  int32 cuDNNVersion = 1;
+  int32 cuBLASVersion = 2;
+  int32 ncclVersion = 3;
+  int32 driverVersion = 4;
+  int32 runtimeVersion = 5;
+}
+
+message GPURestoreStats {
+  int64 copyMemTime = 1;
+  int64 replayCallsTime = 2;
+}

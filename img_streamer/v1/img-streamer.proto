@@ -1,9 +1,6 @@
-// SPDX-License-Identifier: MIT
-
 syntax = "proto3";
 
-package cedana.services.img_streamer;
-option go_package = "github.com/cedana/cedana/api/services/img_streamer";
+package image.v1;
 
 // This message is sent from CRIU to the streamer.
 // * During dump, it communicates the name of the file that is about to be sent
@@ -11,11 +8,11 @@ option go_package = "github.com/cedana/cedana/api/services/img_streamer";
 // * During restore, CRIU requests image files from the streamer. The message is
 //   used to communicate the name of the desired file.
 message img_streamer_request_entry {
-	string filename = 1;
+  string filename = 1;
 }
 
 // This message is sent from the streamer to CRIU. It is only used during
 // restore to report whether the requested file exists.
 message img_streamer_reply_entry {
-	bool exists = 1;
+  bool exists = 1;
 }

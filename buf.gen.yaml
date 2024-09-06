@@ -1,0 +1,12 @@
+version: v2
+clean: false
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/cedana/cedana/pkg/api/services
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.34.2
+    out: .
+  - remote: buf.build/grpc/go
+    out: .
