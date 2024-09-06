@@ -618,6 +618,7 @@ message ContainerInfo {
   double CurrentMemory = 4;
   double NetworkIO = 5;
   double DiskIO = 6;
+  string ContainerName = 7;
 }
 
 message ContainersInfo {
