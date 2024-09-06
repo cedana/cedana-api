@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "github.com/cedana/cedana/pkg/api/services/gpu";
+
 package cedanagpu;
 
 service CedanaGPU {
@@ -19,7 +21,7 @@ message CheckpointResponse {
 
 message RestoreRequest { string directory = 1; }
 
-message RestoreResponse { 
+message RestoreResponse {
     bool success = 1;
     GPURestoreStats gpuRestoreStats = 2;
 }
