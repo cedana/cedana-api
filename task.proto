@@ -619,6 +619,7 @@ message ContainerInfo {
   double NetworkIO = 5;
   double DiskIO = 6;
   string ContainerName = 7;
+  string DaemonId = 8;
 }
 
 message ContainersInfo {
