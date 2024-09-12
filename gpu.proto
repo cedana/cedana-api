@@ -9,7 +9,10 @@ service CedanaGPU {
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
 }
 
-message CheckpointRequest { string directory = 1; }
+message CheckpointRequest {
+  string directory = 1;
+  bool stream = 2;
+}
 
 message CheckpointResponse {
   bool success = 1;
@@ -17,7 +20,10 @@ message CheckpointResponse {
   string ckptPath = 3;
 }
 
-message RestoreRequest { string directory = 1; }
+message RestoreRequest {
+  string directory = 1;
+  bool stream = 2;
+}
 
 message RestoreResponse { 
     bool success = 1;
