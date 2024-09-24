@@ -575,8 +575,8 @@ message QueueJobCheckpointRequest {
     string PodName = 3;
     string ImageName = 4;
     string Id = 5;
-    optional string runtime_root = 6;
-    optional string runtime_sock = 7;
+    optional string RuntimeRoot = 6;
+    optional string RuntimeSock = 7;
 }
 
 message QueueJobRestoreRequest {
