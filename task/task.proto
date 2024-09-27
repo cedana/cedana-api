@@ -3,6 +3,8 @@ syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "gpu.proto";
 
+option go_package = "cedana-api/task";
+
 package cedana.services.task;
 
 // Query functions here work just like your familiar query functions in HTTP GET requests,

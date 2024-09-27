@@ -1,4 +1,8 @@
 version: v2
 modules:
-  - path: .
-    name: buf.build/cedana/cedana-api
+  - path: task  
+    name: buf.build/cedana/task
+  - path: gpu
+    name: buf.build/cedana/gpu 
+  - path: criu 
+    name: buf.build/cedana/criu
