@@ -3,10 +3,13 @@ managed:
   enabled: true
 plugins:
   - protoc_builtin: cpp
-    out: gen/cpp
+    out: gen
 
   - remote: buf.build/protocolbuffers/go 
-    out: gen/go 
+    out: gen
+
+  - remote: buf.build/grpc/go
+    out: gen
 inputs:
   - directory: gpu
   - directory: task 
