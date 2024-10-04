@@ -623,8 +623,7 @@ message ContainerInfo {
   string ContainerName = 7;
   string DaemonId = 8;
   repeated string Labels = 9;
-  string string Image = 10;
-
+  string Image = 10;
 }
 
 message ContainersInfo {
