@@ -622,7 +622,7 @@ message ContainerInfo {
   double DiskIO = 6;
   string ContainerName = 7;
   string DaemonId = 8;
-  repeated string Labels = 9;
+  string Labels = 9;
   string Image = 10;
 }
 
