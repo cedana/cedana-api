@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 import "gpu.proto";
 
-option go_package = "cedana-api/task";
+option go_package = "cedana_api/task";
 
 package cedana.services.task;
 

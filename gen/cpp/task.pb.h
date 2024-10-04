@@ -50,7 +50,7 @@ struct TableStruct_task_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[63]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[66]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -87,6 +87,12 @@ extern CheckpointReasonDefaultTypeInternal _CheckpointReason_default_instance_;
 class ConnectionStat;
 class ConnectionStatDefaultTypeInternal;
 extern ConnectionStatDefaultTypeInternal _ConnectionStat_default_instance_;
+class ContainerInfo;
+class ContainerInfoDefaultTypeInternal;
+extern ContainerInfoDefaultTypeInternal _ContainerInfo_default_instance_;
+class ContainerInfoRequest;
+class ContainerInfoRequestDefaultTypeInternal;
+extern ContainerInfoRequestDefaultTypeInternal _ContainerInfoRequest_default_instance_;
 class ContainerdContainer;
 class ContainerdContainerDefaultTypeInternal;
 extern ContainerdContainerDefaultTypeInternal _ContainerdContainer_default_instance_;
@@ -120,6 +126,9 @@ extern ContainerdRootfsRestoreArgsDefaultTypeInternal _ContainerdRootfsRestoreAr
 class ContainerdRootfsRestoreResp;
 class ContainerdRootfsRestoreRespDefaultTypeInternal;
 extern ContainerdRootfsRestoreRespDefaultTypeInternal _ContainerdRootfsRestoreResp_default_instance_;
+class ContainersInfo;
+class ContainersInfoDefaultTypeInternal;
+extern ContainersInfoDefaultTypeInternal _ContainersInfo_default_instance_;
 class CriuOpts;
 class CriuOptsDefaultTypeInternal;
 extern CriuOptsDefaultTypeInternal _CriuOpts_default_instance_;
@@ -262,6 +271,8 @@ template<> ::cedana::services::task::CRIORootfsDumpResp* Arena::CreateMaybeMessa
 template<> ::cedana::services::task::CheckpointFileStats* Arena::CreateMaybeMessage<::cedana::services::task::CheckpointFileStats>(Arena*);
 template<> ::cedana::services::task::CheckpointReason* Arena::CreateMaybeMessage<::cedana::services::task::CheckpointReason>(Arena*);
 template<> ::cedana::services::task::ConnectionStat* Arena::CreateMaybeMessage<::cedana::services::task::ConnectionStat>(Arena*);
+template<> ::cedana::services::task::ContainerInfo* Arena::CreateMaybeMessage<::cedana::services::task::ContainerInfo>(Arena*);
+template<> ::cedana::services::task::ContainerInfoRequest* Arena::CreateMaybeMessage<::cedana::services::task::ContainerInfoRequest>(Arena*);
 template<> ::cedana::services::task::ContainerdContainer* Arena::CreateMaybeMessage<::cedana::services::task::ContainerdContainer>(Arena*);
 template<> ::cedana::services::task::ContainerdDumpArgs* Arena::CreateMaybeMessage<::cedana::services::task::ContainerdDumpArgs>(Arena*);
 template<> ::cedana::services::task::ContainerdDumpResp* Arena::CreateMaybeMessage<::cedana::services::task::ContainerdDumpResp>(Arena*);
@@ -273,6 +284,7 @@ template<> ::cedana::services::task::ContainerdRootfsDumpArgs* Arena::CreateMayb
 template<> ::cedana::services::task::ContainerdRootfsDumpResp* Arena::CreateMaybeMessage<::cedana::services::task::ContainerdRootfsDumpResp>(Arena*);
 template<> ::cedana::services::task::ContainerdRootfsRestoreArgs* Arena::CreateMaybeMessage<::cedana::services::task::ContainerdRootfsRestoreArgs>(Arena*);
 template<> ::cedana::services::task::ContainerdRootfsRestoreResp* Arena::CreateMaybeMessage<::cedana::services::task::ContainerdRootfsRestoreResp>(Arena*);
+template<> ::cedana::services::task::ContainersInfo* Arena::CreateMaybeMessage<::cedana::services::task::ContainersInfo>(Arena*);
 template<> ::cedana::services::task::CriuOpts* Arena::CreateMaybeMessage<::cedana::services::task::CriuOpts>(Arena*);
 template<> ::cedana::services::task::DetailedHealthCheckRequest* Arena::CreateMaybeMessage<::cedana::services::task::DetailedHealthCheckRequest>(Arena*);
 template<> ::cedana::services::task::DetailedHealthCheckResponse* Arena::CreateMaybeMessage<::cedana::services::task::DetailedHealthCheckResponse>(Arena*);
@@ -13267,6 +13279,8 @@ class QueueJobCheckpointRequest PROTOBUF_FINAL :
     kPodNameFieldNumber = 3,
     kImageNameFieldNumber = 4,
     kIdFieldNumber = 5,
+    kRuntimeRootFieldNumber = 6,
+    kRuntimeSockFieldNumber = 7,
   };
   // string ContainerName = 1[json_name = "ContainerName"];
   void clear_containername();
@@ -13393,6 +13407,64 @@ class QueueJobCheckpointRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_id();
   public:
 
+  // string RuntimeRoot = 6[json_name = "RuntimeRoot"];
+  bool has_runtimeroot() const;
+  private:
+  bool _internal_has_runtimeroot() const;
+  public:
+  void clear_runtimeroot();
+  const std::string& runtimeroot() const;
+  void set_runtimeroot(const std::string& value);
+  void set_runtimeroot(std::string&& value);
+  void set_runtimeroot(const char* value);
+  void set_runtimeroot(const char* value, size_t size);
+  std::string* mutable_runtimeroot();
+  std::string* release_runtimeroot();
+  void set_allocated_runtimeroot(std::string* runtimeroot);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_runtimeroot();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_runtimeroot(
+      std::string* runtimeroot);
+  private:
+  const std::string& _internal_runtimeroot() const;
+  void _internal_set_runtimeroot(const std::string& value);
+  std::string* _internal_mutable_runtimeroot();
+  public:
+
+  // string RuntimeSock = 7[json_name = "RuntimeSock"];
+  bool has_runtimesock() const;
+  private:
+  bool _internal_has_runtimesock() const;
+  public:
+  void clear_runtimesock();
+  const std::string& runtimesock() const;
+  void set_runtimesock(const std::string& value);
+  void set_runtimesock(std::string&& value);
+  void set_runtimesock(const char* value);
+  void set_runtimesock(const char* value, size_t size);
+  std::string* mutable_runtimesock();
+  std::string* release_runtimesock();
+  void set_allocated_runtimesock(std::string* runtimesock);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_runtimesock();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_runtimesock(
+      std::string* runtimesock);
+  private:
+  const std::string& _internal_runtimesock() const;
+  void _internal_set_runtimesock(const std::string& value);
+  std::string* _internal_mutable_runtimesock();
+  public:
+
   // @@protoc_insertion_point(class_scope:cedana.services.task.QueueJobCheckpointRequest)
  private:
   class _Internal;
@@ -13400,12 +13472,15 @@ class QueueJobCheckpointRequest PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr containername_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr namespace__;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr podname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr imagename_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr runtimeroot_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr runtimesock_;
   friend struct ::TableStruct_task_2eproto;
 };
 // -------------------------------------------------------------------
@@ -13956,6 +14031,575 @@ class QueueJobStatus PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   int status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_task_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ContainerInfoRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:cedana.services.task.ContainerInfoRequest) */ {
+ public:
+  inline ContainerInfoRequest() : ContainerInfoRequest(nullptr) {};
+  virtual ~ContainerInfoRequest();
+
+  ContainerInfoRequest(const ContainerInfoRequest& from);
+  ContainerInfoRequest(ContainerInfoRequest&& from) noexcept
+    : ContainerInfoRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ContainerInfoRequest& operator=(const ContainerInfoRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ContainerInfoRequest& operator=(ContainerInfoRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ContainerInfoRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ContainerInfoRequest* internal_default_instance() {
+    return reinterpret_cast<const ContainerInfoRequest*>(
+               &_ContainerInfoRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    63;
+
+  friend void swap(ContainerInfoRequest& a, ContainerInfoRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ContainerInfoRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ContainerInfoRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ContainerInfoRequest* New() const final {
+    return CreateMaybeMessage<ContainerInfoRequest>(nullptr);
+  }
+
+  ContainerInfoRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ContainerInfoRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ContainerInfoRequest& from);
+  void MergeFrom(const ContainerInfoRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ContainerInfoRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "cedana.services.task.ContainerInfoRequest";
+  }
+  protected:
+  explicit ContainerInfoRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_task_2eproto);
+    return ::descriptor_table_task_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:cedana.services.task.ContainerInfoRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_task_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ContainerInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:cedana.services.task.ContainerInfo) */ {
+ public:
+  inline ContainerInfo() : ContainerInfo(nullptr) {};
+  virtual ~ContainerInfo();
+
+  ContainerInfo(const ContainerInfo& from);
+  ContainerInfo(ContainerInfo&& from) noexcept
+    : ContainerInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ContainerInfo& operator=(const ContainerInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ContainerInfo& operator=(ContainerInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ContainerInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ContainerInfo* internal_default_instance() {
+    return reinterpret_cast<const ContainerInfo*>(
+               &_ContainerInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    64;
+
+  friend void swap(ContainerInfo& a, ContainerInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ContainerInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ContainerInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ContainerInfo* New() const final {
+    return CreateMaybeMessage<ContainerInfo>(nullptr);
+  }
+
+  ContainerInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ContainerInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ContainerInfo& from);
+  void MergeFrom(const ContainerInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ContainerInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "cedana.services.task.ContainerInfo";
+  }
+  protected:
+  explicit ContainerInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_task_2eproto);
+    return ::descriptor_table_task_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLabelsFieldNumber = 9,
+    kContainerNameFieldNumber = 7,
+    kDaemonIdFieldNumber = 8,
+    kImageFieldNumber = 10,
+    kCpuTimeFieldNumber = 1,
+    kCpuLoadAvgFieldNumber = 2,
+    kMaxMemoryFieldNumber = 3,
+    kCurrentMemoryFieldNumber = 4,
+    kNetworkIOFieldNumber = 5,
+    kDiskIOFieldNumber = 6,
+  };
+  // repeated string Labels = 9[json_name = "Labels"];
+  int labels_size() const;
+  private:
+  int _internal_labels_size() const;
+  public:
+  void clear_labels();
+  const std::string& labels(int index) const;
+  std::string* mutable_labels(int index);
+  void set_labels(int index, const std::string& value);
+  void set_labels(int index, std::string&& value);
+  void set_labels(int index, const char* value);
+  void set_labels(int index, const char* value, size_t size);
+  std::string* add_labels();
+  void add_labels(const std::string& value);
+  void add_labels(std::string&& value);
+  void add_labels(const char* value);
+  void add_labels(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& labels() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_labels();
+  private:
+  const std::string& _internal_labels(int index) const;
+  std::string* _internal_add_labels();
+  public:
+
+  // string ContainerName = 7[json_name = "ContainerName"];
+  void clear_containername();
+  const std::string& containername() const;
+  void set_containername(const std::string& value);
+  void set_containername(std::string&& value);
+  void set_containername(const char* value);
+  void set_containername(const char* value, size_t size);
+  std::string* mutable_containername();
+  std::string* release_containername();
+  void set_allocated_containername(std::string* containername);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_containername();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_containername(
+      std::string* containername);
+  private:
+  const std::string& _internal_containername() const;
+  void _internal_set_containername(const std::string& value);
+  std::string* _internal_mutable_containername();
+  public:
+
+  // string DaemonId = 8[json_name = "DaemonId"];
+  void clear_daemonid();
+  const std::string& daemonid() const;
+  void set_daemonid(const std::string& value);
+  void set_daemonid(std::string&& value);
+  void set_daemonid(const char* value);
+  void set_daemonid(const char* value, size_t size);
+  std::string* mutable_daemonid();
+  std::string* release_daemonid();
+  void set_allocated_daemonid(std::string* daemonid);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_daemonid();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_daemonid(
+      std::string* daemonid);
+  private:
+  const std::string& _internal_daemonid() const;
+  void _internal_set_daemonid(const std::string& value);
+  std::string* _internal_mutable_daemonid();
+  public:
+
+  // string Image = 10[json_name = "Image"];
+  void clear_image();
+  const std::string& image() const;
+  void set_image(const std::string& value);
+  void set_image(std::string&& value);
+  void set_image(const char* value);
+  void set_image(const char* value, size_t size);
+  std::string* mutable_image();
+  std::string* release_image();
+  void set_allocated_image(std::string* image);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_image();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_image(
+      std::string* image);
+  private:
+  const std::string& _internal_image() const;
+  void _internal_set_image(const std::string& value);
+  std::string* _internal_mutable_image();
+  public:
+
+  // double CpuTime = 1[json_name = "CpuTime"];
+  void clear_cputime();
+  double cputime() const;
+  void set_cputime(double value);
+  private:
+  double _internal_cputime() const;
+  void _internal_set_cputime(double value);
+  public:
+
+  // double CpuLoadAvg = 2[json_name = "CpuLoadAvg"];
+  void clear_cpuloadavg();
+  double cpuloadavg() const;
+  void set_cpuloadavg(double value);
+  private:
+  double _internal_cpuloadavg() const;
+  void _internal_set_cpuloadavg(double value);
+  public:
+
+  // double MaxMemory = 3[json_name = "MaxMemory"];
+  void clear_maxmemory();
+  double maxmemory() const;
+  void set_maxmemory(double value);
+  private:
+  double _internal_maxmemory() const;
+  void _internal_set_maxmemory(double value);
+  public:
+
+  // double CurrentMemory = 4[json_name = "CurrentMemory"];
+  void clear_currentmemory();
+  double currentmemory() const;
+  void set_currentmemory(double value);
+  private:
+  double _internal_currentmemory() const;
+  void _internal_set_currentmemory(double value);
+  public:
+
+  // double NetworkIO = 5[json_name = "NetworkIO"];
+  void clear_networkio();
+  double networkio() const;
+  void set_networkio(double value);
+  private:
+  double _internal_networkio() const;
+  void _internal_set_networkio(double value);
+  public:
+
+  // double DiskIO = 6[json_name = "DiskIO"];
+  void clear_diskio();
+  double diskio() const;
+  void set_diskio(double value);
+  private:
+  double _internal_diskio() const;
+  void _internal_set_diskio(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:cedana.services.task.ContainerInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> labels_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr containername_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr daemonid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr image_;
+  double cputime_;
+  double cpuloadavg_;
+  double maxmemory_;
+  double currentmemory_;
+  double networkio_;
+  double diskio_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_task_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ContainersInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:cedana.services.task.ContainersInfo) */ {
+ public:
+  inline ContainersInfo() : ContainersInfo(nullptr) {};
+  virtual ~ContainersInfo();
+
+  ContainersInfo(const ContainersInfo& from);
+  ContainersInfo(ContainersInfo&& from) noexcept
+    : ContainersInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ContainersInfo& operator=(const ContainersInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ContainersInfo& operator=(ContainersInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ContainersInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ContainersInfo* internal_default_instance() {
+    return reinterpret_cast<const ContainersInfo*>(
+               &_ContainersInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    65;
+
+  friend void swap(ContainersInfo& a, ContainersInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ContainersInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ContainersInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ContainersInfo* New() const final {
+    return CreateMaybeMessage<ContainersInfo>(nullptr);
+  }
+
+  ContainersInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ContainersInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ContainersInfo& from);
+  void MergeFrom(const ContainersInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ContainersInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "cedana.services.task.ContainersInfo";
+  }
+  protected:
+  explicit ContainersInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_task_2eproto);
+    return ::descriptor_table_task_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContainersFieldNumber = 1,
+  };
+  // repeated .cedana.services.task.ContainerInfo containers = 1[json_name = "containers"];
+  int containers_size() const;
+  private:
+  int _internal_containers_size() const;
+  public:
+  void clear_containers();
+  ::cedana::services::task::ContainerInfo* mutable_containers(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::cedana::services::task::ContainerInfo >*
+      mutable_containers();
+  private:
+  const ::cedana::services::task::ContainerInfo& _internal_containers(int index) const;
+  ::cedana::services::task::ContainerInfo* _internal_add_containers();
+  public:
+  const ::cedana::services::task::ContainerInfo& containers(int index) const;
+  ::cedana::services::task::ContainerInfo* add_containers();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::cedana::services::task::ContainerInfo >&
+      containers() const;
+
+  // @@protoc_insertion_point(class_scope:cedana.services.task.ContainersInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::cedana::services::task::ContainerInfo > containers_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_task_2eproto;
 };
@@ -29140,6 +29784,192 @@ inline void QueueJobCheckpointRequest::unsafe_arena_set_allocated_id(
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:cedana.services.task.QueueJobCheckpointRequest.Id)
 }
 
+// string RuntimeRoot = 6[json_name = "RuntimeRoot"];
+inline bool QueueJobCheckpointRequest::_internal_has_runtimeroot() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool QueueJobCheckpointRequest::has_runtimeroot() const {
+  return _internal_has_runtimeroot();
+}
+inline void QueueJobCheckpointRequest::clear_runtimeroot() {
+  runtimeroot_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& QueueJobCheckpointRequest::runtimeroot() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+  return _internal_runtimeroot();
+}
+inline void QueueJobCheckpointRequest::set_runtimeroot(const std::string& value) {
+  _internal_set_runtimeroot(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+}
+inline std::string* QueueJobCheckpointRequest::mutable_runtimeroot() {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+  return _internal_mutable_runtimeroot();
+}
+inline const std::string& QueueJobCheckpointRequest::_internal_runtimeroot() const {
+  return runtimeroot_.Get();
+}
+inline void QueueJobCheckpointRequest::_internal_set_runtimeroot(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  runtimeroot_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void QueueJobCheckpointRequest::set_runtimeroot(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  runtimeroot_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+}
+inline void QueueJobCheckpointRequest::set_runtimeroot(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  runtimeroot_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+}
+inline void QueueJobCheckpointRequest::set_runtimeroot(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  runtimeroot_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+}
+inline std::string* QueueJobCheckpointRequest::_internal_mutable_runtimeroot() {
+  _has_bits_[0] |= 0x00000001u;
+  return runtimeroot_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* QueueJobCheckpointRequest::release_runtimeroot() {
+  // @@protoc_insertion_point(field_release:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+  if (!_internal_has_runtimeroot()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return runtimeroot_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void QueueJobCheckpointRequest::set_allocated_runtimeroot(std::string* runtimeroot) {
+  if (runtimeroot != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  runtimeroot_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), runtimeroot,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+}
+inline std::string* QueueJobCheckpointRequest::unsafe_arena_release_runtimeroot() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  _has_bits_[0] &= ~0x00000001u;
+  return runtimeroot_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void QueueJobCheckpointRequest::unsafe_arena_set_allocated_runtimeroot(
+    std::string* runtimeroot) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (runtimeroot != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  runtimeroot_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      runtimeroot, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot)
+}
+
+// string RuntimeSock = 7[json_name = "RuntimeSock"];
+inline bool QueueJobCheckpointRequest::_internal_has_runtimesock() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool QueueJobCheckpointRequest::has_runtimesock() const {
+  return _internal_has_runtimesock();
+}
+inline void QueueJobCheckpointRequest::clear_runtimesock() {
+  runtimesock_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& QueueJobCheckpointRequest::runtimesock() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+  return _internal_runtimesock();
+}
+inline void QueueJobCheckpointRequest::set_runtimesock(const std::string& value) {
+  _internal_set_runtimesock(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+}
+inline std::string* QueueJobCheckpointRequest::mutable_runtimesock() {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+  return _internal_mutable_runtimesock();
+}
+inline const std::string& QueueJobCheckpointRequest::_internal_runtimesock() const {
+  return runtimesock_.Get();
+}
+inline void QueueJobCheckpointRequest::_internal_set_runtimesock(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  runtimesock_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void QueueJobCheckpointRequest::set_runtimesock(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  runtimesock_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+}
+inline void QueueJobCheckpointRequest::set_runtimesock(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  runtimesock_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+}
+inline void QueueJobCheckpointRequest::set_runtimesock(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  runtimesock_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+}
+inline std::string* QueueJobCheckpointRequest::_internal_mutable_runtimesock() {
+  _has_bits_[0] |= 0x00000002u;
+  return runtimesock_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* QueueJobCheckpointRequest::release_runtimesock() {
+  // @@protoc_insertion_point(field_release:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+  if (!_internal_has_runtimesock()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return runtimesock_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void QueueJobCheckpointRequest::set_allocated_runtimesock(std::string* runtimesock) {
+  if (runtimesock != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  runtimesock_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), runtimesock,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+}
+inline std::string* QueueJobCheckpointRequest::unsafe_arena_release_runtimesock() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  _has_bits_[0] &= ~0x00000002u;
+  return runtimesock_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void QueueJobCheckpointRequest::unsafe_arena_set_allocated_runtimesock(
+    std::string* runtimesock) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (runtimesock != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  runtimesock_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      runtimesock, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:cedana.services.task.QueueJobCheckpointRequest.RuntimeSock)
+}
+
 // -------------------------------------------------------------------
 
 // QueueJobRestoreRequest
@@ -29658,9 +30488,503 @@ inline void QueueJobStatus::set_status(::cedana::services::task::QueueJobStatusE
   // @@protoc_insertion_point(field_set:cedana.services.task.QueueJobStatus.Status)
 }
 
+// -------------------------------------------------------------------
+
+// ContainerInfoRequest
+
+// -------------------------------------------------------------------
+
+// ContainerInfo
+
+// double CpuTime = 1[json_name = "CpuTime"];
+inline void ContainerInfo::clear_cputime() {
+  cputime_ = 0;
+}
+inline double ContainerInfo::_internal_cputime() const {
+  return cputime_;
+}
+inline double ContainerInfo::cputime() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.CpuTime)
+  return _internal_cputime();
+}
+inline void ContainerInfo::_internal_set_cputime(double value) {
+  
+  cputime_ = value;
+}
+inline void ContainerInfo::set_cputime(double value) {
+  _internal_set_cputime(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.CpuTime)
+}
+
+// double CpuLoadAvg = 2[json_name = "CpuLoadAvg"];
+inline void ContainerInfo::clear_cpuloadavg() {
+  cpuloadavg_ = 0;
+}
+inline double ContainerInfo::_internal_cpuloadavg() const {
+  return cpuloadavg_;
+}
+inline double ContainerInfo::cpuloadavg() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.CpuLoadAvg)
+  return _internal_cpuloadavg();
+}
+inline void ContainerInfo::_internal_set_cpuloadavg(double value) {
+  
+  cpuloadavg_ = value;
+}
+inline void ContainerInfo::set_cpuloadavg(double value) {
+  _internal_set_cpuloadavg(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.CpuLoadAvg)
+}
+
+// double MaxMemory = 3[json_name = "MaxMemory"];
+inline void ContainerInfo::clear_maxmemory() {
+  maxmemory_ = 0;
+}
+inline double ContainerInfo::_internal_maxmemory() const {
+  return maxmemory_;
+}
+inline double ContainerInfo::maxmemory() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.MaxMemory)
+  return _internal_maxmemory();
+}
+inline void ContainerInfo::_internal_set_maxmemory(double value) {
+  
+  maxmemory_ = value;
+}
+inline void ContainerInfo::set_maxmemory(double value) {
+  _internal_set_maxmemory(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.MaxMemory)
+}
+
+// double CurrentMemory = 4[json_name = "CurrentMemory"];
+inline void ContainerInfo::clear_currentmemory() {
+  currentmemory_ = 0;
+}
+inline double ContainerInfo::_internal_currentmemory() const {
+  return currentmemory_;
+}
+inline double ContainerInfo::currentmemory() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.CurrentMemory)
+  return _internal_currentmemory();
+}
+inline void ContainerInfo::_internal_set_currentmemory(double value) {
+  
+  currentmemory_ = value;
+}
+inline void ContainerInfo::set_currentmemory(double value) {
+  _internal_set_currentmemory(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.CurrentMemory)
+}
+
+// double NetworkIO = 5[json_name = "NetworkIO"];
+inline void ContainerInfo::clear_networkio() {
+  networkio_ = 0;
+}
+inline double ContainerInfo::_internal_networkio() const {
+  return networkio_;
+}
+inline double ContainerInfo::networkio() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.NetworkIO)
+  return _internal_networkio();
+}
+inline void ContainerInfo::_internal_set_networkio(double value) {
+  
+  networkio_ = value;
+}
+inline void ContainerInfo::set_networkio(double value) {
+  _internal_set_networkio(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.NetworkIO)
+}
+
+// double DiskIO = 6[json_name = "DiskIO"];
+inline void ContainerInfo::clear_diskio() {
+  diskio_ = 0;
+}
+inline double ContainerInfo::_internal_diskio() const {
+  return diskio_;
+}
+inline double ContainerInfo::diskio() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.DiskIO)
+  return _internal_diskio();
+}
+inline void ContainerInfo::_internal_set_diskio(double value) {
+  
+  diskio_ = value;
+}
+inline void ContainerInfo::set_diskio(double value) {
+  _internal_set_diskio(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.DiskIO)
+}
+
+// string ContainerName = 7[json_name = "ContainerName"];
+inline void ContainerInfo::clear_containername() {
+  containername_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& ContainerInfo::containername() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.ContainerName)
+  return _internal_containername();
+}
+inline void ContainerInfo::set_containername(const std::string& value) {
+  _internal_set_containername(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.ContainerName)
+}
+inline std::string* ContainerInfo::mutable_containername() {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.ContainerInfo.ContainerName)
+  return _internal_mutable_containername();
+}
+inline const std::string& ContainerInfo::_internal_containername() const {
+  return containername_.Get();
+}
+inline void ContainerInfo::_internal_set_containername(const std::string& value) {
+  
+  containername_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void ContainerInfo::set_containername(std::string&& value) {
+  
+  containername_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:cedana.services.task.ContainerInfo.ContainerName)
+}
+inline void ContainerInfo::set_containername(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  containername_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:cedana.services.task.ContainerInfo.ContainerName)
+}
+inline void ContainerInfo::set_containername(const char* value,
+    size_t size) {
+  
+  containername_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:cedana.services.task.ContainerInfo.ContainerName)
+}
+inline std::string* ContainerInfo::_internal_mutable_containername() {
+  
+  return containername_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* ContainerInfo::release_containername() {
+  // @@protoc_insertion_point(field_release:cedana.services.task.ContainerInfo.ContainerName)
+  return containername_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ContainerInfo::set_allocated_containername(std::string* containername) {
+  if (containername != nullptr) {
+    
+  } else {
+    
+  }
+  containername_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), containername,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:cedana.services.task.ContainerInfo.ContainerName)
+}
+inline std::string* ContainerInfo::unsafe_arena_release_containername() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:cedana.services.task.ContainerInfo.ContainerName)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return containername_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void ContainerInfo::unsafe_arena_set_allocated_containername(
+    std::string* containername) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (containername != nullptr) {
+    
+  } else {
+    
+  }
+  containername_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      containername, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:cedana.services.task.ContainerInfo.ContainerName)
+}
+
+// string DaemonId = 8[json_name = "DaemonId"];
+inline void ContainerInfo::clear_daemonid() {
+  daemonid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& ContainerInfo::daemonid() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.DaemonId)
+  return _internal_daemonid();
+}
+inline void ContainerInfo::set_daemonid(const std::string& value) {
+  _internal_set_daemonid(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.DaemonId)
+}
+inline std::string* ContainerInfo::mutable_daemonid() {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.ContainerInfo.DaemonId)
+  return _internal_mutable_daemonid();
+}
+inline const std::string& ContainerInfo::_internal_daemonid() const {
+  return daemonid_.Get();
+}
+inline void ContainerInfo::_internal_set_daemonid(const std::string& value) {
+  
+  daemonid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void ContainerInfo::set_daemonid(std::string&& value) {
+  
+  daemonid_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:cedana.services.task.ContainerInfo.DaemonId)
+}
+inline void ContainerInfo::set_daemonid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  daemonid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:cedana.services.task.ContainerInfo.DaemonId)
+}
+inline void ContainerInfo::set_daemonid(const char* value,
+    size_t size) {
+  
+  daemonid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:cedana.services.task.ContainerInfo.DaemonId)
+}
+inline std::string* ContainerInfo::_internal_mutable_daemonid() {
+  
+  return daemonid_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* ContainerInfo::release_daemonid() {
+  // @@protoc_insertion_point(field_release:cedana.services.task.ContainerInfo.DaemonId)
+  return daemonid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ContainerInfo::set_allocated_daemonid(std::string* daemonid) {
+  if (daemonid != nullptr) {
+    
+  } else {
+    
+  }
+  daemonid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), daemonid,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:cedana.services.task.ContainerInfo.DaemonId)
+}
+inline std::string* ContainerInfo::unsafe_arena_release_daemonid() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:cedana.services.task.ContainerInfo.DaemonId)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return daemonid_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void ContainerInfo::unsafe_arena_set_allocated_daemonid(
+    std::string* daemonid) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (daemonid != nullptr) {
+    
+  } else {
+    
+  }
+  daemonid_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      daemonid, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:cedana.services.task.ContainerInfo.DaemonId)
+}
+
+// repeated string Labels = 9[json_name = "Labels"];
+inline int ContainerInfo::_internal_labels_size() const {
+  return labels_.size();
+}
+inline int ContainerInfo::labels_size() const {
+  return _internal_labels_size();
+}
+inline void ContainerInfo::clear_labels() {
+  labels_.Clear();
+}
+inline std::string* ContainerInfo::add_labels() {
+  // @@protoc_insertion_point(field_add_mutable:cedana.services.task.ContainerInfo.Labels)
+  return _internal_add_labels();
+}
+inline const std::string& ContainerInfo::_internal_labels(int index) const {
+  return labels_.Get(index);
+}
+inline const std::string& ContainerInfo::labels(int index) const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.Labels)
+  return _internal_labels(index);
+}
+inline std::string* ContainerInfo::mutable_labels(int index) {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.ContainerInfo.Labels)
+  return labels_.Mutable(index);
+}
+inline void ContainerInfo::set_labels(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.Labels)
+  labels_.Mutable(index)->assign(value);
+}
+inline void ContainerInfo::set_labels(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.Labels)
+  labels_.Mutable(index)->assign(std::move(value));
+}
+inline void ContainerInfo::set_labels(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  labels_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:cedana.services.task.ContainerInfo.Labels)
+}
+inline void ContainerInfo::set_labels(int index, const char* value, size_t size) {
+  labels_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:cedana.services.task.ContainerInfo.Labels)
+}
+inline std::string* ContainerInfo::_internal_add_labels() {
+  return labels_.Add();
+}
+inline void ContainerInfo::add_labels(const std::string& value) {
+  labels_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:cedana.services.task.ContainerInfo.Labels)
+}
+inline void ContainerInfo::add_labels(std::string&& value) {
+  labels_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:cedana.services.task.ContainerInfo.Labels)
+}
+inline void ContainerInfo::add_labels(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  labels_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:cedana.services.task.ContainerInfo.Labels)
+}
+inline void ContainerInfo::add_labels(const char* value, size_t size) {
+  labels_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:cedana.services.task.ContainerInfo.Labels)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+ContainerInfo::labels() const {
+  // @@protoc_insertion_point(field_list:cedana.services.task.ContainerInfo.Labels)
+  return labels_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+ContainerInfo::mutable_labels() {
+  // @@protoc_insertion_point(field_mutable_list:cedana.services.task.ContainerInfo.Labels)
+  return &labels_;
+}
+
+// string Image = 10[json_name = "Image"];
+inline void ContainerInfo::clear_image() {
+  image_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& ContainerInfo::image() const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainerInfo.Image)
+  return _internal_image();
+}
+inline void ContainerInfo::set_image(const std::string& value) {
+  _internal_set_image(value);
+  // @@protoc_insertion_point(field_set:cedana.services.task.ContainerInfo.Image)
+}
+inline std::string* ContainerInfo::mutable_image() {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.ContainerInfo.Image)
+  return _internal_mutable_image();
+}
+inline const std::string& ContainerInfo::_internal_image() const {
+  return image_.Get();
+}
+inline void ContainerInfo::_internal_set_image(const std::string& value) {
+  
+  image_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void ContainerInfo::set_image(std::string&& value) {
+  
+  image_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:cedana.services.task.ContainerInfo.Image)
+}
+inline void ContainerInfo::set_image(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  image_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:cedana.services.task.ContainerInfo.Image)
+}
+inline void ContainerInfo::set_image(const char* value,
+    size_t size) {
+  
+  image_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:cedana.services.task.ContainerInfo.Image)
+}
+inline std::string* ContainerInfo::_internal_mutable_image() {
+  
+  return image_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* ContainerInfo::release_image() {
+  // @@protoc_insertion_point(field_release:cedana.services.task.ContainerInfo.Image)
+  return image_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ContainerInfo::set_allocated_image(std::string* image) {
+  if (image != nullptr) {
+    
+  } else {
+    
+  }
+  image_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), image,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:cedana.services.task.ContainerInfo.Image)
+}
+inline std::string* ContainerInfo::unsafe_arena_release_image() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:cedana.services.task.ContainerInfo.Image)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return image_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void ContainerInfo::unsafe_arena_set_allocated_image(
+    std::string* image) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (image != nullptr) {
+    
+  } else {
+    
+  }
+  image_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      image, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:cedana.services.task.ContainerInfo.Image)
+}
+
+// -------------------------------------------------------------------
+
+// ContainersInfo
+
+// repeated .cedana.services.task.ContainerInfo containers = 1[json_name = "containers"];
+inline int ContainersInfo::_internal_containers_size() const {
+  return containers_.size();
+}
+inline int ContainersInfo::containers_size() const {
+  return _internal_containers_size();
+}
+inline void ContainersInfo::clear_containers() {
+  containers_.Clear();
+}
+inline ::cedana::services::task::ContainerInfo* ContainersInfo::mutable_containers(int index) {
+  // @@protoc_insertion_point(field_mutable:cedana.services.task.ContainersInfo.containers)
+  return containers_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::cedana::services::task::ContainerInfo >*
+ContainersInfo::mutable_containers() {
+  // @@protoc_insertion_point(field_mutable_list:cedana.services.task.ContainersInfo.containers)
+  return &containers_;
+}
+inline const ::cedana::services::task::ContainerInfo& ContainersInfo::_internal_containers(int index) const {
+  return containers_.Get(index);
+}
+inline const ::cedana::services::task::ContainerInfo& ContainersInfo::containers(int index) const {
+  // @@protoc_insertion_point(field_get:cedana.services.task.ContainersInfo.containers)
+  return _internal_containers(index);
+}
+inline ::cedana::services::task::ContainerInfo* ContainersInfo::_internal_add_containers() {
+  return containers_.Add();
+}
+inline ::cedana::services::task::ContainerInfo* ContainersInfo::add_containers() {
+  // @@protoc_insertion_point(field_add:cedana.services.task.ContainersInfo.containers)
+  return _internal_add_containers();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::cedana::services::task::ContainerInfo >&
+ContainersInfo::containers() const {
+  // @@protoc_insertion_point(field_list:cedana.services.task.ContainersInfo.containers)
+  return containers_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

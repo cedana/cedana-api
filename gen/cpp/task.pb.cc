@@ -18,6 +18,7 @@ extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::
 extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CPUInfo_task_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CheckpointFileStats_task_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ConnectionStat_task_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContainerInfo_task_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContainerdContainer_task_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContainerdRootfsDumpArgs_task_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_task_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CriuOpts_task_2eproto;
@@ -292,6 +293,18 @@ class QueueJobStatusDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<QueueJobStatus> _instance;
 } _QueueJobStatus_default_instance_;
+class ContainerInfoRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContainerInfoRequest> _instance;
+} _ContainerInfoRequest_default_instance_;
+class ContainerInfoDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContainerInfo> _instance;
+} _ContainerInfo_default_instance_;
+class ContainersInfoDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ContainersInfo> _instance;
+} _ContainersInfo_default_instance_;
 }  // namespace task
 }  // namespace services
 }  // namespace cedana
@@ -421,6 +434,34 @@ static void InitDefaultsscc_info_ConnectionStat_task_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ConnectionStat_task_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ConnectionStat_task_2eproto}, {
       &scc_info_Addr_task_2eproto.base,}};
+
+static void InitDefaultsscc_info_ContainerInfo_task_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::cedana::services::task::_ContainerInfo_default_instance_;
+    new (ptr) ::cedana::services::task::ContainerInfo();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::cedana::services::task::ContainerInfo::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContainerInfo_task_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ContainerInfo_task_2eproto}, {}};
+
+static void InitDefaultsscc_info_ContainerInfoRequest_task_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::cedana::services::task::_ContainerInfoRequest_default_instance_;
+    new (ptr) ::cedana::services::task::ContainerInfoRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::cedana::services::task::ContainerInfoRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContainerInfoRequest_task_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ContainerInfoRequest_task_2eproto}, {}};
 
 static void InitDefaultsscc_info_ContainerdContainer_task_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -578,6 +619,21 @@ static void InitDefaultsscc_info_ContainerdRootfsRestoreResp_task_2eproto() {
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ContainerdRootfsRestoreResp_task_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_ContainerdRootfsRestoreResp_task_2eproto}, {}};
+
+static void InitDefaultsscc_info_ContainersInfo_task_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::cedana::services::task::_ContainersInfo_default_instance_;
+    new (ptr) ::cedana::services::task::ContainersInfo();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::cedana::services::task::ContainersInfo::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ContainersInfo_task_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ContainersInfo_task_2eproto}, {
+      &scc_info_ContainerInfo_task_2eproto.base,}};
 
 static void InitDefaultsscc_info_CriuOpts_task_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1211,7 +1267,7 @@ static void InitDefaultsscc_info_StartResp_task_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StartResp_task_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_StartResp_task_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_task_2eproto[63];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_task_2eproto[66];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_task_2eproto[8];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_task_2eproto = nullptr;
 
@@ -1757,7 +1813,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_task_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::GetConfigResponse, json_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -1767,6 +1823,15 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_task_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, podname_),
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, imagename_),
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, id_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, runtimeroot_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobCheckpointRequest, runtimesock_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobRestoreRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1789,6 +1854,32 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_task_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::cedana::services::task::QueueJobStatus, status_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfoRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, cputime_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, cpuloadavg_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, maxmemory_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, currentmemory_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, networkio_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, diskio_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, containername_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, daemonid_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, labels_),
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainerInfo, image_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainersInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::cedana::services::task::ContainersInfo, containers_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::cedana::services::task::DumpStats)},
@@ -1850,10 +1941,13 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 523, -1, sizeof(::cedana::services::task::HealthCheckStats)},
   { 530, -1, sizeof(::cedana::services::task::GetConfigRequest)},
   { 535, -1, sizeof(::cedana::services::task::GetConfigResponse)},
-  { 541, -1, sizeof(::cedana::services::task::QueueJobCheckpointRequest)},
-  { 551, -1, sizeof(::cedana::services::task::QueueJobRestoreRequest)},
-  { 561, -1, sizeof(::cedana::services::task::QueueJobID)},
-  { 567, -1, sizeof(::cedana::services::task::QueueJobStatus)},
+  { 541, 553, sizeof(::cedana::services::task::QueueJobCheckpointRequest)},
+  { 560, -1, sizeof(::cedana::services::task::QueueJobRestoreRequest)},
+  { 570, -1, sizeof(::cedana::services::task::QueueJobID)},
+  { 576, -1, sizeof(::cedana::services::task::QueueJobStatus)},
+  { 582, -1, sizeof(::cedana::services::task::ContainerInfoRequest)},
+  { 587, -1, sizeof(::cedana::services::task::ContainerInfo)},
+  { 602, -1, sizeof(::cedana::services::task::ContainersInfo)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -1920,6 +2014,9 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::cedana::services::task::_QueueJobRestoreRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::cedana::services::task::_QueueJobID_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::cedana::services::task::_QueueJobStatus_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::cedana::services::task::_ContainerInfoRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::cedana::services::task::_ContainerInfo_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::cedana::services::task::_ContainersInfo_default_instance_),
 };
 
 const char descriptor_table_protodef_task_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -2178,105 +2275,120 @@ const char descriptor_table_protodef_task_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "GPUHealthCheck\030\002 \001(\0132\036.cedanagpu.HealthC"
   "heckResponseR\016GPUHealthCheck\"\022\n\020GetConfi"
   "gRequest\"\'\n\021GetConfigResponse\022\022\n\004JSON\030\001 "
-  "\001(\tR\004JSON\"\247\001\n\031QueueJobCheckpointRequest\022"
+  "\001(\tR\004JSON\"\225\002\n\031QueueJobCheckpointRequest\022"
   "$\n\rContainerName\030\001 \001(\tR\rContainerName\022\034\n"
   "\tNamespace\030\002 \001(\tR\tNamespace\022\030\n\007PodName\030\003"
   " \001(\tR\007PodName\022\034\n\tImageName\030\004 \001(\tR\tImageN"
-  "ame\022\016\n\002Id\030\005 \001(\tR\002Id\"\246\001\n\026QueueJobRestoreR"
-  "equest\022$\n\rContainerName\030\001 \001(\tR\rContainer"
-  "Name\022\034\n\tNamespace\030\002 \001(\tR\tNamespace\022\030\n\007Po"
-  "dName\030\003 \001(\tR\007PodName\022\036\n\nSourceName\030\004 \001(\t"
-  "R\nSourceName\022\016\n\002Id\030\005 \001(\tR\002Id\"\"\n\nQueueJob"
-  "ID\022\024\n\005JobID\030\001 \001(\tR\005JobID\"R\n\016QueueJobStat"
-  "us\022@\n\006Status\030\001 \001(\0162(.cedana.services.tas"
-  "k.QueueJobStatusEnumR\006Status*7\n\010DumpType"
-  "\022\013\n\007PROCESS\020\000\022\010\n\004RUNC\020\001\022\010\n\004KATA\020\002\022\n\n\006ROO"
-  "TFS\020\003*,\n\020ContainerRuntime\022\010\n\004CRIO\020\000\022\016\n\nC"
-  "ONTAINERD\020\001*\037\n\006CRType\022\t\n\005LOCAL\020\000\022\n\n\006REMO"
-  "TE\020\001*p\n\010JobState\022\026\n\022JOB_STARTUP_FAILED\020\000"
-  "\022\016\n\nJOB_KILLED\020\001\022\014\n\010JOB_IDLE\020\002\022\017\n\013JOB_RU"
-  "NNING\020\003\022\017\n\013JOB_PENDING\020\004\022\014\n\010JOB_DONE\020\005*\\"
-  "\n\017CheckpointState\022\020\n\014CHECKPOINTED\020\000\022\025\n\021C"
-  "HECKPOINT_FAILED\020\001\022\014\n\010RESTORED\020\002\022\022\n\016REST"
-  "ORE_FAILED\020\003*\252\001\n\022QueueJobStatusEnum\022\025\n\021S"
-  "tatusUnvalidated\020\000\022\021\n\rStatusWaiting\020\001\022\020\n"
-  "\014StatusActive\020\002\022\016\n\nStatusFail\020\003\022\021\n\rStatu"
-  "sSuccess\020\004\022\021\n\rStatusInvalid\020\005\022\017\n\013StatusE"
-  "nded\020\006\022\021\n\rStatusUnknown\020\0072\327\023\n\013TaskServic"
-  "e\022I\n\005Start\022\037.cedana.services.task.StartA"
-  "rgs\032\037.cedana.services.task.StartResp\022F\n\004"
-  "Dump\022\036.cedana.services.task.DumpArgs\032\036.c"
-  "edana.services.task.DumpResp\022O\n\007Restore\022"
-  "!.cedana.services.task.RestoreArgs\032!.ced"
-  "ana.services.task.RestoreResp\022I\n\005Query\022\037"
-  ".cedana.services.task.QueryArgs\032\037.cedana"
-  ".services.task.QueryResp\022d\n\016ContainerdDu"
-  "mp\022(.cedana.services.task.ContainerdDump"
-  "Args\032(.cedana.services.task.ContainerdDu"
-  "mpResp\022m\n\021ContainerdRestore\022+.cedana.ser"
-  "vices.task.ContainerdRestoreArgs\032+.cedan"
-  "a.services.task.ContainerdRestoreResp\022g\n"
-  "\017ContainerdQuery\022).cedana.services.task."
-  "ContainerdQueryArgs\032).cedana.services.ta"
-  "sk.ContainerdQueryResp\022v\n\024ContainerdRoot"
-  "fsDump\022..cedana.services.task.Containerd"
-  "RootfsDumpArgs\032..cedana.services.task.Co"
-  "ntainerdRootfsDumpResp\022\177\n\027ContainerdRoot"
-  "fsRestore\0221.cedana.services.task.Contain"
-  "erdRootfsRestoreArgs\0321.cedana.services.t"
-  "ask.ContainerdRootfsRestoreResp\022R\n\010RuncD"
-  "ump\022\".cedana.services.task.RuncDumpArgs\032"
-  "\".cedana.services.task.RuncDumpResp\022[\n\013R"
-  "uncRestore\022%.cedana.services.task.RuncRe"
-  "storeArgs\032%.cedana.services.task.RuncRes"
-  "toreResp\022U\n\tRuncQuery\022#.cedana.services."
-  "task.RuncQueryArgs\032#.cedana.services.tas"
-  "k.RuncQueryResp\022g\n\017RuncGetPausePid\022).ced"
-  "ana.services.task.RuncGetPausePidArgs\032)."
-  "cedana.services.task.RuncGetPausePidResp"
-  "\022d\n\016CRIORootfsDump\022(.cedana.services.tas"
-  "k.CRIORootfsDumpArgs\032(.cedana.services.t"
-  "ask.CRIORootfsDumpResp\022a\n\rCRIOImagePush\022"
-  "\'.cedana.services.task.CRIOImagePushArgs"
-  "\032\'.cedana.services.task.CRIOImagePushRes"
-  "p\022_\n\013StartAttach\022%.cedana.services.task."
-  "StartAttachArgs\032%.cedana.services.task.S"
-  "tartAttachResp(\0010\001\022e\n\rRestoreAttach\022\'.ce"
-  "dana.services.task.RestoreAttachArgs\032\'.c"
-  "edana.services.task.RestoreAttachResp(\0010"
-  "\001\022b\n\014LogStreaming\022&.cedana.services.task"
-  ".LogStreamingResp\032&.cedana.services.task"
-  ".LogStreamingArgs(\0010\001\022n\n\025ProcessStateStr"
-  "eaming\022/.cedana.services.task.ProcessSta"
-  "teStreamingArgs\032\".cedana.services.task.P"
-  "rocessState0\001\022|\n\023DetailedHealthCheck\0220.c"
-  "edana.services.task.DetailedHealthCheckR"
-  "equest\0321.cedana.services.task.DetailedHe"
-  "althCheckResponse\"\000\022J\n\010KataDump\022\036.cedana"
-  ".services.task.DumpArgs\032\036.cedana.service"
-  "s.task.DumpResp\022S\n\013KataRestore\022!.cedana."
-  "services.task.RestoreArgs\032!.cedana.servi"
-  "ces.task.RestoreResp\022^\n\tGetConfig\022&.ceda"
-  "na.services.task.GetConfigRequest\032\'.ceda"
-  "na.services.task.GetConfigResponse\"\000\022^\n\017"
-  "QueueCheckpoint\022/.cedana.services.task.Q"
-  "ueueJobCheckpointRequest\032\032.google.protob"
-  "uf.BoolValue\022X\n\014QueueRestore\022,.cedana.se"
-  "rvices.task.QueueJobRestoreRequest\032\032.goo"
-  "gle.protobuf.BoolValue\022S\n\tJobStatus\022 .ce"
-  "dana.services.task.QueueJobID\032$.cedana.s"
-  "ervices.task.QueueJobStatusB\250\001\n\030com.ceda"
-  "na.services.taskB\tTaskProtoP\001Z\017cedana-ap"
-  "i/task\242\002\003CST\252\002\024Cedana.Services.Task\312\002\024Ce"
-  "dana\\Services\\Task\342\002 Cedana\\Services\\Tas"
-  "k\\GPBMetadata\352\002\026Cedana::Services::Taskb\006"
-  "proto3"
+  "ame\022\016\n\002Id\030\005 \001(\tR\002Id\022%\n\013RuntimeRoot\030\006 \001(\t"
+  "H\000R\013RuntimeRoot\210\001\001\022%\n\013RuntimeSock\030\007 \001(\tH"
+  "\001R\013RuntimeSock\210\001\001B\016\n\014_RuntimeRootB\016\n\014_Ru"
+  "ntimeSock\"\246\001\n\026QueueJobRestoreRequest\022$\n\r"
+  "ContainerName\030\001 \001(\tR\rContainerName\022\034\n\tNa"
+  "mespace\030\002 \001(\tR\tNamespace\022\030\n\007PodName\030\003 \001("
+  "\tR\007PodName\022\036\n\nSourceName\030\004 \001(\tR\nSourceNa"
+  "me\022\016\n\002Id\030\005 \001(\tR\002Id\"\"\n\nQueueJobID\022\024\n\005JobI"
+  "D\030\001 \001(\tR\005JobID\"R\n\016QueueJobStatus\022@\n\006Stat"
+  "us\030\001 \001(\0162(.cedana.services.task.QueueJob"
+  "StatusEnumR\006Status\"\026\n\024ContainerInfoReque"
+  "st\"\263\002\n\rContainerInfo\022\030\n\007CpuTime\030\001 \001(\001R\007C"
+  "puTime\022\036\n\nCpuLoadAvg\030\002 \001(\001R\nCpuLoadAvg\022\034"
+  "\n\tMaxMemory\030\003 \001(\001R\tMaxMemory\022$\n\rCurrentM"
+  "emory\030\004 \001(\001R\rCurrentMemory\022\034\n\tNetworkIO\030"
+  "\005 \001(\001R\tNetworkIO\022\026\n\006DiskIO\030\006 \001(\001R\006DiskIO"
+  "\022$\n\rContainerName\030\007 \001(\tR\rContainerName\022\032"
+  "\n\010DaemonId\030\010 \001(\tR\010DaemonId\022\026\n\006Labels\030\t \003"
+  "(\tR\006Labels\022\024\n\005Image\030\n \001(\tR\005Image\"U\n\016Cont"
+  "ainersInfo\022C\n\ncontainers\030\001 \003(\0132#.cedana."
+  "services.task.ContainerInfoR\ncontainers*"
+  "7\n\010DumpType\022\013\n\007PROCESS\020\000\022\010\n\004RUNC\020\001\022\010\n\004KA"
+  "TA\020\002\022\n\n\006ROOTFS\020\003*,\n\020ContainerRuntime\022\010\n\004"
+  "CRIO\020\000\022\016\n\nCONTAINERD\020\001*\037\n\006CRType\022\t\n\005LOCA"
+  "L\020\000\022\n\n\006REMOTE\020\001*p\n\010JobState\022\026\n\022JOB_START"
+  "UP_FAILED\020\000\022\016\n\nJOB_KILLED\020\001\022\014\n\010JOB_IDLE\020"
+  "\002\022\017\n\013JOB_RUNNING\020\003\022\017\n\013JOB_PENDING\020\004\022\014\n\010J"
+  "OB_DONE\020\005*\\\n\017CheckpointState\022\020\n\014CHECKPOI"
+  "NTED\020\000\022\025\n\021CHECKPOINT_FAILED\020\001\022\014\n\010RESTORE"
+  "D\020\002\022\022\n\016RESTORE_FAILED\020\003*\252\001\n\022QueueJobStat"
+  "usEnum\022\025\n\021StatusUnvalidated\020\000\022\021\n\rStatusW"
+  "aiting\020\001\022\020\n\014StatusActive\020\002\022\016\n\nStatusFail"
+  "\020\003\022\021\n\rStatusSuccess\020\004\022\021\n\rStatusInvalid\020\005"
+  "\022\017\n\013StatusEnded\020\006\022\021\n\rStatusUnknown\020\0072\275\024\n"
+  "\013TaskService\022I\n\005Start\022\037.cedana.services."
+  "task.StartArgs\032\037.cedana.services.task.St"
+  "artResp\022F\n\004Dump\022\036.cedana.services.task.D"
+  "umpArgs\032\036.cedana.services.task.DumpResp\022"
+  "O\n\007Restore\022!.cedana.services.task.Restor"
+  "eArgs\032!.cedana.services.task.RestoreResp"
+  "\022I\n\005Query\022\037.cedana.services.task.QueryAr"
+  "gs\032\037.cedana.services.task.QueryResp\022d\n\016C"
+  "ontainerdDump\022(.cedana.services.task.Con"
+  "tainerdDumpArgs\032(.cedana.services.task.C"
+  "ontainerdDumpResp\022m\n\021ContainerdRestore\022+"
+  ".cedana.services.task.ContainerdRestoreA"
+  "rgs\032+.cedana.services.task.ContainerdRes"
+  "toreResp\022g\n\017ContainerdQuery\022).cedana.ser"
+  "vices.task.ContainerdQueryArgs\032).cedana."
+  "services.task.ContainerdQueryResp\022v\n\024Con"
+  "tainerdRootfsDump\022..cedana.services.task"
+  ".ContainerdRootfsDumpArgs\032..cedana.servi"
+  "ces.task.ContainerdRootfsDumpResp\022\177\n\027Con"
+  "tainerdRootfsRestore\0221.cedana.services.t"
+  "ask.ContainerdRootfsRestoreArgs\0321.cedana"
+  ".services.task.ContainerdRootfsRestoreRe"
+  "sp\022R\n\010RuncDump\022\".cedana.services.task.Ru"
+  "ncDumpArgs\032\".cedana.services.task.RuncDu"
+  "mpResp\022[\n\013RuncRestore\022%.cedana.services."
+  "task.RuncRestoreArgs\032%.cedana.services.t"
+  "ask.RuncRestoreResp\022U\n\tRuncQuery\022#.cedan"
+  "a.services.task.RuncQueryArgs\032#.cedana.s"
+  "ervices.task.RuncQueryResp\022g\n\017RuncGetPau"
+  "sePid\022).cedana.services.task.RuncGetPaus"
+  "ePidArgs\032).cedana.services.task.RuncGetP"
+  "ausePidResp\022d\n\016CRIORootfsDump\022(.cedana.s"
+  "ervices.task.CRIORootfsDumpArgs\032(.cedana"
+  ".services.task.CRIORootfsDumpResp\022a\n\rCRI"
+  "OImagePush\022\'.cedana.services.task.CRIOIm"
+  "agePushArgs\032\'.cedana.services.task.CRIOI"
+  "magePushResp\022_\n\013StartAttach\022%.cedana.ser"
+  "vices.task.StartAttachArgs\032%.cedana.serv"
+  "ices.task.StartAttachResp(\0010\001\022e\n\rRestore"
+  "Attach\022\'.cedana.services.task.RestoreAtt"
+  "achArgs\032\'.cedana.services.task.RestoreAt"
+  "tachResp(\0010\001\022b\n\014LogStreaming\022&.cedana.se"
+  "rvices.task.LogStreamingResp\032&.cedana.se"
+  "rvices.task.LogStreamingArgs(\0010\001\022n\n\025Proc"
+  "essStateStreaming\022/.cedana.services.task"
+  ".ProcessStateStreamingArgs\032\".cedana.serv"
+  "ices.task.ProcessState0\001\022|\n\023DetailedHeal"
+  "thCheck\0220.cedana.services.task.DetailedH"
+  "ealthCheckRequest\0321.cedana.services.task"
+  ".DetailedHealthCheckResponse\"\000\022J\n\010KataDu"
+  "mp\022\036.cedana.services.task.DumpArgs\032\036.ced"
+  "ana.services.task.DumpResp\022S\n\013KataRestor"
+  "e\022!.cedana.services.task.RestoreArgs\032!.c"
+  "edana.services.task.RestoreResp\022^\n\tGetCo"
+  "nfig\022&.cedana.services.task.GetConfigReq"
+  "uest\032\'.cedana.services.task.GetConfigRes"
+  "ponse\"\000\022^\n\017QueueCheckpoint\022/.cedana.serv"
+  "ices.task.QueueJobCheckpointRequest\032\032.go"
+  "ogle.protobuf.BoolValue\022X\n\014QueueRestore\022"
+  ",.cedana.services.task.QueueJobRestoreRe"
+  "quest\032\032.google.protobuf.BoolValue\022S\n\tJob"
+  "Status\022 .cedana.services.task.QueueJobID"
+  "\032$.cedana.services.task.QueueJobStatus\022d"
+  "\n\020GetContainerInfo\022*.cedana.services.tas"
+  "k.ContainerInfoRequest\032$.cedana.services"
+  ".task.ContainersInfoB\250\001\n\030com.cedana.serv"
+  "ices.taskB\tTaskProtoP\001Z\017cedana-api/task\242"
+  "\002\003CST\252\002\024Cedana.Services.Task\312\002\024Cedana\\Se"
+  "rvices\\Task\342\002 Cedana\\Services\\Task\\GPBMe"
+  "tadata\352\002\026Cedana::Services::Taskb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_task_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fwrappers_2eproto,
   &::descriptor_table_gpu_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_task_2eproto_sccs[63] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_task_2eproto_sccs[66] = {
   &scc_info_Addr_task_2eproto.base,
   &scc_info_CPUInfo_task_2eproto.base,
   &scc_info_CRIOImagePushArgs_task_2eproto.base,
@@ -2286,6 +2398,8 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tas
   &scc_info_CheckpointFileStats_task_2eproto.base,
   &scc_info_CheckpointReason_task_2eproto.base,
   &scc_info_ConnectionStat_task_2eproto.base,
+  &scc_info_ContainerInfo_task_2eproto.base,
+  &scc_info_ContainerInfoRequest_task_2eproto.base,
   &scc_info_ContainerdContainer_task_2eproto.base,
   &scc_info_ContainerdDumpArgs_task_2eproto.base,
   &scc_info_ContainerdDumpResp_task_2eproto.base,
@@ -2297,6 +2411,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tas
   &scc_info_ContainerdRootfsDumpResp_task_2eproto.base,
   &scc_info_ContainerdRootfsRestoreArgs_task_2eproto.base,
   &scc_info_ContainerdRootfsRestoreResp_task_2eproto.base,
+  &scc_info_ContainersInfo_task_2eproto.base,
   &scc_info_CriuOpts_task_2eproto.base,
   &scc_info_DetailedHealthCheckRequest_task_2eproto.base,
   &scc_info_DetailedHealthCheckResponse_task_2eproto.base,
@@ -2343,10 +2458,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tas
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_task_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_task_2eproto = {
-  false, false, descriptor_table_protodef_task_2eproto, "task.proto", 13886,
-  &descriptor_table_task_2eproto_once, descriptor_table_task_2eproto_sccs, descriptor_table_task_2eproto_deps, 63, 2,
+  false, false, descriptor_table_protodef_task_2eproto, "task.proto", 14519,
+  &descriptor_table_task_2eproto_once, descriptor_table_task_2eproto_sccs, descriptor_table_task_2eproto_deps, 66, 2,
   schemas, file_default_instances, TableStruct_task_2eproto::offsets,
-  file_level_metadata_task_2eproto, 63, file_level_enum_descriptors_task_2eproto, file_level_service_descriptors_task_2eproto,
+  file_level_metadata_task_2eproto, 66, file_level_enum_descriptors_task_2eproto, file_level_service_descriptors_task_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -21136,6 +21251,13 @@ void QueueJobCheckpointRequest::InitAsDefaultInstance() {
 }
 class QueueJobCheckpointRequest::_Internal {
  public:
+  using HasBits = decltype(std::declval<QueueJobCheckpointRequest>()._has_bits_);
+  static void set_has_runtimeroot(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_runtimesock(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
 };
 
 QueueJobCheckpointRequest::QueueJobCheckpointRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
@@ -21145,7 +21267,8 @@ QueueJobCheckpointRequest::QueueJobCheckpointRequest(::PROTOBUF_NAMESPACE_ID::Ar
   // @@protoc_insertion_point(arena_constructor:cedana.services.task.QueueJobCheckpointRequest)
 }
 QueueJobCheckpointRequest::QueueJobCheckpointRequest(const QueueJobCheckpointRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   containername_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_containername().empty()) {
@@ -21172,6 +21295,16 @@ QueueJobCheckpointRequest::QueueJobCheckpointRequest(const QueueJobCheckpointReq
     id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_id(),
       GetArena());
   }
+  runtimeroot_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_runtimeroot()) {
+    runtimeroot_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_runtimeroot(),
+      GetArena());
+  }
+  runtimesock_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (from._internal_has_runtimesock()) {
+    runtimesock_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_runtimesock(),
+      GetArena());
+  }
   // @@protoc_insertion_point(copy_constructor:cedana.services.task.QueueJobCheckpointRequest)
 }
 
@@ -21182,6 +21315,8 @@ void QueueJobCheckpointRequest::SharedCtor() {
   podname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   imagename_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  runtimeroot_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  runtimesock_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 QueueJobCheckpointRequest::~QueueJobCheckpointRequest() {
@@ -21197,6 +21332,8 @@ void QueueJobCheckpointRequest::SharedDtor() {
   podname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   imagename_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  runtimeroot_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  runtimesock_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void QueueJobCheckpointRequest::ArenaDtor(void* object) {
@@ -21225,11 +21362,22 @@ void QueueJobCheckpointRequest::Clear() {
   podname_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   imagename_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      runtimeroot_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      runtimesock_.ClearNonDefaultToEmpty();
+    }
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* QueueJobCheckpointRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
@@ -21281,6 +21429,24 @@ const char* QueueJobCheckpointRequest::_InternalParse(const char* ptr, ::PROTOBU
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
+      // string RuntimeRoot = 6[json_name = "RuntimeRoot"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_runtimeroot();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string RuntimeSock = 7[json_name = "RuntimeSock"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_runtimesock();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "cedana.services.task.QueueJobCheckpointRequest.RuntimeSock"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -21296,6 +21462,7 @@ const char* QueueJobCheckpointRequest::_InternalParse(const char* ptr, ::PROTOBU
     }  // switch
   }  // while
 success:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -21359,6 +21526,26 @@ failure:
         5, this->_internal_id(), target);
   }
 
+  // string RuntimeRoot = 6[json_name = "RuntimeRoot"];
+  if (_internal_has_runtimeroot()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_runtimeroot().data(), static_cast<int>(this->_internal_runtimeroot().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "cedana.services.task.QueueJobCheckpointRequest.RuntimeRoot");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_runtimeroot(), target);
+  }
+
+  // string RuntimeSock = 7[json_name = "RuntimeSock"];
+  if (_internal_has_runtimesock()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_runtimesock().data(), static_cast<int>(this->_internal_runtimesock().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "cedana.services.task.QueueJobCheckpointRequest.RuntimeSock");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_runtimesock(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -21410,6 +21597,23 @@ size_t QueueJobCheckpointRequest::ByteSizeLong() const {
         this->_internal_id());
   }
 
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // string RuntimeRoot = 6[json_name = "RuntimeRoot"];
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_runtimeroot());
+    }
+
+    // string RuntimeSock = 7[json_name = "RuntimeSock"];
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_runtimesock());
+    }
+
+  }
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -21456,6 +21660,15 @@ void QueueJobCheckpointRequest::MergeFrom(const QueueJobCheckpointRequest& from)
   if (from.id().size() > 0) {
     _internal_set_id(from._internal_id());
   }
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _internal_set_runtimeroot(from._internal_runtimeroot());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _internal_set_runtimesock(from._internal_runtimesock());
+    }
+  }
 }
 
 void QueueJobCheckpointRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -21479,11 +21692,14 @@ bool QueueJobCheckpointRequest::IsInitialized() const {
 void QueueJobCheckpointRequest::InternalSwap(QueueJobCheckpointRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   containername_.Swap(&other->containername_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   namespace__.Swap(&other->namespace__, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   podname_.Swap(&other->podname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   imagename_.Swap(&other->imagename_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  runtimeroot_.Swap(&other->runtimeroot_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  runtimesock_.Swap(&other->runtimesock_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata QueueJobCheckpointRequest::GetMetadata() const {
@@ -22259,6 +22475,837 @@ void QueueJobStatus::InternalSwap(QueueJobStatus* other) {
 }
 
 
+// ===================================================================
+
+void ContainerInfoRequest::InitAsDefaultInstance() {
+}
+class ContainerInfoRequest::_Internal {
+ public:
+};
+
+ContainerInfoRequest::ContainerInfoRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:cedana.services.task.ContainerInfoRequest)
+}
+ContainerInfoRequest::ContainerInfoRequest(const ContainerInfoRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:cedana.services.task.ContainerInfoRequest)
+}
+
+void ContainerInfoRequest::SharedCtor() {
+}
+
+ContainerInfoRequest::~ContainerInfoRequest() {
+  // @@protoc_insertion_point(destructor:cedana.services.task.ContainerInfoRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ContainerInfoRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void ContainerInfoRequest::ArenaDtor(void* object) {
+  ContainerInfoRequest* _this = reinterpret_cast< ContainerInfoRequest* >(object);
+  (void)_this;
+}
+void ContainerInfoRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ContainerInfoRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ContainerInfoRequest& ContainerInfoRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ContainerInfoRequest_task_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ContainerInfoRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:cedana.services.task.ContainerInfoRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ContainerInfoRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ContainerInfoRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:cedana.services.task.ContainerInfoRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:cedana.services.task.ContainerInfoRequest)
+  return target;
+}
+
+size_t ContainerInfoRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:cedana.services.task.ContainerInfoRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ContainerInfoRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:cedana.services.task.ContainerInfoRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ContainerInfoRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ContainerInfoRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:cedana.services.task.ContainerInfoRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:cedana.services.task.ContainerInfoRequest)
+    MergeFrom(*source);
+  }
+}
+
+void ContainerInfoRequest::MergeFrom(const ContainerInfoRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:cedana.services.task.ContainerInfoRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void ContainerInfoRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:cedana.services.task.ContainerInfoRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ContainerInfoRequest::CopyFrom(const ContainerInfoRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:cedana.services.task.ContainerInfoRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ContainerInfoRequest::IsInitialized() const {
+  return true;
+}
+
+void ContainerInfoRequest::InternalSwap(ContainerInfoRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ContainerInfoRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ContainerInfo::InitAsDefaultInstance() {
+}
+class ContainerInfo::_Internal {
+ public:
+};
+
+ContainerInfo::ContainerInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  labels_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:cedana.services.task.ContainerInfo)
+}
+ContainerInfo::ContainerInfo(const ContainerInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      labels_(from.labels_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  containername_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_containername().empty()) {
+    containername_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_containername(),
+      GetArena());
+  }
+  daemonid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_daemonid().empty()) {
+    daemonid_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_daemonid(),
+      GetArena());
+  }
+  image_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_image().empty()) {
+    image_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_image(),
+      GetArena());
+  }
+  ::memcpy(&cputime_, &from.cputime_,
+    static_cast<size_t>(reinterpret_cast<char*>(&diskio_) -
+    reinterpret_cast<char*>(&cputime_)) + sizeof(diskio_));
+  // @@protoc_insertion_point(copy_constructor:cedana.services.task.ContainerInfo)
+}
+
+void ContainerInfo::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ContainerInfo_task_2eproto.base);
+  containername_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  daemonid_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  image_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&cputime_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&diskio_) -
+      reinterpret_cast<char*>(&cputime_)) + sizeof(diskio_));
+}
+
+ContainerInfo::~ContainerInfo() {
+  // @@protoc_insertion_point(destructor:cedana.services.task.ContainerInfo)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ContainerInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  containername_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  daemonid_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  image_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ContainerInfo::ArenaDtor(void* object) {
+  ContainerInfo* _this = reinterpret_cast< ContainerInfo* >(object);
+  (void)_this;
+}
+void ContainerInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ContainerInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ContainerInfo& ContainerInfo::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ContainerInfo_task_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ContainerInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:cedana.services.task.ContainerInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  labels_.Clear();
+  containername_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  daemonid_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  image_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::memset(&cputime_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&diskio_) -
+      reinterpret_cast<char*>(&cputime_)) + sizeof(diskio_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ContainerInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // double CpuTime = 1[json_name = "CpuTime"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
+          cputime_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double CpuLoadAvg = 2[json_name = "CpuLoadAvg"];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
+          cpuloadavg_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double MaxMemory = 3[json_name = "MaxMemory"];
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 25)) {
+          maxmemory_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double CurrentMemory = 4[json_name = "CurrentMemory"];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 33)) {
+          currentmemory_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double NetworkIO = 5[json_name = "NetworkIO"];
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 41)) {
+          networkio_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double DiskIO = 6[json_name = "DiskIO"];
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 49)) {
+          diskio_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // string ContainerName = 7[json_name = "ContainerName"];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          auto str = _internal_mutable_containername();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "cedana.services.task.ContainerInfo.ContainerName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string DaemonId = 8[json_name = "DaemonId"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          auto str = _internal_mutable_daemonid();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "cedana.services.task.ContainerInfo.DaemonId"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string Labels = 9[json_name = "Labels"];
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_labels();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "cedana.services.task.ContainerInfo.Labels"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<74>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // string Image = 10[json_name = "Image"];
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          auto str = _internal_mutable_image();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "cedana.services.task.ContainerInfo.Image"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ContainerInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:cedana.services.task.ContainerInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // double CpuTime = 1[json_name = "CpuTime"];
+  if (!(this->cputime() <= 0 && this->cputime() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(1, this->_internal_cputime(), target);
+  }
+
+  // double CpuLoadAvg = 2[json_name = "CpuLoadAvg"];
+  if (!(this->cpuloadavg() <= 0 && this->cpuloadavg() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_cpuloadavg(), target);
+  }
+
+  // double MaxMemory = 3[json_name = "MaxMemory"];
+  if (!(this->maxmemory() <= 0 && this->maxmemory() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(3, this->_internal_maxmemory(), target);
+  }
+
+  // double CurrentMemory = 4[json_name = "CurrentMemory"];
+  if (!(this->currentmemory() <= 0 && this->currentmemory() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_currentmemory(), target);
+  }
+
+  // double NetworkIO = 5[json_name = "NetworkIO"];
+  if (!(this->networkio() <= 0 && this->networkio() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(5, this->_internal_networkio(), target);
+  }
+
+  // double DiskIO = 6[json_name = "DiskIO"];
+  if (!(this->diskio() <= 0 && this->diskio() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(6, this->_internal_diskio(), target);
+  }
+
+  // string ContainerName = 7[json_name = "ContainerName"];
+  if (this->containername().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_containername().data(), static_cast<int>(this->_internal_containername().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "cedana.services.task.ContainerInfo.ContainerName");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_containername(), target);
+  }
+
+  // string DaemonId = 8[json_name = "DaemonId"];
+  if (this->daemonid().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_daemonid().data(), static_cast<int>(this->_internal_daemonid().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "cedana.services.task.ContainerInfo.DaemonId");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_daemonid(), target);
+  }
+
+  // repeated string Labels = 9[json_name = "Labels"];
+  for (int i = 0, n = this->_internal_labels_size(); i < n; i++) {
+    const auto& s = this->_internal_labels(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "cedana.services.task.ContainerInfo.Labels");
+    target = stream->WriteString(9, s, target);
+  }
+
+  // string Image = 10[json_name = "Image"];
+  if (this->image().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_image().data(), static_cast<int>(this->_internal_image().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "cedana.services.task.ContainerInfo.Image");
+    target = stream->WriteStringMaybeAliased(
+        10, this->_internal_image(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:cedana.services.task.ContainerInfo)
+  return target;
+}
+
+size_t ContainerInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:cedana.services.task.ContainerInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string Labels = 9[json_name = "Labels"];
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(labels_.size());
+  for (int i = 0, n = labels_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      labels_.Get(i));
+  }
+
+  // string ContainerName = 7[json_name = "ContainerName"];
+  if (this->containername().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_containername());
+  }
+
+  // string DaemonId = 8[json_name = "DaemonId"];
+  if (this->daemonid().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_daemonid());
+  }
+
+  // string Image = 10[json_name = "Image"];
+  if (this->image().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_image());
+  }
+
+  // double CpuTime = 1[json_name = "CpuTime"];
+  if (!(this->cputime() <= 0 && this->cputime() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double CpuLoadAvg = 2[json_name = "CpuLoadAvg"];
+  if (!(this->cpuloadavg() <= 0 && this->cpuloadavg() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double MaxMemory = 3[json_name = "MaxMemory"];
+  if (!(this->maxmemory() <= 0 && this->maxmemory() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double CurrentMemory = 4[json_name = "CurrentMemory"];
+  if (!(this->currentmemory() <= 0 && this->currentmemory() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double NetworkIO = 5[json_name = "NetworkIO"];
+  if (!(this->networkio() <= 0 && this->networkio() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double DiskIO = 6[json_name = "DiskIO"];
+  if (!(this->diskio() <= 0 && this->diskio() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ContainerInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:cedana.services.task.ContainerInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ContainerInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ContainerInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:cedana.services.task.ContainerInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:cedana.services.task.ContainerInfo)
+    MergeFrom(*source);
+  }
+}
+
+void ContainerInfo::MergeFrom(const ContainerInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:cedana.services.task.ContainerInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  labels_.MergeFrom(from.labels_);
+  if (from.containername().size() > 0) {
+    _internal_set_containername(from._internal_containername());
+  }
+  if (from.daemonid().size() > 0) {
+    _internal_set_daemonid(from._internal_daemonid());
+  }
+  if (from.image().size() > 0) {
+    _internal_set_image(from._internal_image());
+  }
+  if (!(from.cputime() <= 0 && from.cputime() >= 0)) {
+    _internal_set_cputime(from._internal_cputime());
+  }
+  if (!(from.cpuloadavg() <= 0 && from.cpuloadavg() >= 0)) {
+    _internal_set_cpuloadavg(from._internal_cpuloadavg());
+  }
+  if (!(from.maxmemory() <= 0 && from.maxmemory() >= 0)) {
+    _internal_set_maxmemory(from._internal_maxmemory());
+  }
+  if (!(from.currentmemory() <= 0 && from.currentmemory() >= 0)) {
+    _internal_set_currentmemory(from._internal_currentmemory());
+  }
+  if (!(from.networkio() <= 0 && from.networkio() >= 0)) {
+    _internal_set_networkio(from._internal_networkio());
+  }
+  if (!(from.diskio() <= 0 && from.diskio() >= 0)) {
+    _internal_set_diskio(from._internal_diskio());
+  }
+}
+
+void ContainerInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:cedana.services.task.ContainerInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ContainerInfo::CopyFrom(const ContainerInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:cedana.services.task.ContainerInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ContainerInfo::IsInitialized() const {
+  return true;
+}
+
+void ContainerInfo::InternalSwap(ContainerInfo* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  labels_.InternalSwap(&other->labels_);
+  containername_.Swap(&other->containername_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  daemonid_.Swap(&other->daemonid_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  image_.Swap(&other->image_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ContainerInfo, diskio_)
+      + sizeof(ContainerInfo::diskio_)
+      - PROTOBUF_FIELD_OFFSET(ContainerInfo, cputime_)>(
+          reinterpret_cast<char*>(&cputime_),
+          reinterpret_cast<char*>(&other->cputime_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ContainerInfo::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ContainersInfo::InitAsDefaultInstance() {
+}
+class ContainersInfo::_Internal {
+ public:
+};
+
+ContainersInfo::ContainersInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena),
+  containers_(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:cedana.services.task.ContainersInfo)
+}
+ContainersInfo::ContainersInfo(const ContainersInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      containers_(from.containers_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:cedana.services.task.ContainersInfo)
+}
+
+void ContainersInfo::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ContainersInfo_task_2eproto.base);
+}
+
+ContainersInfo::~ContainersInfo() {
+  // @@protoc_insertion_point(destructor:cedana.services.task.ContainersInfo)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ContainersInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void ContainersInfo::ArenaDtor(void* object) {
+  ContainersInfo* _this = reinterpret_cast< ContainersInfo* >(object);
+  (void)_this;
+}
+void ContainersInfo::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ContainersInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ContainersInfo& ContainersInfo::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ContainersInfo_task_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ContainersInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:cedana.services.task.ContainersInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  containers_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ContainersInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .cedana.services.task.ContainerInfo containers = 1[json_name = "containers"];
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_containers(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ContainersInfo::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:cedana.services.task.ContainersInfo)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .cedana.services.task.ContainerInfo containers = 1[json_name = "containers"];
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_containers_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_containers(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:cedana.services.task.ContainersInfo)
+  return target;
+}
+
+size_t ContainersInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:cedana.services.task.ContainersInfo)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .cedana.services.task.ContainerInfo containers = 1[json_name = "containers"];
+  total_size += 1UL * this->_internal_containers_size();
+  for (const auto& msg : this->containers_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ContainersInfo::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:cedana.services.task.ContainersInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ContainersInfo* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ContainersInfo>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:cedana.services.task.ContainersInfo)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:cedana.services.task.ContainersInfo)
+    MergeFrom(*source);
+  }
+}
+
+void ContainersInfo::MergeFrom(const ContainersInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:cedana.services.task.ContainersInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  containers_.MergeFrom(from.containers_);
+}
+
+void ContainersInfo::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:cedana.services.task.ContainersInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ContainersInfo::CopyFrom(const ContainersInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:cedana.services.task.ContainersInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ContainersInfo::IsInitialized() const {
+  return true;
+}
+
+void ContainersInfo::InternalSwap(ContainersInfo* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  containers_.InternalSwap(&other->containers_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ContainersInfo::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace task
 }  // namespace services
@@ -22452,6 +23499,15 @@ template<> PROTOBUF_NOINLINE ::cedana::services::task::QueueJobID* Arena::Create
 }
 template<> PROTOBUF_NOINLINE ::cedana::services::task::QueueJobStatus* Arena::CreateMaybeMessage< ::cedana::services::task::QueueJobStatus >(Arena* arena) {
   return Arena::CreateMessageInternal< ::cedana::services::task::QueueJobStatus >(arena);
+}
+template<> PROTOBUF_NOINLINE ::cedana::services::task::ContainerInfoRequest* Arena::CreateMaybeMessage< ::cedana::services::task::ContainerInfoRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::cedana::services::task::ContainerInfoRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::cedana::services::task::ContainerInfo* Arena::CreateMaybeMessage< ::cedana::services::task::ContainerInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::cedana::services::task::ContainerInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::cedana::services::task::ContainersInfo* Arena::CreateMaybeMessage< ::cedana::services::task::ContainersInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::cedana::services::task::ContainersInfo >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
