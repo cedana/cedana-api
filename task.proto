@@ -621,8 +621,9 @@ message ContainerInfo {
   double NetworkIO = 5;
   double DiskIO = 6;
   string ContainerName = 7;
-  string Labels = 8;
-  string Image = 9;
+  string Processes = 8;
+  string Labels = 9;
+  string Image = 10;
 }
 
 message ContainersInfo {
