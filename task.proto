@@ -145,6 +145,38 @@ message CRIORootfsDumpResp {
 /////// Job /////////
 /////////////////////
 
+message JobDumpArgs {
+  string JID = 1;
+  string Dir = 2;
+  CRType Type = 3;
+  bool GPU = 4;
+  bool Stream = 5;
+  CriuOpts CriuOpts = 6;
+}
+
+message JobDumpResp {
+  string Message = 1;
+  string CheckpointID = 2;
+  string UploadID = 3;
+  ProcessState State = 4;
+  DumpStats DumpStats = 5;
+}
+
+message JobRestoreArgs {
+  string JID = 1;
+  string CheckpointID = 2;
+  string CheckpointPath = 3;
+  CRType Type = 4;
+  CriuOpts CriuOpts = 5;
+  bool Stream = 6;
+}
+
+message JobRestoreResp {
+  string Message = 1;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
+}
+
 message JobQueryArgs {
   repeated int32 PIDs = 1;
   repeated string JIDs = 2;
@@ -214,9 +246,8 @@ message RestoreArgs {
 
 message RestoreResp {
   string Message = 1;
-  int32 NewPID = 2;
-  ProcessState State = 3;
-  RestoreStats RestoreStats = 6;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
 }
 
 /////////////////////////
