@@ -274,13 +274,12 @@ message ContainerdRootfsRestoreResp {
 
 message RuncDumpArgs {
   string Root = 1;
-  string CheckpointPath = 2;
-  string ContainerID = 3;
-  CriuOpts CriuOpts = 4;
-  CRType Type = 5;
-  ProcessState state = 6;
-  bool GPU = 7;
-  int32 pid = 8;
+  string ContainerID = 2;
+  CriuOpts CriuOpts = 3;
+  CRType Type = 4;
+  ProcessState state = 5;
+  bool GPU = 6;
+  int32 pid = 7;
 }
 
 message RuncDumpResp {
