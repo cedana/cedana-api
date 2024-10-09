@@ -102,6 +102,10 @@ message ManageArgs {
   bool GPU = 3;
 }
 
+message ManageResp {
+  string Message = 1;
+}
+
 enum DumpType {
      PROCESS = 0;
      RUNC = 1;
@@ -421,6 +425,10 @@ message RuncManageArgs {
   string ContainerID = 1;
   string Root = 2;
   bool GPU = 3;
+}
+
+message RuncManageResp {
+  string Message = 1;
 }
 
 ///////////////////////
