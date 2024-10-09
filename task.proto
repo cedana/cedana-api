@@ -10,11 +10,16 @@ package cedana.services.task;
 // but if you do it will filter out based on the query parameters.
 
 service TaskService {
+  // Managed Job
+  rpc JobDump(JobDumpArgs) returns (JobDumpResp);
+  rpc JobRestore(JobRestoreArgs) returns (JobRestoreResp);
+  rpc JobQuery(JobQueryArgs) returns (JobQueryResp);
+
   // Process
   rpc Start(StartArgs) returns (StartResp);
   rpc Dump(DumpArgs) returns (DumpResp);
   rpc Restore(RestoreArgs) returns (RestoreResp);
-  rpc Query(QueryArgs) returns (QueryResp);
+  rpc Manage(ManageArgs) returns (ManageResp);
 
   // Containerd
   rpc ContainerdDump(ContainerdDumpArgs) returns (ContainerdDumpResp);
@@ -29,8 +34,9 @@ service TaskService {
   rpc RuncRestore(RuncRestoreArgs) returns (RuncRestoreResp);
   rpc RuncQuery(RuncQueryArgs) returns (RuncQueryResp);
   rpc RuncGetPausePid(RuncGetPausePidArgs) returns (RuncGetPausePidResp);
+  rpc RuncManage(RuncManageArgs) returns (RuncManageResp);
 
-  //CRIO
+  // CRIO
   rpc CRIORootfsDump(CRIORootfsDumpArgs) returns (CRIORootfsDumpResp);
   rpc CRIOImagePush(CRIOImagePushArgs) returns (CRIOImagePushResp);
 
@@ -90,6 +96,12 @@ message RestoreStats {
     cedanagpu.GPURestoreStats GPURestoreStats = 8;
 }
 
+message ManageArgs {
+  int32 PID = 1;
+  string JID = 2;
+  bool GPU = 3;
+}
+
 enum DumpType {
      PROCESS = 0;
      RUNC = 1;
@@ -101,7 +113,6 @@ enum ContainerRuntime {
      CRIO = 0;
      CONTAINERD = 1;
 }
-
 
 /////////////////////
 /////// CRIO ////////
@@ -130,6 +141,18 @@ message CRIORootfsDumpResp {
   string Dest = 1;
 }
 
+/////////////////////
+/////// Job /////////
+/////////////////////
+
+message JobQueryArgs {
+  repeated int32 PIDs = 1;
+  repeated string JIDs = 2;
+}
+
+message JobQueryResp {
+  repeated ProcessState Processes = 1;
+}
 
 /////////////////////
 ////// Process //////
@@ -194,15 +217,6 @@ message RestoreResp {
   int32 NewPID = 2;
   ProcessState State = 3;
   RestoreStats RestoreStats = 6;
-}
-
-message QueryArgs {
-  repeated int32 PIDs = 1;
-  repeated string JIDs = 2;
-}
-
-message QueryResp {
-  repeated ProcessState Processes = 1;
 }
 
 /////////////////////////
@@ -370,6 +384,12 @@ message RuncGetPausePidArgs {
 
 message RuncGetPausePidResp {
   int64 PausePid = 1;
+}
+
+message RuncManageArgs {
+  string ContainerID = 1;
+  string Root = 2;
+  bool GPU = 3;
 }
 
 ///////////////////////
