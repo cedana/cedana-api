@@ -465,6 +465,7 @@ message ProcessState {
   repeated int32 GIDs = 15;
   repeated int32 Groups = 16;
   bool GPU = 17;
+  string ContainerRoot = 18;
 }
 
 message RemoteState {
