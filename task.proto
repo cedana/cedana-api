@@ -153,9 +153,8 @@ message JobDumpArgs {
   string JID = 1;
   string Dir = 2;
   CRType Type = 3;
-  bool GPU = 4;
-  bool Stream = 5;
-  CriuOpts CriuOpts = 6;
+  bool Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message JobDumpResp {
@@ -222,9 +221,8 @@ message DumpArgs {
   string Dir = 2;
   CRType Type = 3;
   string JID = 4;
-  bool GPU = 5;
-  bool Stream = 6;
-  CriuOpts CriuOpts = 7;
+  bool Stream = 5;
+  CriuOpts CriuOpts = 6;
 }
 
 message DumpResp {
@@ -327,8 +325,7 @@ message RuncDumpArgs {
   CriuOpts CriuOpts = 3;
   CRType Type = 4;
   ProcessState state = 5;
-  bool GPU = 6;
-  int32 pid = 7;
+  int32 pid = 6;
 }
 
 message RuncDumpResp {
