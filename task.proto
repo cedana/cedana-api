@@ -13,7 +13,7 @@ service TaskService {
   // Managed Job
   rpc JobDump(JobDumpArgs) returns (JobDumpResp);
   rpc JobRestore(JobRestoreArgs) returns (JobRestoreResp);
-  rpc JobRestoreAttach(stream JobRestoreAttachArgs) returns (stream JobRestoreAttachResp);
+  rpc JobRestoreAttach(stream RestoreAttachArgs) returns (stream RestoreAttachResp);
   rpc JobQuery(JobQueryArgs) returns (JobQueryResp);
 
   // Process
@@ -183,17 +183,6 @@ message JobRestoreResp {
   string Message = 1;
   ProcessState State = 2;
   RestoreStats RestoreStats = 3;
-}
-
-message JobRestoreAttachArgs {
-  JobRestoreArgs Args = 1;
-  string Stdin = 2;
-}
-
-message JobRestoreAttachResp {
-  string Stdout = 1;
-  string Stderr = 2;
-  int32 ExitCode = 3;
 }
 
 message JobQueryArgs {
