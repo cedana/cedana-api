@@ -105,6 +105,7 @@ message ManageArgs {
 
 message ManageResp {
   string Message = 1;
+  ProcessState State = 2;
 }
 
 enum DumpType {
@@ -435,6 +436,7 @@ message RuncManageArgs {
 
 message RuncManageResp {
   string Message = 1;
+  ProcessState State = 2;
 }
 
 ///////////////////////
