@@ -446,25 +446,24 @@ message LogStreamingResp {
   string Status = 1;
 }
 
-
 message ProcessState {
   int32 PID = 1;
   string Task = 2;
-  string ContainerID = 4;
-  string StartedAt = 5;
-  ProcessInfo ProcessInfo = 6;
-  string CheckpointPath = 7;
-  CheckpointState CheckpointState = 8;
-  JobState JobState = 9;
-  repeated RemoteState RemoteState = 10;
-  bool GPUCheckpointed = 11;
-  string JID = 12;
-  HostInfo HostInfo = 13;
-  CPUInfo CPUInfo = 14;
-  MemoryInfo MemoryInfo = 15;
-  repeated int32 UIDs = 16;
-  repeated int32 GIDs = 17;
-  repeated int32 Groups = 18;
+  string ContainerID = 3;
+  string StartedAt = 4;
+  ProcessInfo ProcessInfo = 5;
+  string CheckpointPath = 6;
+  CheckpointState CheckpointState = 7;
+  JobState JobState = 8;
+  repeated RemoteState RemoteState = 9;
+  string JID = 10;
+  HostInfo HostInfo = 11;
+  CPUInfo CPUInfo = 12;
+  MemoryInfo MemoryInfo = 13;
+  repeated int32 UIDs = 14;
+  repeated int32 GIDs = 15;
+  repeated int32 Groups = 16;
+  bool GPU = 17;
 }
 
 message RemoteState {
