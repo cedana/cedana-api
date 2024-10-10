@@ -13,15 +13,15 @@ service TaskService {
   // Managed Job
   rpc JobDump(JobDumpArgs) returns (JobDumpResp);
   rpc JobRestore(JobRestoreArgs) returns (JobRestoreResp);
-  rpc JobRestoreAttach(stream RestoreAttachArgs) returns (stream RestoreAttachResp);
+  rpc JobRestoreAttach(stream AttachArgs) returns (stream AttachResp);
   rpc JobQuery(JobQueryArgs) returns (JobQueryResp);
 
   // Process
   rpc Start(StartArgs) returns (StartResp);
-  rpc StartAttach(stream StartAttachArgs) returns (stream StartAttachResp);
+  rpc StartAttach(stream AttachArgs) returns (stream AttachResp);
   rpc Dump(DumpArgs) returns (DumpResp);
   rpc Restore(RestoreArgs) returns (RestoreResp);
-  rpc RestoreAttach(stream RestoreAttachArgs) returns (stream RestoreAttachResp);
+  rpc RestoreAttach(stream AttachArgs) returns (stream AttachResp);
   rpc Manage(ManageArgs) returns (ManageResp);
 
   // Containerd
@@ -569,25 +569,16 @@ enum CheckpointState {
   RESTORE_FAILED = 3;
 }
 
-
-message StartAttachArgs {
-  StartArgs Args = 1;
+message AttachArgs {
+  oneof Args {
+    RestoreArgs Args = 1;
+    RuncRestoreArgs Args = 2;
+  }
   string Stdin = 2;
-  // TODO:add signals
+  // TODO: add signals
 }
 
-message StartAttachResp {
-  string Stdout = 1;
-  string Stderr = 2;
-  int32 ExitCode = 3;
-}
-
-message RestoreAttachArgs {
-  RestoreArgs Args = 1;
-  string Stdin = 2;
-}
-
-message RestoreAttachResp {
+message AttachResp {
   string Stdout = 1;
   string Stderr = 2;
   int32 ExitCode = 3;
