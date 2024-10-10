@@ -175,6 +175,7 @@ message JobRestoreArgs {
   CRType Type = 2;
   CriuOpts CriuOpts = 3;
   bool Stream = 4;
+  RuncOpts RuncOpts = 5;
 }
 
 message JobRestoreResp {
