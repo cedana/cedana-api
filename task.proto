@@ -156,9 +156,10 @@ message CRIORootfsDumpResp {
 
 message JobDumpArgs {
   string JID = 1;
-  CRType Type = 2;
-  bool Stream = 3;
-  CriuOpts CriuOpts = 4;
+  string Dir = 2;
+  CRType Type = 3;
+  bool Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message JobDumpResp {
@@ -220,10 +221,11 @@ message StartResp {
 
 message DumpArgs {
   int32 PID = 1;
-  CRType Type = 2;
-  string JID = 3;
-  bool Stream = 4;
-  CriuOpts CriuOpts = 5;
+  string Dir = 2;
+  CRType Type = 3;
+  string JID = 4;
+  bool Stream = 5;
+  CriuOpts CriuOpts = 6;
 }
 
 message DumpResp {
