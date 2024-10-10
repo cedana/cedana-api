@@ -475,6 +475,12 @@ message ProcessState {
   repeated int32 GIDs = 15;
   repeated int32 Groups = 16;
   bool GPU = 17;
+  ProcessType Type = 18;
+}
+
+enum ProcessType {
+  PROCESS = 0;
+  RUNC = 1;
 }
 
 message RemoteState {
@@ -482,7 +488,6 @@ message RemoteState {
   string UploadID = 2;
   int64 Timestamp = 3;
 }
-
 
 message ProcessInfo {
   int32 PID = 1;
