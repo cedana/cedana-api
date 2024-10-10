@@ -101,6 +101,9 @@ message ManageArgs {
   int32 PID = 1;
   string JID = 2;
   bool GPU = 3;
+  repeated int32 Groups = 4;
+  int32 UID = 5;
+  int32 GID = 6;
 }
 
 message ManageResp {
