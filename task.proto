@@ -321,9 +321,10 @@ message ContainerdRootfsRestoreResp {
 
 message RuncDumpArgs {
   string Root = 1;
-  string ContainerID = 2;
-  CriuOpts CriuOpts = 3;
-  CRType Type = 4;
+  string Dir = 2;
+  string ContainerID = 3;
+  CriuOpts CriuOpts = 4;
+  CRType Type = 5;
 }
 
 message RuncDumpResp {
