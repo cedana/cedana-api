@@ -571,10 +571,11 @@ enum CheckpointState {
 
 message AttachArgs {
   oneof Args {
-    RestoreArgs Process = 1;
-    RuncRestoreArgs Runc = 2;
+    RestoreArgs Restore = 1;
+    JobRestoreArgs JobRestore = 2;
+    StartArgs Start = 3;
   }
-  string Stdin = 3;
+  string Stdin = 4;
   // TODO: add signals
 }
 
