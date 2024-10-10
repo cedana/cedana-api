@@ -172,11 +172,9 @@ message JobDumpResp {
 
 message JobRestoreArgs {
   string JID = 1;
-  string CheckpointID = 2;
-  string CheckpointPath = 3;
-  CRType Type = 4;
-  CriuOpts CriuOpts = 5;
-  bool Stream = 6;
+  CRType Type = 2;
+  CriuOpts CriuOpts = 3;
+  bool Stream = 4;
 }
 
 message JobRestoreResp {
