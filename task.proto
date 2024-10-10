@@ -574,7 +574,7 @@ message AttachArgs {
     RestoreArgs Process = 1;
     RuncRestoreArgs Runc = 2;
   }
-  string Stdin = 2;
+  string Stdin = 3;
   // TODO: add signals
 }
 
