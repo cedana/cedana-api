@@ -157,9 +157,8 @@ message CRIORootfsDumpResp {
 message JobDumpArgs {
   string JID = 1;
   string Dir = 2;
-  CRType Type = 3;
-  bool Stream = 4;
-  CriuOpts CriuOpts = 5;
+  bool Stream = 3;
+  CriuOpts CriuOpts = 4;
 }
 
 message JobDumpResp {
@@ -170,10 +169,9 @@ message JobDumpResp {
 
 message JobRestoreArgs {
   string JID = 1;
-  CRType Type = 2;
-  CriuOpts CriuOpts = 3;
-  bool Stream = 4;
-  RuncOpts RuncOpts = 5;
+  CriuOpts CriuOpts = 2;
+  bool Stream = 3;
+  RuncOpts RuncOpts = 4;
 }
 
 message JobRestoreResp {
@@ -216,9 +214,8 @@ message StartResp {
 message DumpArgs {
   int32 PID = 1;
   string Dir = 2;
-  CRType Type = 3;
-  bool Stream = 4;
-  CriuOpts CriuOpts = 5;
+  bool Stream = 3;
+  CriuOpts CriuOpts = 4;
 }
 
 message DumpResp {
@@ -229,10 +226,9 @@ message DumpResp {
 
 
 message RestoreArgs {
-  CRType Type = 1;
-  string CheckpointPath = 2;
-  bool Stream = 3;
-  CriuOpts CriuOpts = 4;
+  string CheckpointPath = 1;
+  bool Stream = 2;
+  CriuOpts CriuOpts = 3;
 }
 
 message RestoreResp {
@@ -313,7 +309,6 @@ message RuncDumpArgs {
   string Dir = 2;
   string ContainerID = 3;
   CriuOpts CriuOpts = 4;
-  CRType Type = 5;
 }
 
 message RuncDumpResp {
@@ -346,8 +341,7 @@ message RuncRestoreArgs {
   string ContainerID = 1;
   string ImagePath = 2;
   RuncOpts Opts = 3;
-  CRType Type = 4;
-  CriuOpts CriuOpts = 5;
+  CriuOpts CriuOpts = 4;
 }
 
 message RuncRestoreResp {
