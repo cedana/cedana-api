@@ -164,10 +164,8 @@ message JobDumpArgs {
 
 message JobDumpResp {
   string Message = 1;
-  string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 2;
+  DumpStats DumpStats = 3;
 }
 
 message JobRestoreArgs {
@@ -197,11 +195,6 @@ message JobQueryResp {
 ////// Process //////
 /////////////////////
 
-enum CRType {
-  LOCAL = 0;
-  REMOTE = 1;
-}
-
 message StartArgs {
   string Task = 1;
   string JID = 2;
@@ -224,27 +217,22 @@ message DumpArgs {
   int32 PID = 1;
   string Dir = 2;
   CRType Type = 3;
-  string JID = 4;
-  bool Stream = 5;
-  CriuOpts CriuOpts = 6;
+  bool Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message DumpResp {
   string Message = 1;
-  string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 2;
+  DumpStats DumpStats = 3;
 }
 
 
 message RestoreArgs {
   CRType Type = 1;
-  string CheckpointID = 2;
-  string CheckpointPath = 3;
-  string JID = 4;
-  bool Stream = 5;
-  CriuOpts CriuOpts = 6;
+  string CheckpointPath = 2;
+  bool Stream = 3;
+  CriuOpts CriuOpts = 4;
 }
 
 message RestoreResp {
@@ -330,10 +318,8 @@ message RuncDumpArgs {
 
 message RuncDumpResp {
   string Message = 1;
-  string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 2;
+  DumpStats DumpStats = 3;
 }
 
 message CriuOpts {
@@ -361,8 +347,7 @@ message RuncRestoreArgs {
   string ImagePath = 2;
   RuncOpts Opts = 3;
   CRType Type = 4;
-  string CheckpointID = 5;
-  CriuOpts CriuOpts = 6;
+  CriuOpts CriuOpts = 5;
 }
 
 message RuncRestoreResp {
@@ -456,23 +441,16 @@ message ProcessState {
   string CheckpointPath = 6;
   CheckpointState CheckpointState = 7;
   JobState JobState = 8;
-  repeated RemoteState RemoteState = 9;
-  string JID = 10;
-  HostInfo HostInfo = 11;
-  CPUInfo CPUInfo = 12;
-  MemoryInfo MemoryInfo = 13;
-  repeated int32 UIDs = 14;
-  repeated int32 GIDs = 15;
-  repeated int32 Groups = 16;
-  bool GPU = 17;
-  string ContainerRoot = 18;
-  string ContainerBundle = 19;
-}
-
-message RemoteState {
-  string CheckpointID = 1;
-  string UploadID = 2;
-  int64 Timestamp = 3;
+  string JID = 9;
+  HostInfo HostInfo = 10;
+  CPUInfo CPUInfo = 11;
+  MemoryInfo MemoryInfo = 12;
+  repeated int32 UIDs = 13;
+  repeated int32 GIDs = 14;
+  repeated int32 Groups = 15;
+  bool GPU = 16;
+  string ContainerRoot = 17;
+  string ContainerBundle = 18;
 }
 
 message ProcessInfo {
