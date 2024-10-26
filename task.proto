@@ -172,7 +172,6 @@ message JobRestoreArgs {
   CriuOpts CriuOpts = 2;
   bool Stream = 3;
   RuncOpts RuncOpts = 4;
-  string CheckpointPath = 5;
 }
 
 message JobRestoreResp {
