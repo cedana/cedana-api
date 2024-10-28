@@ -5,13 +5,13 @@ import "google/protobuf/any.proto";
 
 package cedana.plugins.runc;
 
-message DumpOpts {
+message RuncDumpOpts {
   string Root = 1;
   string ID = 2;
   string Bundle = 3;
 }
 
-message RestoreOpts {
+message RuncRestoreOpts {
   string Root = 1;
   string ID = 2;
   string Bundle = 3;
