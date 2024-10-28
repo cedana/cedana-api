@@ -1,7 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/cedana/cedana/pkg/api/daemon";
 
-import "google/protobuf/any.proto";
 import "plugins/runc.proto";
 
 package cedana.daemon;
