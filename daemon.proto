@@ -30,18 +30,16 @@ message DumpResp {
 ////////////////////////
 
 message RestoreReq {
-  required string JID = 1;
-  optional string Path = 2;
-  bool Stream = 3;
-  Details Details = 4;
+  string Path = 1;
+  bool Stream = 2;
+  Details Details = 3;
 }
 
 message RestoreResp {
-  uint32 PID = 1;
-  string Message = 2;
+  string Message = 1;
 }
 
 message Details {
   string Type = 1;
-  google.protobuf.Any Options = 2;
+  google.protobuf.Any Opts = 2;
 }
