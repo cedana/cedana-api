@@ -1,53 +1,47 @@
 syntax = "proto3";
-
 option go_package = "github.com/cedana/cedana/pkg/api/services/gpu";
 
-package cedanagpu;
+package cedana.services.gpu;
 
-service CedanaGPU {
+service Controller {
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};
   rpc Restore(RestoreRequest) returns (RestoreResponse) {};
-  rpc StartupPoll(StartupPollRequest) returns (StartupPollResponse) {};
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
 }
 
-message CheckpointRequest { string directory = 1; }
+message CheckpointRequest { 
+  string Directory = 1;
+}
 
 message CheckpointResponse {
-  bool success = 1;
-  string memPath = 2;
-  string ckptPath = 3;
+  bool Success = 1;
+  string MemPath = 2;
+  string CkptPath = 3;
 }
 
-message RestoreRequest { string directory = 1; }
+message RestoreRequest {
+  string Directory = 1;
+}
 
 message RestoreResponse {
-    bool success = 1;
-    GPURestoreStats gpuRestoreStats = 2;
+  bool Success = 1;
+  RestoreStats RestoreStats = 2;
 }
-
-message StartupPollRequest {}
-
-message StartupPollResponse { bool success = 1; }
 
 message HealthCheckRequest {}
 
 message HealthCheckResponse {
-    bool success = 1;
-    string version = 2;
-    int32 deviceCount = 3;
-    AvailableCUDAAPIs availableCUDAAPIs = 4;
+    bool Success = 1;
+    string Version = 2;
+    int32 DeviceCount = 3;
+    AvailableAPIs AvailableAPIs = 4;
 }
 
-message AvailableCUDAAPIs {
-    int32 cuDNNVersion = 1;
-    int32 cuBLASVersion = 2;
-    int32 ncclVersion = 3;
-    int32 driverVersion = 4;
-    int32 runtimeVersion = 5;
+message AvailableAPIs {
+    int32 DriverVersion = 1;
 }
 
-message GPURestoreStats {
-    int64 copyMemTime = 1;
-    int64 replayCallsTime = 2;
+message RestoreStats {
+    int64 CopyMemTime = 1;
+    int64 ReplayCallsTime = 2;
 }

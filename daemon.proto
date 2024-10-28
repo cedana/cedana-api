@@ -1,0 +1,47 @@
+syntax = "proto3";
+option go_package = "github.com/cedana/cedana/pkg/api/services/daemon";
+
+import "gpu.proto";
+
+package cedana.services.daemon;
+
+service Daemon {
+  rpc Dump(DumpReq) returns (DumpResp) {}
+  rpc Restore(RestoreReq) returns (RestoreResp) {}
+}
+
+////////////////////////
+//////// DUMP //////////
+////////////////////////
+
+message DumpReq {
+  string Path = 1;
+  bool Stream = 2;
+  Details Details = 3;
+}
+
+message DumpResp {
+  string Path = 1;
+  string Message = 2;
+}
+
+////////////////////////
+/////// RESTORE ////////
+////////////////////////
+
+message RestoreReq {
+  required string JID = 1;
+  optional string Path = 2;
+  bool Stream = 3;
+  Details Details = 4;
+}
+
+message RestoreResp {
+  uint32 PID = 1;
+  string Message = 2;
+}
+
+message Details {
+  string Type = 1;
+  google.protobuf.Any Options = 2;
+}
