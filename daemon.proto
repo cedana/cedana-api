@@ -1,5 +1,4 @@
 syntax = "proto3";
-option go_package = "github.com/cedana/cedana/pkg/api/daemon";
 
 import "plugins/runc.proto";
 
