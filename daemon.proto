@@ -28,7 +28,7 @@ message DumpDetails {
   string Type = 1;
   oneof Opts {
     uint32 PID = 2;
-    plugins.RuncDumpOpts Runc = 3;
+    plugins.runc.DumpOpts Runc = 3;
   }
 }
 
@@ -50,6 +50,6 @@ message RestoreDetails {
   string Type = 1;
   oneof Opts {
     uint32 PID = 2;
-    plugins.RuncRestoreOpts Runc = 3;
+    plugins.runc.RestoreOpts Runc = 3;
   }
 }

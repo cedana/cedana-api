@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cedana.plugins.runc;
 
-message RuncDumpOpts {
+message DumpOpts {
   string Root = 1;
   string ID = 2;
   string Bundle = 3;
 }
 
-message RuncRestoreOpts {
+message RestoreOpts {
   string Root = 1;
   string ID = 2;
   string Bundle = 3;
