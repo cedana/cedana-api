@@ -1,7 +1,7 @@
 syntax = "proto3";
-option go_package = "github.com/cedana/cedana/pkg/api/gpu";
+option go_package = "github.com/cedana/cedana/pkg/api/plugins/gpu";
 
-package cedana.services.gpu;
+package cedana.plugins.gpu;
 
 service Controller {
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};

@@ -2,8 +2,9 @@ syntax = "proto3";
 option go_package = "github.com/cedana/cedana/pkg/api/daemon";
 
 import "google/protobuf/any.proto";
+import "plugins/runc.proto";
 
-package cedana.services.daemon;
+package cedana.daemon;
 
 service Daemon {
   rpc Dump(DumpReq) returns (DumpResp) {}
@@ -17,12 +18,20 @@ service Daemon {
 message DumpReq {
   string Path = 1;
   bool Stream = 2;
-  Details Details = 3;
+  DumpDetails Details = 3;
 }
 
 message DumpResp {
   string Path = 1;
   string Message = 2;
+}
+
+message DumpDetails {
+  string Type = 1;
+  oneof Opts {
+    uint32 PID = 2;
+    runc.DumpOpts Runc = 3;
+  }
 }
 
 ////////////////////////
@@ -32,14 +41,17 @@ message DumpResp {
 message RestoreReq {
   string Path = 1;
   bool Stream = 2;
-  Details Details = 3;
+  RestoreDetails Details = 3;
 }
 
 message RestoreResp {
   string Message = 1;
 }
 
-message Details {
+message RestoreDetails {
   string Type = 1;
-  google.protobuf.Any Opts = 2;
+  oneof Opts {
+    uint32 PID = 2;
+    runc.RestoreOpts Runc = 3;
+  }
 }
