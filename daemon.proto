@@ -1,6 +1,7 @@
 syntax = "proto3";
 option go_package = "github.com/cedana/cedana/pkg/api/services/daemon";
 
+import "google/protobuf/wrappers.proto";
 import "gpu.proto";
 
 package cedana.services.daemon;
