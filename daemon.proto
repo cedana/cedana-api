@@ -20,7 +20,7 @@ message DumpReq {
 }
 
 message DumpResp {
-  string Dir = 1;
+  string Path = 1;
   string Message = 2;
 }
 
