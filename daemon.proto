@@ -20,8 +20,8 @@ message DumpReq {
 }
 
 message DumpResp {
-  string Path = 1;
-  string Message = 2;
+  string Message = 1;
+  string Path = 2;
 }
 
 message DumpDetails {
@@ -47,14 +47,13 @@ message RestoreReq {
 
 message RestoreResp {
   string Message = 1;
+  uint32 PID = 2;
 }
 
 message RestoreDetails {
   string Type = 1;
   CriuOpts Criu = 2;
   oneof Opts {
-    uint32 PID = 3;
-
     // Plugin-specific restore options:
     plugins.runc.RestoreOpts Runc = 4;
   }
