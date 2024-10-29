@@ -14,13 +14,13 @@ service Daemon {
 ////////////////////////
 
 message DumpReq {
-  string Path = 1;
+  string Dir = 1;
   bool Stream = 2;
   DumpDetails Details = 3;
 }
 
 message DumpResp {
-  string Path = 1;
+  string Dir = 1;
   string Message = 2;
 }
 
@@ -28,6 +28,8 @@ message DumpDetails {
   string Type = 1;
   oneof Opts {
     uint32 PID = 2;
+
+    // Plugin-specific dump options:
     plugins.runc.DumpOpts Runc = 3;
   }
 }
@@ -50,6 +52,8 @@ message RestoreDetails {
   string Type = 1;
   oneof Opts {
     uint32 PID = 2;
+
+    // Plugin-specific restore options:
     plugins.runc.RestoreOpts Runc = 3;
   }
 }
