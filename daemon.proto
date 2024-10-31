@@ -107,14 +107,12 @@ message Job {
 }
 
 message JobDetails {
-  oneof Details {
-    uint32 PID = 1;
-    ProcessStartOpts ProcessStartOpts = 2;
+  optional uint32 PID = 1;
+  optional ProcessStartOpts ProcessStartOpts = 2;
 
-    // Plugin-specific job details:
-    plugins.runc.Job Runc = 3;
-    plugins.runc.StartOpts RuncStartOpts = 4;
-  }
+  // Plugin-specific job details:
+  optional plugins.runc.Job Runc = 3;
+  optional plugins.runc.StartOpts RuncStartOpts = 4;
 }
 
 ////////////////////
