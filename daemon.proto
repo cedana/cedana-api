@@ -110,20 +110,20 @@ message Job {
 /////////////////////
 
 message ProcessState {
-  int32 PID = 1;
+  uint32 PID = 1;
   string Task = 2;
   string StartedAt = 3;
   ProcessInfo Info = 4;
   HostInfo HostInfo = 5;
   CPUInfo CPUInfo = 6;
   MemoryInfo MemoryInfo = 7;
-  repeated int32 UIDs = 8;
-  repeated int32 GIDs = 9;
-  repeated int32 Groups = 10;
+  repeated uint32 UIDs = 8;
+  repeated uint32 GIDs = 9;
+  repeated uint32 Groups = 10;
 }
 
 message ProcessInfo {
-  int32 PID = 1;
+  uint32 PID = 1;
   bool AttachedToHardwareAccel = 2;
   repeated OpenFilesStat OpenFiles = 3;
   string WorkingDir = 4;
@@ -179,7 +179,7 @@ message ConnectionStat {
   Addr Raddr = 5;
   string Status = 6;
   repeated int32 UIDs = 7;
-  int32 PID = 8;
+  uint32 PID = 8;
 }
 
 message Addr {
