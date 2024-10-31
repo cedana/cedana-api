@@ -77,7 +77,8 @@ message ExecReq {
   int32 UID = 6;
   int32 GID = 7;
   repeated int32 Groups = 8;
-  bool GPU = 9;
+  bool GPUEnabled = 9;
+  bool AsRoot = 10;
 }
 
 message ExecResp {
@@ -107,7 +108,7 @@ message Job {
   string Type = 2;
   ProcessState Process = 3;
   string CheckpointPath = 4;
-  bool GPU = 5;
+  bool GPUEnabled = 5;
   JobDetails Details = 6;
 }
 
