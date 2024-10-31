@@ -22,6 +22,7 @@ message DumpReq {
 message DumpResp {
   string Message = 1;
   string Path = 2;
+  ProcessState state = 3;
 }
 
 message DumpDetails {
