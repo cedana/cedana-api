@@ -95,14 +95,15 @@ message Job {
   bool GPUEnabled = 5;
   Details Details = 6;
 }
-
+s
 message Details {
-  optional uint32 PID = 1;
-  optional ProcessStartDetails ProcessStart = 2;
+  optional string JID = 1;
+  optional uint32 PID = 2;
+  optional ProcessStartDetails ProcessStart = 3;
 
   // Plugin-specific job details:
-  optional plugins.runc.Details Runc = 3;
-  optional plugins.runc.StartDetails RuncStart = 4;
+  optional plugins.runc.Details Runc = 4;
+  optional plugins.runc.StartDetails RuncStart = 5;
 }
 
 ////////////////////
