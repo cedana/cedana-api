@@ -22,7 +22,7 @@ message DumpReq {
 message DumpResp {
   string Message = 1;
   string Path = 2;
-  ProcessState state = 3;
+  ProcessState State = 3;
 }
 
 message DumpDetails {
@@ -50,7 +50,7 @@ message RestoreReq {
 message RestoreResp {
   string Message = 1;
   uint32 PID = 2;
-  ProcessState state = 3;
+  ProcessState State = 3;
 }
 
 message RestoreDetails {
