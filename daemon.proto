@@ -68,6 +68,7 @@ message RestoreDetails {
 /////// CRIU ///////
 ////////////////////
 
+// XXX YA: Find a way to re-use CRIU's rpc.proto
 message CriuOpts {
   string ImagesDir = 1;
   int32 ImagesDirFd = 2;
@@ -88,6 +89,12 @@ message CriuOpts {
   string LsmMountContext = 17;
   bool TcpEstablished = 18;
   bool TcpClose = 19;
+  repeated InheritFd InheritFd = 20;
+}
+
+message InheritFd {
+  string Key = 1;
+  int32 Fd = 2;
 }
 
 /////////////////
