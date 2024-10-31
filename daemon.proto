@@ -78,6 +78,7 @@ message StartReq {
 message StartResp {
   string Message = 1;
   uint32 PID = 2;
+  string JID = 3;
 }
 
 message ManageReq {
@@ -173,7 +174,6 @@ message ProcessState {
   repeated uint32 UIDs = 8;
   repeated uint32 GIDs = 9;
   repeated uint32 Groups = 10;
-  int32 ExitCode = 11;
 }
 
 message ProcessInfo {
