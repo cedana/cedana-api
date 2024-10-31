@@ -76,7 +76,7 @@ message StartReq {
     ProcessStartOpts Process = 3;
 
     // Plugin-specific job details:
-    plugins.runc.Job Runc = 4;
+    plugins.runc.StartOpts Runc = 4;
   }
 }
 
