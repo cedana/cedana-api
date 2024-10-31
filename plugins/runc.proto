@@ -13,3 +13,9 @@ message RestoreOpts {
   string ID = 2;
   string Bundle = 3;
 }
+
+message Job {
+  string ID = 1;
+  string Bundle = 2;
+  string Root = 3;
+}
