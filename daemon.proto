@@ -132,6 +132,7 @@ message CriuOpts {
   bool TcpEstablished = 18;
   bool TcpClose = 19;
   repeated InheritFd InheritFd = 20;
+  bool RstSibling = 21;
 }
 
 message InheritFd {
