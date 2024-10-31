@@ -50,7 +50,7 @@ message RestoreReq {
   CriuOpts Criu = 4;
 
   oneof Details {
-    uint32 JID = 5;
+    string JID = 5;
 
     // Plugin-specific restore options:
     plugins.runc.RestoreOpts Runc = 6;
