@@ -162,13 +162,6 @@ message OpenFilesStat {
   string Path = 1;
   uint64 Fd = 2;
   string Mode = 3;
-  StreamType Stream = 5;
-  enum StreamType {
-    STDIN = 0;
-    STDOUT = 1;
-    STDERR = 2;
-    NONE = 3;
-  }
 }
 
 message ConnectionStat {
