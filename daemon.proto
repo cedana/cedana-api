@@ -10,8 +10,9 @@ service Daemon {
   rpc Restore(RestoreReq) returns (RestoreResp) {}
 
   // Job management
-  rpc Exec(StartReq) returns (StartResp) {}
+  rpc Start(StartReq) returns (StartResp) {}
   rpc Manage(ManageReq) returns (ManageResp) {}
+  rpc List(ListReq) returns (ListResp) {}
 }
 
 ////////////////////////
@@ -92,6 +93,13 @@ message ManageReq {
 message ManageResp {
   string Message = 1;
   ProcessState State = 2;
+}
+
+message ListReq {
+}
+
+message ListResp {
+  repeated Job Jobs = 1;
 }
 
 message Job {
