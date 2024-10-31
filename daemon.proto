@@ -10,7 +10,7 @@ service Daemon {
   rpc Restore(RestoreReq) returns (RestoreResp) {}
 
   // Job management
-  rpc Start(StartReq) returns (StartResp) {}
+  rpc Exec(ExecReq) returns (ExecResp) {}
   rpc Manage(ManageReq) returns (ManageResp) {}
   rpc List(ListReq) returns (ListResp) {}
 }
@@ -68,7 +68,7 @@ message RestoreResp {
 ////// JOB //////
 /////////////////
 
-message StartReq {
+message ExecReq {
   string JID = 1;
   string Cmd = 2;
   string WorkingDir = 3;
@@ -80,7 +80,7 @@ message StartReq {
   bool GPU = 9;
 }
 
-message StartResp {
+message ExecResp {
   string Message = 1;
   uint32 PID = 2;
 }
