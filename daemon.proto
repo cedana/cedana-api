@@ -5,8 +5,13 @@ import "plugins/runc.proto";
 package cedana.daemon;
 
 service Daemon {
+  // C/R
   rpc Dump(DumpReq) returns (DumpResp) {}
   rpc Restore(RestoreReq) returns (RestoreResp) {}
+
+  // Job management
+  rpc Exec(StartReq) returns (StartResp) {}
+  rpc Manage(ManageReq) returns (ManageResp) {}
 }
 
 ////////////////////////
@@ -16,25 +21,22 @@ service Daemon {
 message DumpReq {
   string Dir = 1;
   bool Stream = 2;
-  DumpDetails Details = 3;
+  string Type = 3;
+  CriuOpts Criu = 4;
+
+  oneof Details {
+    uint32 PID = 5;
+    string JID = 6;
+
+    // Plugin-specific dump options:
+    plugins.runc.DumpOpts Runc = 7;
+  }
 }
 
 message DumpResp {
   string Message = 1;
   string Path = 2;
   ProcessState State = 3;
-}
-
-message DumpDetails {
-  string Type = 1;
-  CriuOpts Criu = 2;
-  oneof Opts {
-    uint32 PID = 3;
-    string JID = 4;
-
-    // Plugin-specific dump options:
-    plugins.runc.DumpOpts Runc = 5;
-  }
 }
 
 ////////////////////////
@@ -44,7 +46,15 @@ message DumpDetails {
 message RestoreReq {
   string Path = 1;
   bool Stream = 2;
-  RestoreDetails Details = 3;
+  string Type = 3;
+  CriuOpts Criu = 4;
+
+  oneof Details {
+    uint32 JID = 5;
+
+    // Plugin-specific restore options:
+    plugins.runc.RestoreOpts Runc = 6;
+  }
 }
 
 message RestoreResp {
@@ -53,14 +63,52 @@ message RestoreResp {
   ProcessState State = 3;
 }
 
-message RestoreDetails {
-  string Type = 1;
-  CriuOpts Criu = 2;
-  oneof Opts {
-    string JID = 3;
+/////////////////
+////// JOB //////
+/////////////////
 
-    // Plugin-specific restore options:
-    plugins.runc.RestoreOpts Runc = 4;
+message StartReq {
+  string JID = 1;
+  string Cmd = 2;
+  string WorkingDir = 3;
+  repeated string Args = 4;
+  repeated string Env = 5;
+  int32 UID = 6;
+  int32 GID = 7;
+  repeated int32 Groups = 8;
+  bool GPU = 9;
+}
+
+message StartResp {
+  string Message = 1;
+  uint32 PID = 2;
+}
+
+message ManageReq {
+  string JID = 1;
+  JobDetails Details = 2;
+}
+
+message ManageResp {
+  string Message = 1;
+  ProcessState State = 2;
+}
+
+message Job {
+  string JID = 1;
+  string Type = 2;
+  ProcessState Process = 3;
+  string CheckpointPath = 4;
+  bool GPU = 5;
+  JobDetails Details = 6;
+}
+
+message JobDetails {
+  oneof Details {
+    uint32 PID = 1;
+
+    // Plugin-specific job details:
+    plugins.runc.Job Runc = 2;
   }
 }
 
@@ -97,24 +145,6 @@ message InheritFd {
   int32 Fd = 2;
 }
 
-/////////////////
-////// JOB //////
-/////////////////
-
-message Job {
-  string JID = 1;
-  string Type = 2;
-  ProcessState Process = 3;
-  int32 ExitCode = 4;
-  string CheckpointPath = 5;
-  bool GPU = 6;
-
-  oneof Details {
-    // Plugin-specific job details:
-    plugins.runc.Job Runc = 7;
-  }
-}
-
 /////////////////////
 ////// PROCESS //////
 /////////////////////
@@ -130,6 +160,7 @@ message ProcessState {
   repeated uint32 UIDs = 8;
   repeated uint32 GIDs = 9;
   repeated uint32 Groups = 10;
+  int32 ExitCode = 11;
 }
 
 message ProcessInfo {
