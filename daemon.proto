@@ -72,13 +72,7 @@ message StartReq {
   string JID = 1;
   bool GPUEnabled = 2;
   string Type = 3;
-
-  oneof Details {
-    ProcessStartOpts Process = 4;
-
-    // Plugin-specific job details:
-    plugins.runc.StartOpts Runc = 5;
-  }
+  JobDetails Details = 4;
 }
 
 message StartResp {
@@ -115,9 +109,11 @@ message Job {
 message JobDetails {
   oneof Details {
     uint32 PID = 1;
+    ProcessStartOpts Process = 4;
 
     // Plugin-specific job details:
     plugins.runc.Job Runc = 2;
+    plugins.runc.StartOpts Runc = 2;
   }
 }
 
