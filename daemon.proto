@@ -71,12 +71,13 @@ message RestoreResp {
 message StartReq {
   string JID = 1;
   bool GPUEnabled = 2;
+  string Type = 3;
 
   oneof Details {
-    ProcessStartOpts Process = 3;
+    ProcessStartOpts Process = 4;
 
     // Plugin-specific job details:
-    plugins.runc.StartOpts Runc = 4;
+    plugins.runc.StartOpts Runc = 5;
   }
 }
 
@@ -165,7 +166,6 @@ message ProcessStartOpts {
   int32 UID = 5;
   int32 GID = 6;
   repeated int32 Groups = 7;
-  bool AsRoot = 8;
 }
 
 message ProcessState {
