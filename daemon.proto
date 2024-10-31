@@ -72,8 +72,8 @@ message CriuOpts {
   int32 WorkDirFd = 2;
   string ParentImg = 3;
   bool LeaveRunning = 4;
-  bool ExtUnixSk = 4;
   bool TcpEstablished = 5;
+  bool ExtUnixSk = 6;
   bool ShellJob = 7;
   bool FileLocks = 8;
   bool PreDump = 9;
