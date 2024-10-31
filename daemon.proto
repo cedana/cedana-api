@@ -69,22 +69,23 @@ message RestoreDetails {
 
 message CriuOpts {
   string ImagesDir = 1;
-  int32 WorkDirFd = 2;
-  string ParentImg = 3;
-  bool LeaveRunning = 4;
-  bool TcpEstablished = 5;
-  bool ExtUnixSk = 6;
-  bool ShellJob = 7;
-  bool FileLocks = 8;
-  bool PreDump = 9;
-  bool Stream = 10;
-  uint32 EmptyNs = 11;
-  bool AutoDedup = 12;
-  bool LazyPages = 13;
-  int32 StatusFd = 14;
-  string LsmProfile = 15;
-  string LsmMountContext = 16;
-  repeated string External = 17;
+  string ImagesDirFd = 2;
+  int32 WorkDirFd = 3;
+  string ParentImg = 4;
+  bool LeaveRunning = 5;
+  bool TcpEstablished = 6;
+  bool ExtUnixSk = 7;
+  bool ShellJob = 8;
+  bool FileLocks = 9;
+  bool PreDump = 10;
+  bool Stream = 11;
+  uint32 EmptyNs = 12;
+  bool AutoDedup = 13;
+  bool LazyPages = 14;
+  int32 StatusFd = 15;
+  string LsmProfile = 16;
+  string LsmMountContext = 17;
+  repeated string External = 18;
 }
 
 /////////////////
