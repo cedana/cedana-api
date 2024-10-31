@@ -77,7 +77,7 @@ message CriuOpts {
   bool FileLocks = 8;
   bool PreDump = 9;
   bool Stream = 10;
-  int32 EmptyNs = 11;
+  uint32 EmptyNs = 11;
   bool AutoDedup = 12;
   bool LazyPages = 13;
   int32 StatusFd = 14;
