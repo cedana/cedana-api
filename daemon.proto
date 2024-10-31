@@ -70,7 +70,7 @@ message RestoreResp {
 
 message ExecReq {
   string JID = 1;
-  string Cmd = 2;
+  string Path = 2;
   string WorkingDir = 3;
   repeated string Args = 4;
   repeated string Env = 5;
