@@ -95,7 +95,7 @@ message Job {
   bool GPUEnabled = 5;
   Details Details = 6;
 }
-s
+
 message Details {
   optional string JID = 1;
   optional uint32 PID = 2;
