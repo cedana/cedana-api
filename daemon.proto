@@ -10,7 +10,7 @@ service Daemon {
   rpc Restore(RestoreReq) returns (RestoreResp) {}
 
   // Job management
-  rpc Exec(ExecReq) returns (ExecResp) {}
+  rpc Start(StartReq) returns (StartResp) {}
   rpc Manage(ManageReq) returns (ManageResp) {}
   rpc List(ListReq) returns (ListResp) {}
 }
@@ -68,20 +68,28 @@ message RestoreResp {
 ////// JOB //////
 /////////////////
 
-message ExecReq {
+message StartReq {
   string JID = 1;
-  string Path = 2;
-  string WorkingDir = 3;
-  repeated string Args = 4;
-  repeated string Env = 5;
-  int32 UID = 6;
-  int32 GID = 7;
-  repeated int32 Groups = 8;
-  bool GPUEnabled = 9;
-  bool AsRoot = 10;
+  bool GPUEnabled = 2;
+
+  oneof Details {
+    message ProcessOpts {
+      string Path = 3;
+      string WorkingDir = 4;
+      repeated string Args = 5;
+      repeated string Env = 6;
+      int32 UID = 7;
+      int32 GID = 8;
+      repeated int32 Groups = 9;
+      bool AsRoot = 10;
+    }
+
+    // Plugin-specific job details:
+    plugins.runc.Job Runc = 3;
+  }
 }
 
-message ExecResp {
+message StartResp {
   string Message = 1;
   uint32 PID = 2;
 }
@@ -93,7 +101,7 @@ message ManageReq {
 
 message ManageResp {
   string Message = 1;
-  ProcessState State = 2;
+  uint32 PID = 2;
 }
 
 message ListReq {
