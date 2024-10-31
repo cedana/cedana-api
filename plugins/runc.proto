@@ -3,15 +3,15 @@ syntax = "proto3";
 package cedana.plugins.runc;
 
 message DumpOpts {
-  string Root = 1;
-  string ID = 2;
-  string Bundle = 3;
+  string ID = 1;
+  string Bundle = 2;
+  string Root = 3;
 }
 
 message RestoreOpts {
-  string Root = 1;
-  string ID = 2;
-  string Bundle = 3;
+  string ID = 1;
+  string Bundle = 2;
+  string Root = 3;
 }
 
 message StartOpts {
