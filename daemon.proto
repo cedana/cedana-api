@@ -74,7 +74,7 @@ message CriuOpts {
   int32 WorkDirFd = 3;
   string ParentImg = 4;
   bool LeaveRunning = 5;
-  bool TcpEstablished = 6;
+  repeated string External = 6;
   bool ExtUnixSk = 7;
   bool ShellJob = 8;
   bool FileLocks = 9;
@@ -86,7 +86,8 @@ message CriuOpts {
   int32 StatusFd = 15;
   string LsmProfile = 16;
   string LsmMountContext = 17;
-  repeated string External = 18;
+  bool TcpEstablished = 18;
+  bool TcpClose = 19;
 }
 
 /////////////////
