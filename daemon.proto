@@ -69,7 +69,7 @@ message RestoreDetails {
 
 message CriuOpts {
   string ImagesDir = 1;
-  string ImagesDirFd = 2;
+  int32 ImagesDirFd = 2;
   int32 WorkDirFd = 3;
   string ParentImg = 4;
   bool LeaveRunning = 5;
