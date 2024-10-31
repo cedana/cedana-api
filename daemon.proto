@@ -73,19 +73,10 @@ message StartReq {
   bool GPUEnabled = 2;
 
   oneof Details {
-    message ProcessOpts {
-      string Path = 3;
-      string WorkingDir = 4;
-      repeated string Args = 5;
-      repeated string Env = 6;
-      int32 UID = 7;
-      int32 GID = 8;
-      repeated int32 Groups = 9;
-      bool AsRoot = 10;
-    }
+    ProcessStartOpts Process = 3;
 
     // Plugin-specific job details:
-    plugins.runc.Job Runc = 3;
+    plugins.runc.Job Runc = 4;
   }
 }
 
@@ -165,6 +156,17 @@ message InheritFd {
 /////////////////////
 ////// PROCESS //////
 /////////////////////
+
+message ProcessStartOpts {
+  string Path = 1;
+  string WorkingDir = 2;
+  repeated string Args = 3;
+  repeated string Env = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+  repeated int32 Groups = 7;
+  bool AsRoot = 8;
+}
 
 message ProcessState {
   uint32 PID = 1;
