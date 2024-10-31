@@ -25,13 +25,7 @@ message DumpReq {
   string Type = 3;
   CriuOpts Criu = 4;
 
-  oneof Details {
-    uint32 PID = 5;
-    string JID = 6;
-
-    // Plugin-specific dump options:
-    plugins.runc.DumpOpts Runc = 7;
-  }
+  Details Details = 5;
 }
 
 message DumpResp {
@@ -50,12 +44,7 @@ message RestoreReq {
   string Type = 3;
   CriuOpts Criu = 4;
 
-  oneof Details {
-    string JID = 5;
-
-    // Plugin-specific restore options:
-    plugins.runc.RestoreOpts Runc = 6;
-  }
+  Details Details = 5;
 }
 
 message RestoreResp {
@@ -72,7 +61,7 @@ message StartReq {
   string JID = 1;
   bool GPUEnabled = 2;
   string Type = 3;
-  JobDetails Details = 4;
+  Details Details = 4;
 }
 
 message StartResp {
@@ -83,7 +72,7 @@ message StartResp {
 
 message ManageReq {
   string JID = 1;
-  JobDetails Details = 2;
+  Details Details = 2;
 }
 
 message ManageResp {
@@ -104,16 +93,16 @@ message Job {
   ProcessState Process = 3;
   string CheckpointPath = 4;
   bool GPUEnabled = 5;
-  JobDetails Details = 6;
+  Details Details = 6;
 }
 
-message JobDetails {
+message Details {
   optional uint32 PID = 1;
-  optional ProcessStartOpts ProcessStartOpts = 2;
+  optional ProcessStartDetails ProcessStart = 2;
 
   // Plugin-specific job details:
-  optional plugins.runc.Job Runc = 3;
-  optional plugins.runc.StartOpts RuncStartOpts = 4;
+  optional plugins.runc.Details Runc = 3;
+  optional plugins.runc.StartDetails RuncStart = 4;
 }
 
 ////////////////////
@@ -153,7 +142,7 @@ message InheritFd {
 ////// PROCESS //////
 /////////////////////
 
-message ProcessStartOpts {
+message ProcessStartDetails {
   string Path = 1;
   string WorkingDir = 2;
   repeated string Args = 3;
