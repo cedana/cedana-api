@@ -107,7 +107,7 @@ message Job {
 }
 
 message JobDetails {
-  oneof {
+  oneof _ {
     uint32 PID = 1;
     ProcessStartOpts ProcessStartOpts = 2;
 
