@@ -225,7 +225,7 @@ message DumpArgs {
   string Dir = 2;
   CRType Type = 3;
   string JID = 4;
-  bool Stream = 5;
+  int32 Stream = 5;
   CriuOpts CriuOpts = 6;
 }
 
@@ -243,7 +243,7 @@ message RestoreArgs {
   string CheckpointID = 2;
   string CheckpointPath = 3;
   string JID = 4;
-  bool Stream = 5;
+  int32 Stream = 5;
   CriuOpts CriuOpts = 6;
 }
 
