@@ -53,6 +53,7 @@ service TaskService {
   // Kata
   rpc KataDump(DumpArgs) returns (DumpResp);
   rpc KataRestore(RestoreArgs) returns (RestoreResp);
+  rpc HostKataDump(HostDumpKataArgs) returns (HostDumpKataResp);
 
   // Config
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
@@ -680,4 +681,18 @@ message ContainerInfo {
 
 message ContainersInfo {
     repeated ContainerInfo containers = 1;
+}
+
+/////////////////////////
+////// HOST KATA ////////
+/////////////////////////
+
+message HostDumpKataArgs {
+  string VmName = 1;
+  uint32 Port = 2;
+  string Dir = 3;
+}
+
+message HostDumpKataResp {
+  string TarDumpDir = 1;
 }
