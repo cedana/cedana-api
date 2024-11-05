@@ -158,7 +158,7 @@ message JobDumpArgs {
   string JID = 1;
   string Dir = 2;
   CRType Type = 3;
-  bool Stream = 4;
+  int32 Stream = 4;
   CriuOpts CriuOpts = 5;
 }
 
@@ -174,7 +174,7 @@ message JobRestoreArgs {
   string JID = 1;
   CRType Type = 2;
   CriuOpts CriuOpts = 3;
-  bool Stream = 4;
+  int32 Stream = 4;
   RuncOpts RuncOpts = 5;
 }
 
@@ -354,6 +354,7 @@ message CriuOpts {
   string LsmProfile = 16;
   string LsmMountContext = 17;
   repeated string External = 18;
+  bool TcpClose = 19;
 }
 
 message RuncRestoreArgs {
