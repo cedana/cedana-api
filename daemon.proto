@@ -95,7 +95,8 @@ message Job {
   ProcessState Process = 3;
   string CheckpointPath = 4;
   bool GPUEnabled = 5;
-  Details Details = 6;
+  string Log = 6;
+  Details Details = 7;
 }
 
 message KillReq {
