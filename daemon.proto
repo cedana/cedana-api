@@ -45,8 +45,9 @@ message RestoreReq {
   bool Stream = 2;
   string Type = 3;
   CriuOpts Criu = 4;
+  string Log = 5;
 
-  Details Details = 5;
+  Details Details = 6;
 }
 
 message RestoreResp {
@@ -63,7 +64,8 @@ message StartReq {
   string JID = 1;
   bool GPUEnabled = 2;
   string Type = 3;
-  Details Details = 4;
+  string Log = 4;
+  Details Details = 5;
 }
 
 message StartResp {
