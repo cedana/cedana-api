@@ -13,6 +13,8 @@ service Daemon {
   rpc Start(StartReq) returns (StartResp) {}
   rpc Manage(ManageReq) returns (ManageResp) {}
   rpc List(ListReq) returns (ListResp) {}
+  rpc Kill(KillReq) returns (KillResp) {}
+  rpc Delete(DeleteReq) returns (DeleteResp) {}
 }
 
 ////////////////////////
@@ -94,6 +96,23 @@ message Job {
   string CheckpointPath = 4;
   bool GPUEnabled = 5;
   Details Details = 6;
+}
+
+message KillReq {
+  repeated string JIDs = 1;
+  int32 Signal = 2;
+}
+
+message KillResp {
+  string Message = 1;
+}
+
+message DeleteReq {
+  repeated string JIDs = 1;
+}
+
+message DeleteResp {
+  string Message = 1;
 }
 
 message Details {
