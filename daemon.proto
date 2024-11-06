@@ -237,3 +237,8 @@ message Addr {
   string IP = 1;
   uint32 Port = 2;
 }
+
+/////////////////////
+////// Others //////
+
+message Empty {}
