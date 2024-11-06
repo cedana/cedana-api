@@ -17,6 +17,9 @@ service Daemon {
   rpc Kill(KillReq) returns (KillResp) {}
   rpc Delete(DeleteReq) returns (DeleteResp) {}
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
+
+  // Plugins
+  rpc ReloadPlugins(Empty) returns (Empty) {}
 }
 
 ////////////////////////
