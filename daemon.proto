@@ -90,7 +90,7 @@ message ManageResp {
 }
 
 message AttachReq {
-  string JID = 1;
+  uint32 PID = 1;
   oneof Input {
     bytes Stdin = 2;
     int32 Signal = 3;
