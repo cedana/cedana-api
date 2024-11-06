@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "plugins/runc.proto";
+import "criu.proto";
 
 package cedana.daemon;
 
@@ -15,6 +16,7 @@ service Daemon {
   rpc List(ListReq) returns (ListResp) {}
   rpc Kill(KillReq) returns (KillResp) {}
   rpc Delete(DeleteReq) returns (DeleteResp) {}
+  rpc Attach(AttachReq) returns (AttachResp) {}
 }
 
 ////////////////////////
@@ -25,7 +27,7 @@ message DumpReq {
   string Dir = 1;
   bool Stream = 2;
   string Type = 3;
-  CriuOpts Criu = 4;
+  criu.criu_opts Criu = 4;
 
   Details Details = 5;
 }
@@ -44,7 +46,7 @@ message RestoreReq {
   string Path = 1;
   bool Stream = 2;
   string Type = 3;
-  CriuOpts Criu = 4;
+  criu.criu_opts Criu = 4;
   string Log = 5;
 
   Details Details = 6;
@@ -126,40 +128,6 @@ message Details {
   // Plugin-specific job details:
   optional plugins.runc.Details Runc = 4;
   optional plugins.runc.StartDetails RuncStart = 5;
-}
-
-////////////////////
-/////// CRIU ///////
-////////////////////
-
-// XXX YA: Find a way to re-use CRIU's rpc.proto
-message CriuOpts {
-  string ImagesDir = 1;
-  int32 ImagesDirFd = 2;
-  int32 WorkDirFd = 3;
-  string ParentImg = 4;
-  bool LeaveRunning = 5;
-  repeated string External = 6;
-  bool ExtUnixSk = 7;
-  bool ShellJob = 8;
-  bool FileLocks = 9;
-  bool PreDump = 10;
-  bool Stream = 11;
-  uint32 EmptyNs = 12;
-  bool AutoDedup = 13;
-  bool LazyPages = 14;
-  int32 StatusFd = 15;
-  string LsmProfile = 16;
-  string LsmMountContext = 17;
-  bool TcpEstablished = 18;
-  bool TcpClose = 19;
-  repeated InheritFd InheritFd = 20;
-  bool RstSibling = 21;
-}
-
-message InheritFd {
-  string Key = 1;
-  int32 Fd = 2;
 }
 
 /////////////////////
