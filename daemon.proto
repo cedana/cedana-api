@@ -48,8 +48,9 @@ message RestoreReq {
   string Type = 3;
   criu.criu_opts Criu = 4;
   string Log = 5;
+  bool Attach = 6;
 
-  Details Details = 6;
+  Details Details = 7;
 }
 
 message RestoreResp {
@@ -67,7 +68,8 @@ message StartReq {
   bool GPUEnabled = 2;
   string Type = 3;
   string Log = 4;
-  Details Details = 5;
+  bool Attach = 5;
+  Details Details = 6;
 }
 
 message StartResp {
@@ -78,7 +80,8 @@ message StartResp {
 
 message ManageReq {
   string JID = 1;
-  Details Details = 2;
+  bool Attach = 2;
+  Details Details = 3;
 }
 
 message ManageResp {
