@@ -12,4 +12,7 @@ message StartDetails {
   string ID = 1;
   string Bundle = 2;
   string Root = 3;
+
+  string ConsoleSocket = 4;
+  bool Detach = 5;
 }
