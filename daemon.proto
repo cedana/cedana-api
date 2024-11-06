@@ -89,15 +89,15 @@ message ManageResp {
 message AttachReq {
   string JID = 1;
   oneof Input {
-    string Stdin = 2;
-    string Signal = 3;
+    bytes Stdin = 2;
+    bytes Signal = 3;
   }
 }
 
 message AttachResp {
   oneof Output {
-    string Stdout = 1;
-    string Stderr = 2;
+    bytes Stdout = 1;
+    bytes Stderr = 2;
     int32 ExitCode = 3;
   }
 }
