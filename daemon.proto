@@ -101,7 +101,7 @@ message AttachResp {
   oneof Output {
     bytes Stdout = 1;
     bytes Stderr = 2;
-    uint8 ExitCode = 3;
+    int32 ExitCode = 3;
   }
 }
 
