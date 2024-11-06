@@ -16,7 +16,7 @@ service Daemon {
   rpc List(ListReq) returns (ListResp) {}
   rpc Kill(KillReq) returns (KillResp) {}
   rpc Delete(DeleteReq) returns (DeleteResp) {}
-  rpc Attach(AttachReq) returns (AttachResp) {}
+  rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 }
 
 ////////////////////////
@@ -86,21 +86,27 @@ message ManageResp {
   uint32 PID = 2;
 }
 
+message AttachReq {
+  string JID = 1;
+  oneof {
+    string Stdin = 2;
+    int32 Signal = 3;
+  }
+}
+
+message AttachResp {
+  oneof Output {
+    string Stdout = 1;
+    string Stderr = 2;
+    int32 ExitCode = 3;
+  }
+}
+
 message ListReq {
 }
 
 message ListResp {
   repeated Job Jobs = 1;
-}
-
-message Job {
-  string JID = 1;
-  string Type = 2;
-  ProcessState Process = 3;
-  string CheckpointPath = 4;
-  bool GPUEnabled = 5;
-  string Log = 6;
-  Details Details = 7;
 }
 
 message KillReq {
@@ -118,6 +124,16 @@ message DeleteReq {
 
 message DeleteResp {
   string Message = 1;
+}
+
+message Job {
+  string JID = 1;
+  string Type = 2;
+  ProcessState Process = 3;
+  string CheckpointPath = 4;
+  bool GPUEnabled = 5;
+  string Log = 6;
+  Details Details = 7;
 }
 
 message Details {
