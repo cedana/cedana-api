@@ -90,7 +90,7 @@ message AttachReq {
   string JID = 1;
   oneof Input {
     bytes Stdin = 2;
-    bytes Signal = 3;
+    int32 Signal = 3;
   }
 }
 
@@ -98,7 +98,7 @@ message AttachResp {
   oneof Output {
     bytes Stdout = 1;
     bytes Stderr = 2;
-    int32 ExitCode = 3;
+    int ExitCode = 3;
   }
 }
 
