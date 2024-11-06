@@ -88,14 +88,18 @@ message ManageResp {
 
 message AttachReq {
   string JID = 1;
-  optional string Stdin = 2;
-  optional int32 Signal = 3;
+  oneof Input {
+    string Stdin = 2;
+    string Signal = 3;
+  }
 }
 
 message AttachResp {
-  optional string Stdout = 1;
-  optional string Stderr = 2;
-  optional int32 ExitCode = 3;
+  oneof Output {
+    string Stdout = 1;
+    string Stderr = 2;
+    int32 ExitCode = 3;
+  }
 }
 
 message ListReq {
