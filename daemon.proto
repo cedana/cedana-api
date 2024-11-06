@@ -106,6 +106,7 @@ message AttachResp {
 }
 
 message ListReq {
+  repeated string JIDs = 1;
 }
 
 message ListResp {
