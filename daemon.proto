@@ -56,8 +56,7 @@ message RestoreReq {
 message RestoreResp {
   string Message = 1;
   uint32 PID = 2;
-  string JID = 3;
-  ProcessState State = 4;
+  ProcessState State = 3;
 }
 
 /////////////////
