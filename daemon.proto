@@ -2,7 +2,6 @@ syntax = "proto3";
 
 import "plugins/runc.proto";
 import "criu.proto";
-import "google/protobuf/empty.proto";
 
 package cedana.daemon;
 
@@ -20,7 +19,7 @@ service Daemon {
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 
   // Plugins
-  rpc ReloadPlugins(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ReloadPlugins(Empty) returns (Empty) {}
 }
 
 ////////////////////////
@@ -238,3 +237,8 @@ message Addr {
   string IP = 1;
   uint32 Port = 2;
 }
+
+/////////////////////
+////// Others //////
+
+message Empty {}
