@@ -692,6 +692,7 @@ message HostDumpKataArgs {
   uint32 Port = 2;
   string Dir = 3;
   bool   VMSnapshot = 4;
+  string VMSocketPath = 5;
 }
 
 message HostDumpKataResp {
