@@ -12,11 +12,19 @@ package cedana.services.task;
 // but if you do it will filter out based on the query parameters.
 
 service TaskService {
+  // Managed Job
+  rpc JobDump(JobDumpArgs) returns (JobDumpResp);
+  rpc JobRestore(JobRestoreArgs) returns (JobRestoreResp);
+  rpc JobRestoreAttach(stream AttachArgs) returns (stream AttachResp);
+  rpc JobQuery(JobQueryArgs) returns (JobQueryResp);
+
   // Process
   rpc Start(StartArgs) returns (StartResp);
+  rpc StartAttach(stream AttachArgs) returns (stream AttachResp);
   rpc Dump(DumpArgs) returns (DumpResp);
   rpc Restore(RestoreArgs) returns (RestoreResp);
-  rpc Query(QueryArgs) returns (QueryResp);
+  rpc RestoreAttach(stream AttachArgs) returns (stream AttachResp);
+  rpc Manage(ManageArgs) returns (ManageResp);
 
   // Containerd
   rpc ContainerdDump(ContainerdDumpArgs) returns (ContainerdDumpResp);
@@ -31,14 +39,13 @@ service TaskService {
   rpc RuncRestore(RuncRestoreArgs) returns (RuncRestoreResp);
   rpc RuncQuery(RuncQueryArgs) returns (RuncQueryResp);
   rpc RuncGetPausePid(RuncGetPausePidArgs) returns (RuncGetPausePidResp);
+  rpc RuncManage(RuncManageArgs) returns (RuncManageResp);
 
-  //CRIO
+  // CRIO
   rpc CRIORootfsDump(CRIORootfsDumpArgs) returns (CRIORootfsDumpResp);
   rpc CRIOImagePush(CRIOImagePushArgs) returns (CRIOImagePushResp);
 
   // Streaming
-  rpc StartAttach(stream StartAttachArgs) returns (stream StartAttachResp);
-  rpc RestoreAttach(stream RestoreAttachArgs) returns (stream RestoreAttachResp);
   rpc LogStreaming(stream LogStreamingResp) returns (stream LogStreamingArgs);
   rpc ProcessStateStreaming(ProcessStateStreamingArgs) returns (stream ProcessState);
 
@@ -70,10 +77,9 @@ message DumpStats {
     int64 PrepareDuration = 2;
     int64 CRIUDuration = 3;
     int64 GPUDuration = 4;
-    int64 UploadDuration = 5;
-    ContainerRuntime ContainerRuntime = 6;
-    bool Kubernetes = 7;
-    CheckpointFileStats CheckpointFileStats = 8;
+    ContainerRuntime ContainerRuntime = 5;
+    bool Kubernetes = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
 }
 
 message CheckpointFileStats {
@@ -92,6 +98,20 @@ message RestoreStats {
     cedanagpu.GPURestoreStats GPURestoreStats = 8;
 }
 
+message ManageArgs {
+  int32 PID = 1;
+  string JID = 2;
+  bool GPU = 3;
+  repeated int32 Groups = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+}
+
+message ManageResp {
+  string Message = 1;
+  ProcessState State = 2;
+}
+
 enum DumpType {
      PROCESS = 0;
      RUNC = 1;
@@ -103,7 +123,6 @@ enum ContainerRuntime {
      CRIO = 0;
      CONTAINERD = 1;
 }
-
 
 /////////////////////
 /////// CRIO ////////
@@ -132,15 +151,49 @@ message CRIORootfsDumpResp {
   string Dest = 1;
 }
 
+/////////////////////
+/////// Job /////////
+/////////////////////
+
+message JobDumpArgs {
+  string JID = 1;
+  string Dir = 2;
+  int32 Stream = 3;
+  CriuOpts CriuOpts = 4;
+}
+
+message JobDumpResp {
+  string Message = 1;
+  string CheckpointID = 2;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
+}
+
+message JobRestoreArgs {
+  string JID = 1;
+  CriuOpts CriuOpts = 2;
+  int32 Stream = 3;
+  RuncOpts RuncOpts = 4;
+}
+
+message JobRestoreResp {
+  string Message = 1;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
+}
+
+message JobQueryArgs {
+  repeated int32 PIDs = 1;
+  repeated string JIDs = 2;
+}
+
+message JobQueryResp {
+  repeated ProcessState Processes = 1;
+}
 
 /////////////////////
 ////// Process //////
 /////////////////////
-
-enum CRType {
-  LOCAL = 0;
-  REMOTE = 1;
-}
 
 message StartArgs {
   string Task = 1;
@@ -163,48 +216,31 @@ message StartResp {
 message DumpArgs {
   int32 PID = 1;
   string Dir = 2;
-  CRType Type = 3;
-  string JID = 4;
-  bool GPU = 5;
-  bool Stream = 6;
-  CriuOpts CriuOpts = 7;
+  string JID = 3;
+  int32 Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message DumpResp {
   string Message = 1;
   string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
 }
 
 
 message RestoreArgs {
-  CRType Type = 1;
-  string CheckpointID = 2;
-  string CheckpointPath = 3;
-  string JID = 4;
-  int32 UID = 5;
-  int32 GID = 6;
-  repeated int32 Groups = 7;
-  bool Stream = 8;
-  CriuOpts CriuOpts = 9;
+  string CheckpointID = 1;
+  string CheckpointPath = 2;
+  string JID = 3;
+  int32 Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message RestoreResp {
   string Message = 1;
-  int32 NewPID = 2;
-  ProcessState State = 3;
-  RestoreStats RestoreStats = 6;
-}
-
-message QueryArgs {
-  repeated int32 PIDs = 1;
-  repeated string JIDs = 2;
-}
-
-message QueryResp {
-  repeated ProcessState Processes = 1;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
 }
 
 /////////////////////////
@@ -276,21 +312,16 @@ message ContainerdRootfsRestoreResp {
 
 message RuncDumpArgs {
   string Root = 1;
-  string CheckpointPath = 2;
+  string Dir = 2;
   string ContainerID = 3;
   CriuOpts CriuOpts = 4;
-  CRType Type = 5;
-  ProcessState state = 6;
-  bool GPU = 7;
-  int32 pid = 8;
 }
 
 message RuncDumpResp {
   string Message = 1;
   string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
 }
 
 message CriuOpts {
@@ -311,15 +342,15 @@ message CriuOpts {
   string LsmProfile = 16;
   string LsmMountContext = 17;
   repeated string External = 18;
+  bool TcpClose = 19;
 }
 
 message RuncRestoreArgs {
   string ContainerID = 1;
   string ImagePath = 2;
   RuncOpts Opts = 3;
-  CRType Type = 4;
-  string CheckpointID = 5;
-  CriuOpts CriuOpts = 6;
+  string CheckpointID = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message RuncRestoreResp {
@@ -375,6 +406,20 @@ message RuncGetPausePidResp {
   int64 PausePid = 1;
 }
 
+message RuncManageArgs {
+  string ContainerID = 1;
+  string Root = 2;
+  bool GPU = 3;
+  repeated int32 Groups = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+}
+
+message RuncManageResp {
+  string Message = 1;
+  ProcessState State = 2;
+}
+
 ///////////////////////
 ////// Streaming //////
 ///////////////////////
@@ -390,33 +435,26 @@ message LogStreamingResp {
   string Status = 1;
 }
 
-
 message ProcessState {
   int32 PID = 1;
   string Task = 2;
-  string ContainerID = 4;
-  string StartedAt = 5;
-  ProcessInfo ProcessInfo = 6;
-  string CheckpointPath = 7;
-  CheckpointState CheckpointState = 8;
-  JobState JobState = 9;
-  repeated RemoteState RemoteState = 10;
-  bool GPUCheckpointed = 11;
-  string JID = 12;
-  HostInfo HostInfo = 13;
-  CPUInfo CPUInfo = 14;
-  MemoryInfo MemoryInfo = 15;
-  repeated int32 UIDs = 16;
-  repeated int32 GIDs = 17;
-  repeated int32 Groups = 18;
+  string ContainerID = 3;
+  string StartedAt = 4;
+  ProcessInfo ProcessInfo = 5;
+  string CheckpointPath = 6;
+  CheckpointState CheckpointState = 7;
+  JobState JobState = 8;
+  string JID = 10;
+  HostInfo HostInfo = 11;
+  CPUInfo CPUInfo = 12;
+  MemoryInfo MemoryInfo = 13;
+  repeated int32 UIDs = 14;
+  repeated int32 GIDs = 15;
+  repeated int32 Groups = 16;
+  bool GPU = 17;
+  string ContainerRoot = 18;
+  string ContainerBundle = 19;
 }
-
-message RemoteState {
-  string CheckpointID = 1;
-  string UploadID = 2;
-  int64 Timestamp = 3;
-}
-
 
 message ProcessInfo {
   int32 PID = 1;
@@ -512,25 +550,17 @@ enum CheckpointState {
   RESTORE_FAILED = 3;
 }
 
-
-message StartAttachArgs {
-  StartArgs Args = 1;
-  string Stdin = 2;
-  // TODO:add signals
+message AttachArgs {
+  oneof Args {
+    RestoreArgs RestoreArgs = 1;
+    JobRestoreArgs JobRestoreArgs = 2;
+    StartArgs StartArgs = 3;
+  }
+  string Stdin = 4;
+  // TODO: add signals
 }
 
-message StartAttachResp {
-  string Stdout = 1;
-  string Stderr = 2;
-  int32 ExitCode = 3;
-}
-
-message RestoreAttachArgs {
-  RestoreArgs Args = 1;
-  string Stdin = 2;
-}
-
-message RestoreAttachResp {
+message AttachResp {
   string Stdout = 1;
   string Stderr = 2;
   int32 ExitCode = 3;
@@ -617,13 +647,13 @@ message ContainerInfoRequest {
 
 message ContainerInfo {
   double CpuTime = 1;
-  double CpuLoadAvg = 2;
-  double MaxMemory = 3;
+  double FilesystemIoTime = 2;
+  double AcceleratorMemory = 3;
   double CurrentMemory = 4;
   double NetworkIO = 5;
   double DiskIO = 6;
   string ContainerName = 7;
-  string DaemonId = 8;
+  string Processes = 8;
   string Labels = 9;
   string Image = 10;
 }
