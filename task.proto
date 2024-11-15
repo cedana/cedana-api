@@ -54,6 +54,7 @@ service TaskService {
   rpc KataDump(DumpArgs) returns (DumpResp);
   rpc KataRestore(RestoreArgs) returns (RestoreResp);
   rpc HostKataDump(HostDumpKataArgs) returns (HostDumpKataResp);
+  rpc HostKataRestore(HostRestoreKataArgs) returns (HostRestoreKataResp);
 
   // Config
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
@@ -686,6 +687,16 @@ message ContainersInfo {
 /////////////////////////
 ////// HOST KATA ////////
 /////////////////////////
+
+message HostRestoreKataArgs {
+  bool VMSnapshot = 1;
+  string VMSocketPath = 2;
+}
+
+message HostRestoreKataResp {
+  bool VMSnapshot = 1;
+  string VMSocketPath = 2;
+}
 
 message HostDumpKataArgs {
   string VmName = 1;
