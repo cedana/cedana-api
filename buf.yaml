@@ -8,3 +8,6 @@ modules:
     name: buf.build/cedana/criu
   - path: img_streamer
     name: buf.build/cedana/img-streamer
+lint:
+  use:
+    - STANDARD
