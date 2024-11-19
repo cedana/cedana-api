@@ -691,11 +691,11 @@ message ContainersInfo {
 message HostRestoreKataArgs {
   bool VMSnapshot = 1;
   string VMSocketPath = 2;
+  string VMSnapshotPath = 3;
 }
 
 message HostRestoreKataResp {
-  bool VMSnapshot = 1;
-  string VMSocketPath = 2;
+  string State = 1;
 }
 
 message HostDumpKataArgs {
