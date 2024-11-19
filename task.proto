@@ -342,6 +342,7 @@ message CriuOpts {
   string LsmMountContext = 17;
   repeated string External = 18;
   bool TcpClose = 19;
+  bool TcpSkipInFlight = 20;
 }
 
 message RuncRestoreArgs {
