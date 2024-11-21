@@ -2,7 +2,7 @@
 
 syntax = "proto2";
 
-package plugins.criu;
+package criu;
 
 message criu_page_server_info {
 	optional string		address	= 1;

@@ -3,8 +3,6 @@ syntax = "proto3";
 import "runc/runc.proto";
 import "criu/criu.proto";
 
-package daemon;
-
 service Daemon {
   // C/R
   rpc Dump(DumpReq) returns (DumpResp) {}

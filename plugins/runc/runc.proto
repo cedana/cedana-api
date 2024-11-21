@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package plugins.runc;
+package runc;
 
 message Details {
   string ID = 1;
