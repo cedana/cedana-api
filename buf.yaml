@@ -7,7 +7,7 @@ modules:
     name: buf.build/cedana/criu
   - path: gpu
     name: buf.build/cedana/common
-  - path: img-streamer
+  - path: img_streamer
     name: buf.build/cedana/img-streamer
 
 lint:
