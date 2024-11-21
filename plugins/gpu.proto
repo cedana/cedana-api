@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package cedana.plugins.gpu;
+
+service Controller {
+  rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};
+  rpc Restore(RestoreRequest) returns (RestoreResponse) {};
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
+}
+
+message CheckpointRequest { 
+  string Directory = 1;
+}
+
+message CheckpointResponse {
+  bool Success = 1;
+  string MemPath = 2;
+  string CkptPath = 3;
+}
+
+message RestoreRequest {
+  string Directory = 1;
+}
+
+message RestoreResponse {
+  bool Success = 1;
+  RestoreStats RestoreStats = 2;
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+    bool Success = 1;
+    string Version = 2;
+    int32 DeviceCount = 3;
+    AvailableAPIs AvailableAPIs = 4;
+}
+
+message AvailableAPIs {
+    int32 DriverVersion = 1;
+}
+
+message RestoreStats {
+    int64 CopyMemTime = 1;
+    int64 ReplayCallsTime = 2;
+}
