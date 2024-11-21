@@ -1,8 +1,14 @@
 version: v2
 
 modules:
-  - path: .
+  - path: daemon
     name: buf.build/cedana/daemon
+  - path: criu
+    name: buf.build/cedana/criu
+  - path: gpu
+    name: buf.build/cedana/common
+  - path: img_streamer
+    name: buf.build/cedana/img_streamer
 
 lint:
   use:

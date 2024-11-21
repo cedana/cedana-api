@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package daemon.plugins.gpu;
+package gpu;
 
 service Controller {
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};

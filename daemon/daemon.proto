@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "runc.proto";
-import "criu.proto";
+import "plugins/runc/runc.proto";
+import "criu/criu.proto";
 
 package daemon;
 
@@ -30,7 +30,7 @@ message DumpReq {
   string Dir = 1;
   bool Stream = 2;
   string Type = 3;
-  plugins.criu.criu_opts Criu = 4;
+  criu.criu_opts Criu = 4;
 
   Details Details = 5;
 }
@@ -49,7 +49,7 @@ message RestoreReq {
   string Path = 1;
   bool Stream = 2;
   string Type = 3;
-  plugins.criu.criu_opts Criu = 4;
+  criu.criu_opts Criu = 4;
   string Log = 5;
   bool Attach = 6;
 
