@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "runc/runc.proto";
+import "daemon/plugins/runc/runc.proto";
 import "criu/criu.proto";
 
 package daemon;
