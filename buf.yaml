@@ -1,7 +1,7 @@
 version: v2
 
 modules:
-  - path: daemon
+  - path: .
     name: buf.build/cedana/daemon
 
   - path: plugins
