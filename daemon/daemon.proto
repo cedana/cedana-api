@@ -30,7 +30,7 @@ message DumpReq {
   string Dir = 1;
   bool Stream = 2;
   string Type = 3;
-  criu.criu_opts Criu = 4;
+  plugins.criu.criu_opts Criu = 4;
 
   Details Details = 5;
 }
@@ -49,7 +49,7 @@ message RestoreReq {
   string Path = 1;
   bool Stream = 2;
   string Type = 3;
-  criu.criu_opts Criu = 4;
+  plugins.criu.criu_opts Criu = 4;
   string Log = 5;
   bool Attach = 6;
 
@@ -149,8 +149,8 @@ message Details {
   optional ProcessStartDetails ProcessStart = 3;
 
   // Plugin-specific job details:
-  optional runc.Details Runc = 4;
-  optional runc.StartDetails RuncStart = 5;
+  optional plugins.runc.Details Runc = 4;
+  optional plugins.runc.StartDetails RuncStart = 5;
 }
 
 /////////////////////

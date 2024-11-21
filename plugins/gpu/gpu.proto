@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package gpu;
+package plugins.gpu;
 
 service Controller {
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};

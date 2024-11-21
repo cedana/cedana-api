@@ -2,7 +2,7 @@
 
 syntax = "proto3";
 
-package img_streamer;
+package plugins.img_streamer;
 
 // This message is sent from CRIU to the streamer.
 // * During dump, it communicates the name of the file that is about to be sent
