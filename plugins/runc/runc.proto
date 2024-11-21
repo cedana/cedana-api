@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cedana.plugins.runc;
+package plugins.runc;
 
 message Details {
   string ID = 1;
