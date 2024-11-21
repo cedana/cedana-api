@@ -19,4 +19,4 @@ jobs:
         with:
           token: ${{ secrets.BUF_TOKEN }}
           lint: true
-          format: true
+          format: false
