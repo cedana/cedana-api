@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "plugins/runc.proto";
-import "plugins/criu.proto";
+import "../plugins/runc.proto";
+import "../plugins/criu.proto";
 
 package cedana.daemon;
 
