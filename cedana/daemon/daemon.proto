@@ -78,7 +78,6 @@ message StartReq {
 message StartResp {
   string Message = 1;
   uint32 PID = 2;
-  string JID = 3;
 }
 
 message ManageReq {
