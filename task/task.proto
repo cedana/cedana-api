@@ -1,7 +1,9 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
-import "gpu.proto";
+import "cedanagpu/gpu.proto";
+
+option go_package = "cedana_api/task";
 
 package cedana.services.task;
 
@@ -77,10 +79,9 @@ message DumpStats {
     int64 PrepareDuration = 2;
     int64 CRIUDuration = 3;
     int64 GPUDuration = 4;
-    int64 UploadDuration = 5;
-    ContainerRuntime ContainerRuntime = 6;
-    bool Kubernetes = 7;
-    CheckpointFileStats CheckpointFileStats = 8;
+    ContainerRuntime ContainerRuntime = 5;
+    bool Kubernetes = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
 }
 
 message CheckpointFileStats {
@@ -159,25 +160,23 @@ message CRIORootfsDumpResp {
 message JobDumpArgs {
   string JID = 1;
   string Dir = 2;
-  CRType Type = 3;
-  int32 Stream = 4;
-  CriuOpts CriuOpts = 5;
+  int32 Stream = 3;
+  CriuOpts CriuOpts = 4;
 }
 
 message JobDumpResp {
   string Message = 1;
   string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
 }
 
 message JobRestoreArgs {
   string JID = 1;
-  CRType Type = 2;
-  CriuOpts CriuOpts = 3;
-  int32 Stream = 4;
-  RuncOpts RuncOpts = 5;
+  CriuOpts CriuOpts = 2;
+  int32 Stream = 3;
+  RuncOpts RuncOpts = 4;
+  string CheckpointPath = 5;
 }
 
 message JobRestoreResp {
@@ -198,11 +197,6 @@ message JobQueryResp {
 /////////////////////
 ////// Process //////
 /////////////////////
-
-enum CRType {
-  LOCAL = 0;
-  REMOTE = 1;
-}
 
 message StartArgs {
   string Task = 1;
@@ -225,28 +219,25 @@ message StartResp {
 message DumpArgs {
   int32 PID = 1;
   string Dir = 2;
-  CRType Type = 3;
-  string JID = 4;
-  int32 Stream = 5;
-  CriuOpts CriuOpts = 6;
+  string JID = 3;
+  int32 Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message DumpResp {
   string Message = 1;
   string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
 }
 
 
 message RestoreArgs {
-  CRType Type = 1;
-  string CheckpointID = 2;
-  string CheckpointPath = 3;
-  string JID = 4;
-  int32 Stream = 5;
-  CriuOpts CriuOpts = 6;
+  string CheckpointID = 1;
+  string CheckpointPath = 2;
+  string JID = 3;
+  int32 Stream = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message RestoreResp {
@@ -327,15 +318,13 @@ message RuncDumpArgs {
   string Dir = 2;
   string ContainerID = 3;
   CriuOpts CriuOpts = 4;
-  CRType Type = 5;
 }
 
 message RuncDumpResp {
   string Message = 1;
   string CheckpointID = 2;
-  string UploadID = 3;
-  ProcessState State = 4;
-  DumpStats DumpStats = 5;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
 }
 
 message CriuOpts {
@@ -357,15 +346,15 @@ message CriuOpts {
   string LsmMountContext = 17;
   repeated string External = 18;
   bool TcpClose = 19;
+  bool TcpSkipInFlight = 20;
 }
 
 message RuncRestoreArgs {
   string ContainerID = 1;
   string ImagePath = 2;
   RuncOpts Opts = 3;
-  CRType Type = 4;
-  string CheckpointID = 5;
-  CriuOpts CriuOpts = 6;
+  string CheckpointID = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message RuncRestoreResp {
@@ -459,7 +448,6 @@ message ProcessState {
   string CheckpointPath = 6;
   CheckpointState CheckpointState = 7;
   JobState JobState = 8;
-  repeated RemoteState RemoteState = 9;
   string JID = 10;
   HostInfo HostInfo = 11;
   CPUInfo CPUInfo = 12;
@@ -470,12 +458,6 @@ message ProcessState {
   bool GPU = 17;
   string ContainerRoot = 18;
   string ContainerBundle = 19;
-}
-
-message RemoteState {
-  string CheckpointID = 1;
-  string UploadID = 2;
-  int64 Timestamp = 3;
 }
 
 message ProcessInfo {
