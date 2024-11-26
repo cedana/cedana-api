@@ -8,6 +8,7 @@ service CedanaGPU {
   rpc Restore(RestoreRequest) returns (RestoreResponse) {};
   rpc StartupPoll(StartupPollRequest) returns (StartupPollResponse) {};
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
+  rpc UnblockBarrier(UnblockBarrierRequest) returns (UnblockBarrierResponse) {};
 }
 
 message CheckpointRequest {
@@ -56,3 +57,7 @@ message GPURestoreStats {
     int64 copyMemTime = 1;
     int64 replayCallsTime = 2;
 }
+
+message UnblockBarrierRequest {}
+
+message UnblockBarrierResponse { bool success = 1; }
