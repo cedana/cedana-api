@@ -674,6 +674,7 @@ message HostRestoreKataArgs {
   bool VMSnapshot = 1;
   string VMSocketPath = 2;
   string VMSnapshotPath = 3;
+  repeated int64 fds = 4;
 }
 
 message HostRestoreKataResp {
