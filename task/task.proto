@@ -674,7 +674,13 @@ message HostRestoreKataArgs {
   bool VMSnapshot = 1;
   string VMSocketPath = 2;
   string VMSnapshotPath = 3;
-  repeated int64 fds = 4;
+  repeated RestoredNetConfig RestoredNetConfig = 4;
+}
+
+message RestoredNetConfig {
+    string ID = 1;
+    int64 NumFDs = 2;
+    repeated int64 Fds = 3;
 }
 
 message HostRestoreKataResp {
