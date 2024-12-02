@@ -57,6 +57,7 @@ service TaskService {
   rpc KataRestore(RestoreArgs) returns (RestoreResp);
   rpc HostKataDump(HostDumpKataArgs) returns (HostDumpKataResp);
   rpc HostKataRestore(HostRestoreKataArgs) returns (HostRestoreKataResp);
+  rpc CreateUnixSocket(Empty) returns (SocketResp);
 
   // Config
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
@@ -69,6 +70,8 @@ service TaskService {
   // ASR
   rpc GetContainerInfo(ContainerInfoRequest) returns (ContainersInfo);
 }
+
+message Empty {}
 
 /////////////////////
 ////// Stats ////////
@@ -675,6 +678,10 @@ message HostRestoreKataArgs {
   string VMSocketPath = 2;
   string VMSnapshotPath = 3;
   repeated RestoredNetConfig RestoredNetConfig = 4;
+}
+
+message SocketResp {
+    string socket_path = 1;
 }
 
 message RestoredNetConfig {
