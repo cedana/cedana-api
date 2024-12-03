@@ -219,7 +219,8 @@ message DumpArgs {
   string Dir = 2;
   string JID = 3;
   int32 Stream = 4;
-  CriuOpts CriuOpts = 5;
+  string Bucket = 5;
+  CriuOpts CriuOpts = 6;
 }
 
 message DumpResp {
