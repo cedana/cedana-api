@@ -159,7 +159,8 @@ message JobDumpArgs {
   string JID = 1;
   string Dir = 2;
   int32 Stream = 3;
-  CriuOpts CriuOpts = 4;
+  string Bucket = 4;
+  CriuOpts CriuOpts = 5;
 }
 
 message JobDumpResp {
