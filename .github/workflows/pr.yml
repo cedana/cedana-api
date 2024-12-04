@@ -20,3 +20,4 @@ jobs:
           token: ${{ secrets.BUF_TOKEN }}
           lint: true
           format: false
+          breaking: false # TODO: Set to true once API stabilizes
