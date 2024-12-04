@@ -27,18 +27,18 @@ service Daemon {
 ////////////////////////
 
 message DumpReq {
-  string dir = 1;
-  bool stream = 2;
-  string type = 3;
-  criu.criu_opts criu = 4;
+  string Dir = 1;
+  bool Stream = 2;
+  string Type = 3;
+  criu.criu_opts Criu = 4;
 
-  Details details = 5;
+  Details Details = 5;
 }
 
 message DumpResp {
-  string message = 1;
-  string path = 2;
-  ProcessState state = 3;
+  string Message = 1;
+  string Path = 2;
+  ProcessState State = 3;
 }
 
 ////////////////////////
@@ -46,20 +46,20 @@ message DumpResp {
 ////////////////////////
 
 message RestoreReq {
-  string path = 1;
-  bool stream = 2;
-  string type = 3;
-  criu.criu_opts criu = 4;
-  string log = 5;
-  bool attach = 6;
+  string Path = 1;
+  bool Stream = 2;
+  string Type = 3;
+  criu.criu_opts Criu = 4;
+  string Log = 5;
+  bool Attach = 6;
 
-  Details details = 7;
+  Details Details = 7;
 }
 
 message RestoreResp {
-  string message = 1;
-  uint32 pid = 2;
-  ProcessState state = 3;
+  string Message = 1;
+  uint32 PID = 2;
+  ProcessState State = 3;
 }
 
 /////////////////
@@ -67,89 +67,89 @@ message RestoreResp {
 /////////////////
 
 message StartReq {
-  string jid = 1;
-  bool gpu_enabled = 2;
-  string type = 3;
-  string log = 4;
-  bool attach = 5;
-  Details details = 6;
+  string JID = 1;
+  bool GPUEnabled = 2;
+  string Type = 3;
+  string Log = 4;
+  bool Attach = 5;
+  Details Details = 6;
 }
 
 message StartResp {
-  string message = 1;
-  uint32 pid = 2;
+  string Message = 1;
+  uint32 PID = 2;
 }
 
 message ManageReq {
-  string jid = 1;
-  bool attach = 2;
-  Details details = 3;
+  string JID = 1;
+  bool Attach = 2;
+  Details Details = 3;
 }
 
 message ManageResp {
-  string message = 1;
-  uint32 pid = 2;
+  string Message = 1;
+  uint32 PID = 2;
 }
 
 message AttachReq {
-  uint32 pid = 1;
-  oneof input {
-    bytes stdin = 2;
-    int32 signal = 3;
+  uint32 PID = 1;
+  oneof Input {
+    bytes Stdin = 2;
+    int32 Signal = 3;
   }
 }
 
 message AttachResp {
-  oneof output {
-    bytes stdout = 1;
-    bytes stderr = 2;
-    int32 exit_code = 3;
+  oneof Output {
+    bytes Stdout = 1;
+    bytes Stderr = 2;
+    int32 ExitCode = 3;
   }
 }
 
 message ListReq {
-  repeated string jids = 1;
+  repeated string JIDs = 1;
 }
 
 message ListResp {
-  repeated Job jobs = 1;
+  repeated Job Jobs = 1;
 }
 
 message KillReq {
-  repeated string jids = 1;
-  int32 signal = 2;
+  repeated string JIDs = 1;
+  int32 Signal = 2;
 }
 
 message KillResp {
-  string message = 1;
+  string Message = 1;
 }
 
 message DeleteReq {
-  repeated string jids = 1;
+  repeated string JIDs = 1;
 }
 
 message DeleteResp {
-  string message = 1;
+  string Message = 1;
 }
 
 message Job {
-  string jid = 1;
-  string type = 2;
-  ProcessState process = 3;
-  string checkpoint_path = 4;
-  bool gpu_enabled = 5;
-  string log = 6;
-  Details details = 7;
+  string JID = 1;
+  string Type = 2;
+  ProcessState Process = 3;
+  string CheckpointPath = 4;
+  bool GPUEnabled = 5;
+  string Log = 6;
+  Details Details = 7;
 }
 
 message Details {
-  optional string jid = 1;
-  optional uint32 pid = 2;
-  optional ProcessStartDetails process_start = 3;
+  optional string JID = 1;
+  optional uint32 PID = 2;
+  optional ProcessStartDetails ProcessStart = 3;
 
   // Plugin-specific job details:
-  optional plugins.runc.Details runc = 4;
-  optional plugins.runc.StartDetails runc_start = 5;
+  optional plugins.runc.Details Runc = 4;
+  optional plugins.runc.StartDetails RuncStart = 5;
 }
 
 /////////////////////
@@ -157,84 +157,84 @@ message Details {
 /////////////////////
 
 message ProcessStartDetails {
-  string path = 1;
-  string working_dir = 2;
-  repeated string args = 3;
-  repeated string env = 4;
-  int32 uid = 5;
-  int32 gid = 6;
-  repeated int32 groups = 7;
+  string Path = 1;
+  string WorkingDir = 2;
+  repeated string Args = 3;
+  repeated string Env = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+  repeated int32 Groups = 7;
 }
 
 message ProcessState {
-  uint32 pid = 1;
-  string task = 2;
-  string started_at = 3;
-  ProcessInfo info = 4;
-  HostInfo host_info = 5;
-  CPUInfo cpu_info = 6;
-  MemoryInfo memory_info = 7;
-  repeated uint32 uids = 8;
-  repeated uint32 gids = 9;
-  repeated uint32 groups = 10;
+  uint32 PID = 1;
+  string Task = 2;
+  string StartedAt = 3;
+  ProcessInfo Info = 4;
+  HostInfo HostInfo = 5;
+  CPUInfo CPUInfo = 6;
+  MemoryInfo MemoryInfo = 7;
+  repeated uint32 UIDs = 8;
+  repeated uint32 GIDs = 9;
+  repeated uint32 Groups = 10;
 }
 
 message ProcessInfo {
-  uint32 pid = 1;
-  bool attached_to_hardware_accel = 2;
-  repeated OpenFilesStat open_files = 3;
-  string working_dir = 4;
-  repeated ConnectionStat open_connections = 5;
-  float memory_percent = 6;
-  bool is_running = 7;
-  string status = 8;
+  uint32 PID = 1;
+  bool AttachedToHardwareAccel = 2;
+  repeated OpenFilesStat OpenFiles = 3;
+  string WorkingDir = 4;
+  repeated ConnectionStat OpenConnections = 5;
+  float MemoryPercent = 6;
+  bool IsRunning = 7;
+  string Status = 8;
 }
 
 message HostInfo {
-  string host_id = 1;
-  string hostname = 2;
-  string os = 3;
-  string platform = 4;
-  string kernel_version = 5;
-  string kernel_arch = 6;
-  string virtualization_system = 7;
-  string virtualization_role = 8;
+  string HostID = 1;
+  string Hostname = 2;
+  string OS = 3;
+  string Platform = 4;
+  string KernelVersion = 5;
+  string KernelArch = 6;
+  string VirtualizationSystem = 7;
+  string VirtualizationRole = 8;
 }
 
 message CPUInfo {
-  int32 count = 1;
-  int32 cpu = 2;
-  string vendor_id = 3;
-  string family = 4;
-  string physical_id = 5;
+  int32 Count = 1;
+  int32 CPU = 2;
+  string VendorID = 3;
+  string Family = 4;
+  string PhysicalID = 5;
 }
 
 message MemoryInfo {
-  uint64 total = 1;
-  uint64 available = 2;
-  uint64 used = 3;
+  uint64 Total = 1;
+  uint64 Available = 2;
+  uint64 Used = 3;
 }
 
 message OpenFilesStat {
-  string path = 1;
-  uint64 fd = 2;
-  string mode = 3;
+  string Path = 1;
+  uint64 Fd = 2;
+  string Mode = 3;
 }
 
 message ConnectionStat {
-  uint32 fd = 1;
-  uint32 family = 2;
-  uint32 type = 3;
-  Addr laddr = 4;
-  Addr raddr = 5;
-  string status = 6;
-  repeated int32 uids = 7;
-  uint32 pid = 8;
+  uint32 Fd = 1;
+  uint32 Family = 2;
+  uint32 Type = 3;
+  Addr Laddr = 4;
+  Addr Raddr = 5;
+  string Status = 6;
+  repeated int32 UIDs = 7;
+  uint32 PID = 8;
 }
 
 message Addr {
-  string ip = 1;
-  uint32 port = 2;
+  string IP = 1;
+  uint32 Port = 2;
 }
 
 /////////////////////
