@@ -103,7 +103,7 @@ message AttachResp {
   oneof output {
     bytes stdout = 1;
     bytes stderr = 2;
-    int32 exitcode = 3;
+    int32 exit_code = 3;
   }
 }
 
