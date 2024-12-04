@@ -3,16 +3,18 @@ syntax = "proto3";
 package plugins.runc;
 
 message Details {
-  string ID = 1;
-  string Bundle = 2;
-  string Root = 3;
+  string id = 1;
+  string bundle = 2;
+  string root = 3;
 }
 
 message StartDetails {
-  string ID = 1;
-  string Bundle = 2;
-  string Root = 3;
+  string id = 1;
+  string bundle = 2;
+  string root = 3;
 
-  string ConsoleSocket = 4;
-  bool Detach = 5;
+  string console_socket = 4;
+  bool detach = 5;
+  bool no_pivot = 6;
+  bool no_new_keyring = 7;
 }

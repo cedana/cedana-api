@@ -9,38 +9,38 @@ service Controller {
 }
 
 message CheckpointRequest { 
-  string Directory = 1;
+  string directory = 1;
 }
 
 message CheckpointResponse {
-  bool Success = 1;
-  string MemPath = 2;
-  string CkptPath = 3;
+  bool success = 1;
+  string mem_path = 2;
+  string ckpt_path = 3;
 }
 
 message RestoreRequest {
-  string Directory = 1;
+  string directory = 1;
 }
 
 message RestoreResponse {
-  bool Success = 1;
-  RestoreStats RestoreStats = 2;
+  bool success = 1;
+  RestoreStats restore_stats = 2;
 }
 
 message HealthCheckRequest {}
 
 message HealthCheckResponse {
-    bool Success = 1;
-    string Version = 2;
-    int32 DeviceCount = 3;
-    AvailableAPIs AvailableAPIs = 4;
+    bool success = 1;
+    string version = 2;
+    int32 device_count = 3;
+    AvailableAPIs available_apis = 4;
 }
 
 message AvailableAPIs {
-    int32 DriverVersion = 1;
+    int32 driver_version = 1;
 }
 
 message RestoreStats {
-    int64 CopyMemTime = 1;
-    int64 ReplayCallsTime = 2;
+    int64 copy_mem_time = 1;
+    int64 replay_calls_time = 2;
 }
