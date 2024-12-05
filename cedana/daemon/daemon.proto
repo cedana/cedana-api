@@ -2,6 +2,8 @@ syntax = "proto3";
 
 import "plugins/runc/runc.proto";
 import "criu/criu.proto";
+import "./process.proto";
+import "./misc.proto";
 
 package daemon;
 
@@ -135,7 +137,7 @@ message DeleteResp {
 message Job {
   string JID = 1;
   string Type = 2;
-  process.ProcessState Process = 3;
+  ProcessState Process = 3;
   string CheckpointPath = 4;
   bool GPUEnabled = 5;
   string Log = 6;
@@ -145,7 +147,7 @@ message Job {
 message Details {
   optional string JID = 1;
   optional uint32 PID = 2;
-  optional process.RunDetails ProcessRun = 3;
+  optional RunDetails ProcessRun = 3;
 
   // Plugin-specific job details:
   optional plugins.runc.Details Runc = 4;
