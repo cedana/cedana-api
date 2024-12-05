@@ -8,7 +8,7 @@ message Details {
   string Root = 3;
 }
 
-message StartDetails {
+message RunDetails {
   string ID = 1;
   string Bundle = 2;
   string Root = 3;

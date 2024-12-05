@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package daemon;
 
-message StartDetails {
+message RunDetails {
   string Path = 1;
   string WorkingDir = 2;
   repeated string Args = 3;
