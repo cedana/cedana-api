@@ -53,7 +53,7 @@ message RestoreReq {
   string Type = 3;
   criu.criu_opts Criu = 4;
   string Log = 5;
-  bool Attach = 6;
+  bool Attachable = 6;
 
   Details Details = 7;
 }
@@ -73,7 +73,7 @@ message RunReq {
   bool GPUEnabled = 2;
   string Type = 3;
   string Log = 4;
-  bool Attach = 5;
+  bool Attachable = 5;
   Details Details = 6;
 }
 
@@ -84,7 +84,7 @@ message RunResp {
 
 message ManageReq {
   string JID = 1;
-  bool Attach = 2;
+  bool Attachable = 2;
   Details Details = 3;
 }
 
