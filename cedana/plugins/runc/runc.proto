@@ -13,8 +13,6 @@ message RunDetails {
   string Bundle = 2;
   string Root = 3;
 
-  string ConsoleSocket = 4;
-  bool Detach = 5;
   bool NoPivot = 6;
   bool NoNewKeyring = 7;
 }
