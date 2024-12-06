@@ -13,6 +13,8 @@ message RunDetails {
   string Bundle = 2;
   string Root = 3;
 
-  bool NoPivot = 6;
-  bool NoNewKeyring = 7;
+  bool NoPivot = 4;
+  bool NoNewKeyring = 5;
+
+  string WorkingDir = 6;
 }
