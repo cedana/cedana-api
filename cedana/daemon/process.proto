@@ -2,14 +2,17 @@ syntax = "proto3";
 
 package daemon;
 
-message RunDetails {
-  string Path = 1;
-  string WorkingDir = 2;
-  repeated string Args = 3;
-  repeated string Env = 4;
-  int32 UID = 5;
-  int32 GID = 6;
-  repeated int32 Groups = 7;
+message Details {
+  uint32 PID = 1;
+
+  // For run
+  string Path = 2;
+  string WorkingDir = 3;
+  repeated string Args = 4;
+  repeated string Env = 5;
+  int32 UID = 6;
+  int32 GID = 7;
+  repeated int32 Groups = 8;
 }
 
 message ProcessState {

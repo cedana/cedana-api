@@ -146,10 +146,8 @@ message Job {
 
 message Details {
   optional string JID = 1;
-  optional uint32 PID = 2;
-  optional RunDetails ProcessRun = 3;
+  optional Details Process = 2;
 
   // Plugin-specific job details:
-  optional plugins.runc.Details Runc = 4;
-  optional plugins.runc.RunDetails RuncRun = 5;
+  optional plugins.runc.Details Runc = 3;
 }

@@ -6,15 +6,9 @@ message Details {
   string ID = 1;
   string Bundle = 2;
   string Root = 3;
-}
 
-message RunDetails {
-  string ID = 1;
-  string Bundle = 2;
-  string Root = 3;
-
+  // For run
   bool NoPivot = 4;
   bool NoNewKeyring = 5;
-
   string WorkingDir = 6;
 }
