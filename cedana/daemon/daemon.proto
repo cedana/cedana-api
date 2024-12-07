@@ -146,8 +146,8 @@ message Job {
 
 message Details {
   optional string JID = 1;
-  optional Details Process = 2;
+  optional Process Process = 2;
 
   // Plugin-specific job details:
-  optional plugins.runc.Details Runc = 3;
+  optional plugins.runc.Runc Runc = 3;
 }

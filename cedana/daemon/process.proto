@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package daemon;
 
-message Details {
+message Process {
   uint32 PID = 1;
 
   // For run

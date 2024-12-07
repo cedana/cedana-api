@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package plugins.runc;
 
-message Details {
+message Runc {
   string ID = 1;
   string Bundle = 2;
   string Root = 3;
