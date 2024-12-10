@@ -154,6 +154,6 @@ message Details {
 
 message Checkpoint {
   string Path = 1;
-  uint64 Time = 2;
-  uint64 Size = 3;
+  int64 Time = 2;
+  int64 Size = 3;
 }
