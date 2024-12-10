@@ -3,9 +3,27 @@ syntax = "proto3";
 package gpu;
 
 service Controller {
+  rpc Attach(AttachRequest) returns (AttachResponse) {};
+  rpc Detach(DetachRequest) returns (DetachResponse) {};
+
   rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};
   rpc Restore(RestoreRequest) returns (RestoreResponse) {};
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
+}
+
+message AttachRequest {
+  uint32 PID = 1;
+}
+
+message AttachResponse {
+  bool Success = 1;
+}
+
+message DetachRequest {
+}
+
+message DetachResponse {
+  bool Success = 1;
 }
 
 message CheckpointRequest { 
