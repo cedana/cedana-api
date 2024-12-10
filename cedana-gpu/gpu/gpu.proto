@@ -12,7 +12,7 @@ service Controller {
 }
 
 message AttachRequest {
-  uint32 PID = 1;
+  string JID = 1;
 }
 
 message AttachResponse {
