@@ -150,6 +150,7 @@ message Details {
 
   // Plugin-specific job details:
   optional plugins.runc.Runc Runc = 3;
+  optional plugins.containerd.Containerd Containerd = 4;
 }
 
 message Checkpoint {
