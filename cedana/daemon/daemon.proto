@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "plugins/runc/runc.proto";
-import "plugins/runc/containerd.proto";
+import "plugins/containerd/containerd.proto";
 
 import "criu/criu.proto";
 import "daemon/process.proto";
