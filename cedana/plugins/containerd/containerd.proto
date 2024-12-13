@@ -6,5 +6,5 @@ message Containerd {
   string ID = 1;
   string Address = 2;
   string Image = 3;
-  string Namespace = 4
+  string Namespace = 4;
 }
