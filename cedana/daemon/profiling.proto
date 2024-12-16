@@ -5,15 +5,16 @@ package daemon;
 message ProfilingData {
   TimingData Timing = 1;
   SizeData Size = 2;
-  map<string, ProfilingData> Components = 3;
 }
 
 message TimingData {
   string Name = 1;
   int64 DurationMs = 2;
+  map<string, TimingData> Components = 3;
 }
 
 message SizeData {
   string Name = 1;
   int64 Size = 2;
+  map<string, SizeData> Components = 3;
 }
