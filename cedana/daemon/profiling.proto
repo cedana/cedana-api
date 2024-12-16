@@ -6,5 +6,5 @@ message ProfilingData {
   string Name = 1;
   int64 Duration = 2; // in milliseconds
   int64 Size = 3;
-  map<string, ProfilingData> Components = 4;
+  repeated ProfilingData Components = 4;
 }
