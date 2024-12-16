@@ -18,7 +18,7 @@ message Process {
 message ProcessState {
   uint32 PID = 1;
   string Task = 2;
-  uint64 StartTime = 3;
+  uint64 StartTimeMs = 3;
   ProcessInfo Info = 4;
   HostInfo HostInfo = 5;
   CPUInfo CPUInfo = 6;
@@ -85,4 +85,3 @@ message Addr {
   string IP = 1;
   uint32 Port = 2;
 }
-

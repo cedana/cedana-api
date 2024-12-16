@@ -3,12 +3,12 @@ syntax = "proto3";
 package gpu;
 
 service Controller {
-  rpc Attach(AttachRequest) returns (AttachResponse) {};
-  rpc Detach(DetachRequest) returns (DetachResponse) {};
+  rpc Attach(AttachRequest) returns (AttachResponse) {}
+  rpc Detach(DetachRequest) returns (DetachResponse) {}
 
-  rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {};
-  rpc Restore(RestoreRequest) returns (RestoreResponse) {};
-  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {};
+  rpc Checkpoint(CheckpointRequest) returns (CheckpointResponse) {}
+  rpc Restore(RestoreRequest) returns (RestoreResponse) {}
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
 }
 
 message AttachRequest {
@@ -19,14 +19,13 @@ message AttachResponse {
   bool Success = 1;
 }
 
-message DetachRequest {
-}
+message DetachRequest {}
 
 message DetachResponse {
   bool Success = 1;
 }
 
-message CheckpointRequest { 
+message CheckpointRequest {
   string Directory = 1;
 }
 
@@ -48,17 +47,17 @@ message RestoreResponse {
 message HealthCheckRequest {}
 
 message HealthCheckResponse {
-    bool Success = 1;
-    string Version = 2;
-    int32 DeviceCount = 3;
-    AvailableAPIs AvailableAPIs = 4;
+  bool Success = 1;
+  string Version = 2;
+  int32 DeviceCount = 3;
+  AvailableAPIs AvailableAPIs = 4;
 }
 
 message AvailableAPIs {
-    int32 DriverVersion = 1;
+  int32 DriverVersion = 1;
 }
 
 message RestoreStats {
-    int64 CopyMemTime = 1;
-    int64 ReplayCallsTime = 2;
+  int64 CopyMemTime = 1;
+  int64 ReplayCallsTime = 2;
 }
