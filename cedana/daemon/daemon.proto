@@ -161,7 +161,7 @@ message Details {
 
 message Checkpoint {
   string Path = 1;
-  int64 Time = 2; // in milliseconds
+  int64 Time = 2; // in Unix milliseconds
   int64 Size = 3;
   optional ProfilingData Profiling = 4;
 }
