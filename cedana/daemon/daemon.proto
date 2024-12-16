@@ -35,7 +35,7 @@ message DumpReq {
   bool Stream = 2;
   string Type = 3;
   criu.criu_opts Criu = 4;
-  ProfilingData Profiling = 5;
+  optional ProfilingData Profiling = 5;
 
   Details Details = 6;
 }
@@ -57,7 +57,7 @@ message RestoreReq {
   criu.criu_opts Criu = 4;
   string Log = 5;
   bool Attachable = 6;
-  ProfilingData Profiling = 7;
+  optional ProfilingData Profiling = 7;
 
   Details Details = 8;
 }
@@ -79,7 +79,7 @@ message RunReq {
   string Log = 4;
   bool Attachable = 5;
   Details Details = 6;
-  ProfilingData Profiling = 7;
+  optional ProfilingData Profiling = 7;
 }
 
 message RunResp {
@@ -91,7 +91,7 @@ message ManageReq {
   string JID = 1;
   bool Attachable = 2;
   Details Details = 3;
-  ProfilingData Profiling = 4;
+  optional ProfilingData Profiling = 4;
 }
 
 message ManageResp {
@@ -163,4 +163,5 @@ message Checkpoint {
   string Path = 1;
   int64 TimeMs = 2; // in milliseconds
   int64 Size = 3;
+  optional ProfilingData Profiling = 4;
 }
