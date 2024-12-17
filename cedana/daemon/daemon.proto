@@ -35,15 +35,15 @@ message DumpReq {
   bool Stream = 2;
   string Type = 3;
   criu.criu_opts Criu = 4;
-  optional ProfilingData Profiling = 5;
 
-  Details Details = 6;
+  Details Details = 5;
 }
 
 message DumpResp {
   string Message = 1;
   string Path = 2;
   ProcessState State = 3;
+  ProfilingData Profiling = 4;
 }
 
 ////////////////////////
@@ -57,15 +57,15 @@ message RestoreReq {
   criu.criu_opts Criu = 4;
   string Log = 5;
   bool Attachable = 6;
-  optional ProfilingData Profiling = 7;
 
-  Details Details = 8;
+  Details Details = 7;
 }
 
 message RestoreResp {
   string Message = 1;
   uint32 PID = 2;
   ProcessState State = 3;
+  ProfilingData Profiling = 4;
 }
 
 /////////////////
@@ -78,25 +78,27 @@ message RunReq {
   string Type = 3;
   string Log = 4;
   bool Attachable = 5;
+
   Details Details = 6;
-  optional ProfilingData Profiling = 7;
 }
 
 message RunResp {
   string Message = 1;
   uint32 PID = 2;
+  ProfilingData Profiling = 3;
 }
 
 message ManageReq {
   string JID = 1;
   bool Attachable = 2;
+
   Details Details = 3;
-  optional ProfilingData Profiling = 4;
 }
 
 message ManageResp {
   string Message = 1;
   uint32 PID = 2;
+  ProfilingData Profiling = 3;
 }
 
 message AttachReq {
@@ -163,5 +165,5 @@ message Checkpoint {
   string Path = 1;
   int64 Time = 2; // in Unix milliseconds
   int64 Size = 3;
-  optional ProfilingData Profiling = 4;
+  ProfilingData Profiling = 4;
 }
