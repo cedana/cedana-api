@@ -16,7 +16,7 @@ service Daemon {
 
   // Job management
   rpc Run(RunReq) returns (RunResp) {}
-  rpc Manage(ManageReq) returns (ManageResp) {}
+  rpc Manage(RunReq) returns (RunResp) {}
   rpc List(ListReq) returns (ListResp) {}
   rpc Kill(KillReq) returns (KillResp) {}
   rpc Delete(DeleteReq) returns (DeleteResp) {}
@@ -83,19 +83,6 @@ message RunReq {
 }
 
 message RunResp {
-  string Message = 1;
-  uint32 PID = 2;
-  ProfilingData Profiling = 3;
-}
-
-message ManageReq {
-  string JID = 1;
-  bool Attachable = 2;
-
-  Details Details = 3;
-}
-
-message ManageResp {
   string Message = 1;
   uint32 PID = 2;
   ProfilingData Profiling = 3;
