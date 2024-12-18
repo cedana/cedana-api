@@ -4,7 +4,7 @@ package daemon;
 
 message ProfilingData {
   string Name = 1;
-  double Duration = 2; // in milliseconds
-  double Size = 3;
+  int64 Duration = 2; // in nanoseconds
+  int64 Size = 3;
   repeated ProfilingData Components = 4;
 }
