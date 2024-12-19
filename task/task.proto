@@ -383,6 +383,7 @@ message RuncQueryArgs {
   string Namespace = 2;
   repeated string ContainerNames = 3;
   repeated string SandboxNames = 4;
+  repeated string ContainerdID = 5;
 }
 
 message RuncQueryResp {
