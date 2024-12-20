@@ -5,7 +5,6 @@ package daemon;
 import "criu/criu.proto";
 import "daemon/misc.proto";
 import "daemon/process.proto";
-import "daemon/profiling.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
 
@@ -43,7 +42,6 @@ message DumpResp {
   string Message = 1;
   string Path = 2;
   ProcessState State = 3;
-  ProfilingData Profiling = 4;
 }
 
 ////////////////////////
@@ -65,7 +63,6 @@ message RestoreResp {
   string Message = 1;
   uint32 PID = 2;
   ProcessState State = 3;
-  ProfilingData Profiling = 4;
 }
 
 /////////////////
@@ -85,7 +82,6 @@ message RunReq {
 message RunResp {
   string Message = 1;
   uint32 PID = 2;
-  ProfilingData Profiling = 3;
 }
 
 message AttachReq {
@@ -152,5 +148,4 @@ message Checkpoint {
   string Path = 1;
   int64 Time = 2; // in Unix milliseconds
   int64 Size = 3;
-  ProfilingData Profiling = 4;
 }
