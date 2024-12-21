@@ -7,5 +7,5 @@ import "daemon/health.proto";
 message HealthCheckReq {}
 
 message HealthCheckResp {
-  repeated HealthCheckComponent Components = 1;
+  repeated daemon.HealthCheckComponent Components = 1;
 }
