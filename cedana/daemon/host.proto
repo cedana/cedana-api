@@ -4,16 +4,17 @@ package daemon;
 
 message Host {
   string ID = 1;
-  string Hostname = 2;
-  string OS = 3;
-  string Platform = 4;
-  string KernelVersion = 5;
-  string KernelArch = 6;
-  string VirtualizationSystem = 7;
-  string VirtualizationRole = 8;
+  string MAC = 2;
+  string Hostname = 3;
+  string OS = 4;
+  string Platform = 5;
+  string KernelVersion = 6;
+  string KernelArch = 7;
+  string VirtualizationSystem = 8;
+  string VirtualizationRole = 9;
 
-  CPU CPU = 9;
-  Memory Memory = 10;
+  CPU CPU = 10;
+  Memory Memory = 11;
 }
 
 message CPU {
