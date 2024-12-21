@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package gpu;
 
+import "gpu/health.proto";
+
 service Controller {
   rpc Attach(AttachReq) returns (AttachResp) {}
   rpc Detach(DetachReq) returns (DetachResp) {}
@@ -15,8 +17,7 @@ message AttachReq {
   string JID = 1;
 }
 
-message AttachResp {
-}
+message AttachResp {}
 
 message DetachReq {}
 

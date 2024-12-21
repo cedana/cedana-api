@@ -3,6 +3,7 @@ syntax = "proto3";
 package daemon;
 
 import "criu/criu.proto";
+import "daemon/health.proto";
 import "daemon/misc.proto";
 import "daemon/process.proto";
 import "plugins/containerd/containerd.proto";
