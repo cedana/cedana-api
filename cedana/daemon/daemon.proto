@@ -28,7 +28,7 @@ service Daemon {
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 
   // Health check the daemon, and installed plugins
-  rpc Check(CheckReq) returns (CheckResp) {}
+  rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
   // Reload plugins in the daemon. Call after installing/removing any plugins.
   rpc ReloadPlugins(Empty) returns (Empty) {}
 }
