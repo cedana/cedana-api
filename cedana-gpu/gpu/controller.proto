@@ -24,7 +24,7 @@ message DetachReq {}
 message DetachResp {}
 
 message DumpReq {
-  string Directory = 1;
+  string Dir = 1;
 }
 
 message DumpResp {
