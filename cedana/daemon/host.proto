@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package daemon;
+
+message Host {
+  string ID = 1;
+  string Hostname = 2;
+  string OS = 3;
+  string Platform = 4;
+  string KernelVersion = 5;
+  string KernelArch = 6;
+  string VirtualizationSystem = 7;
+  string VirtualizationRole = 8;
+
+  CPU CPU = 9;
+  Memory Memory = 10;
+}
+
+message CPU {
+  int32 Count = 1;
+  int32 CPU = 2;
+  string VendorID = 3;
+  string Family = 4;
+  string PhysicalID = 5;
+}
+
+message Memory {
+  uint64 Total = 1;
+  uint64 Available = 2;
+  uint64 Used = 3;
+}
