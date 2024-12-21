@@ -9,19 +9,27 @@ import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
 
 service Daemon {
-  // C/R
+  // Dump a process/container/job
   rpc Dump(DumpReq) returns (DumpResp) {}
+  // Restore a process/container/job
   rpc Restore(RestoreReq) returns (RestoreResp) {}
 
-  // Job management
+  // Run a managed process/container (job)
   rpc Run(RunReq) returns (RunResp) {}
+  // Manage a running process/container (job)
   rpc Manage(RunReq) returns (RunResp) {}
+  // List all managed processes/containers (jobs)
   rpc List(ListReq) returns (ListResp) {}
+  // Kill a managed process/container (job)
   rpc Kill(KillReq) returns (KillResp) {}
+  // Delete a managed process/container (job)
   rpc Delete(DeleteReq) returns (DeleteResp) {}
+  // Attach to a managed process/container (job)
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 
-  // Plugins
+  // Health check the daemon, and installed plugins
+  rpc Check(CheckReq) returns (CheckResp) {}
+  // Reload plugins in the daemon. Call after installing/removing any plugins.
   rpc ReloadPlugins(Empty) returns (Empty) {}
 }
 
@@ -53,7 +61,7 @@ message RestoreReq {
   bool Stream = 2;
   string Type = 3;
   criu.criu_opts Criu = 4;
-  string Log = 5;
+  string Log = 5; // standard IO log file
   bool Attachable = 6;
 
   Details Details = 7;

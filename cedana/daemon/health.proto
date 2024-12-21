@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package daemon;
+
+import "criu/health.proto";
+import "gpu/health.proto";
+import "plugins/runc/health.proto";
+import "plugins/containerd/health.proto";
+
+message HealthCheckReq {
+  bool Full = 1; // Health check installed plugins too.
+  bool Strict = 2; // Perform a stricter health check. Some warnings are treated as errors.
+}
+
+message HealthCheckResp {
+  string Version = 1;
+
+  repeated string Errors = 2;
+  repeated string Warnings = 3;
+
+  optional criu.health_check_resp CRIU = 4;
+  optional gpu.HealthCheckResp GPU = 5;
+  optional plugins.runc.HealthCheckResp Runc = 6;
+  optional plugins.containerd.HealthCheckResp Containerd = 7;
+}

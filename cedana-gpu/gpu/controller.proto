@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package gpu;
+
+service Controller {
+  rpc Attach(AttachReq) returns (AttachResp) {}
+  rpc Detach(DetachReq) returns (DetachResp) {}
+
+  rpc Dump(DumpReq) returns (DumpResp) {}
+  rpc Restore(RestoreReq) returns (RestoreResp) {}
+  rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
+}
+
+message AttachReq {
+  string JID = 1;
+}
+
+message AttachResp {
+}
+
+message DetachReq {}
+
+message DetachResp {}
+
+message DumpReq {
+  string Directory = 1;
+}
+
+message DumpResp {
+  string MemPath = 1;
+  string CkptPath = 2;
+}
+
+message RestoreReq {
+  string Dir = 1;
+}
+
+message RestoreResp {
+  RestoreStats RestoreStats = 1;
+}
+
+message RestoreStats {
+  int64 CopyMemTime = 1;
+  int64 ReplayCallsTime = 2;
+}
