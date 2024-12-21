@@ -26,14 +26,15 @@ message ProcessState {
   repeated Connection OpenConnections = 5;
   string WorkingDir = 6;
   string Status = 7;
-  float MemoryPercent = 8;
+  bool IsRunning = 8;
+  float MemoryPercent = 9;
 
-  Host Host = 9;
+  Host Host = 10;
 
-  repeated uint32 UIDs = 10;
-  repeated uint32 GIDs = 11;
-  repeated uint32 Groups = 12;
-  uint32 SID = 13; // session ID
+  repeated uint32 UIDs = 11;
+  repeated uint32 GIDs = 12;
+  repeated uint32 Groups = 13;
+  uint32 SID = 14; // session ID
 }
 
 message File {
