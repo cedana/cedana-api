@@ -41,6 +41,6 @@ message RestoreResp {
 }
 
 message RestoreStats {
-  int64 CopyMemTime = 1;
-  int64 ReplayCallsTime = 2;
+  int64 CopyMemTime = 1; // in milliseconds
+  int64 ReplayCallsTime = 2; // in milliseconds
 }

@@ -7,7 +7,12 @@ message HealthCheckReq {
 }
 
 message HealthCheckResp {
-  repeated HealthCheckComponent Components = 1;
+  repeated HealthCheckGroup Groups = 1;
+}
+
+message HealthCheckGroup {
+  string Name = 1;
+  repeated HealthCheckComponent Components = 2;
 }
 
 message HealthCheckComponent {
