@@ -2,14 +2,10 @@ syntax = "proto3";
 
 package gpu;
 
+import "daemon/health.proto";
+
 message HealthCheckReq {}
 
 message HealthCheckResp {
-  string Version = 1;
-  int32 DeviceCount = 2;
-  AvailableAPIs AvailableAPIs = 3;
-}
-
-message AvailableAPIs {
-  int32 DriverVersion = 1;
+  repeated HealthCheckComponent Components = 1;
 }

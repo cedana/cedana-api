@@ -7,11 +7,13 @@ message HealthCheckReq {
 }
 
 message HealthCheckResp {
-  string Title = 1;
-  string Version = 2;
+  repeated HealthCheckComponent Components = 1;
+}
+
+message HealthCheckComponent {
+  string Name = 1;
+  string Data = 2;
 
   repeated string Errors = 3;
   repeated string Warnings = 4;
-
-  repeated HealthCheckResp Plugins = 5;
 }

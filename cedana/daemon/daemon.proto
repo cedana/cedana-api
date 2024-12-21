@@ -144,6 +144,7 @@ message Job {
   Details Details = 7;
 }
 
+// Details are plugin-specific or 'type' specific details.
 message Details {
   optional string JID = 1;
   optional Process Process = 2;
