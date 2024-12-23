@@ -44,6 +44,7 @@ message File {
   string Mode = 3;
   int32 MountID = 4;
   int32 Inode = 5;
+  bool IsTTY = 6;
 }
 
 message Connection {
