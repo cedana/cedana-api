@@ -24,17 +24,18 @@ message ProcessState {
 
   repeated File OpenFiles = 4;
   repeated Connection OpenConnections = 5;
-  string WorkingDir = 6;
-  string Status = 7;
-  bool IsRunning = 8;
-  float MemoryPercent = 9;
+  repeated Mount Mounts = 6;
+  string WorkingDir = 7;
+  string Status = 8;
+  bool IsRunning = 9;
+  float MemoryPercent = 10;
 
-  Host Host = 10;
+  Host Host = 11;
 
-  repeated uint32 UIDs = 11;
-  repeated uint32 GIDs = 12;
-  repeated uint32 Groups = 13;
-  uint32 SID = 14; // session ID
+  repeated uint32 UIDs = 12;
+  repeated uint32 GIDs = 13;
+  repeated uint32 Groups = 14;
+  uint32 SID = 15; // session ID
 }
 
 message File {
@@ -59,4 +60,15 @@ message Connection {
 message Addr {
   string IP = 1;
   uint32 Port = 2;
+}
+
+message Mount {
+  int32 ID = 1;
+  int32 Parent = 2;
+  int32 Major = 3;
+  int32 Minor = 4;
+  string Root = 5;
+  string MountPoint = 6;
+  string Options = 7;
+  string FSType = 8;
 }
