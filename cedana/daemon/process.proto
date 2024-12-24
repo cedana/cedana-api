@@ -42,9 +42,11 @@ message File {
   string Path = 1;
   uint64 Fd = 2;
   string Mode = 3;
-  int32 MountID = 4;
-  int32 Inode = 5;
+  uint64 MountID = 4;
+  uint64 Inode = 5;
   bool IsTTY = 6;
+  uint64 Dev = 7;
+  uint64 Rdev = 8;
 }
 
 message Connection {
