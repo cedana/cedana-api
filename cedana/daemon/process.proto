@@ -19,7 +19,7 @@ message Process {
 
 message ProcessState {
   uint32 PID = 1;
-  string Task = 2;
+  string Cmdline = 2; // the original command line of the process
   uint64 StartTime = 3; // in Unix milliseconds
 
   repeated File OpenFiles = 4;
