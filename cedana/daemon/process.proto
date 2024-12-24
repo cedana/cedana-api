@@ -66,7 +66,7 @@ message Addr {
 }
 
 message Mount {
-  int32 ID = 1;
+  uint64 ID = 1;
   int32 Parent = 2;
   int32 Major = 3;
   int32 Minor = 4;
