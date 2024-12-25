@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package daemon;
+
+message Checkpoint {
+  string ID = 1; // Unique ID of the checkpoint
+  string JID = 2; // Job ID of the job that was checkpointed
+  string Path = 3;
+  int64 Time = 4; // Cached time in Unix milliseconds
+  int64 Size = 5; // Cached size in bytes
+}
