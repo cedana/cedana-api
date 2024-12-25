@@ -14,19 +14,21 @@ service Daemon {
   rpc Dump(DumpReq) returns (DumpResp) {}
   // Restore a process/container/job
   rpc Restore(RestoreReq) returns (RestoreResp) {}
+  // Attach to a process/container
+  rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 
   // Run a managed process/container (job)
   rpc Run(RunReq) returns (RunResp) {}
   // Manage a running process/container (job)
   rpc Manage(RunReq) returns (RunResp) {}
+  // Get details of a managed process/container (job)
+  rpc Get(GetReq) returns (GetResp) {}
   // List all managed processes/containers (jobs)
   rpc List(ListReq) returns (ListResp) {}
   // Kill a managed process/container (job)
   rpc Kill(KillReq) returns (KillResp) {}
   // Delete a managed process/container (job)
   rpc Delete(DeleteReq) returns (DeleteResp) {}
-  // Attach to a managed process/container (job)
-  rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 
   // Health check the daemon, and installed plugins
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
@@ -109,9 +111,15 @@ message AttachResp {
   }
 }
 
-message ListReq {
-  repeated string JIDs = 1;
+message GetReq {
+  repeated string JID = 1;
 }
+
+message GetResp {
+  Job Job = 1;
+}
+
+message ListReq {}
 
 message ListResp {
   repeated Job Jobs = 1;
