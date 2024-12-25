@@ -3,6 +3,7 @@ syntax = "proto3";
 package daemon;
 
 import "criu/criu.proto";
+import "daemon/checkpoint.proto";
 import "daemon/health.proto";
 import "daemon/misc.proto";
 import "daemon/process.proto";
@@ -29,6 +30,13 @@ service Daemon {
   rpc Kill(KillReq) returns (KillResp) {}
   // Delete a managed process/container (job)
   rpc Delete(DeleteReq) returns (DeleteResp) {}
+
+  // Get a specific checkpoint, or the latest checkpoint for a job (if JID is provided)
+  rpc GetCheckpoint(GetCheckpointReq) returns (GetCheckpointResp) {}
+  // List all checkpoints for a job
+  rpc ListCheckpoints(ListCheckpointsReq) returns (ListCheckpointsResp) {}
+  // Delete a checkpoint
+  rpc DeleteCheckpoint(DeleteCheckpointReq) returns (DeleteCheckpointResp) {}
 
   // Health check the daemon, and installed plugins
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
@@ -119,7 +127,9 @@ message GetResp {
   Job Job = 1;
 }
 
-message ListReq {}
+message ListReq {
+  repeated string JIDs = 1;
+}
 
 message ListResp {
   repeated Job Jobs = 1;
