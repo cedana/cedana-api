@@ -112,7 +112,7 @@ message AttachResp {
 }
 
 message GetReq {
-  repeated string JID = 1;
+  string JID = 1;
 }
 
 message GetResp {
