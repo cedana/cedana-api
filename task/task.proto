@@ -349,6 +349,7 @@ message CriuOpts {
   repeated string External = 18;
   bool TcpClose = 19;
   bool TcpSkipInFlight = 20;
+  string NetworkLock = 21;
 }
 
 message RuncRestoreArgs {
