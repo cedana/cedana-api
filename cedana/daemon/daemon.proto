@@ -128,7 +128,8 @@ message GetResp {
 }
 
 message ListReq {
-  repeated string JIDs = 1;
+  repeated string HostIDs = 1;
+  repeated string JIDs = 2;
 }
 
 message ListResp {
