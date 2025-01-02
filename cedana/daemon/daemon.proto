@@ -128,7 +128,7 @@ message GetResp {
 }
 
 message ListReq {
-  repeated string HostIDs = 1;
+  bool Remote = 1; // Include jobs from remote hosts
   repeated string JIDs = 2;
 }
 
