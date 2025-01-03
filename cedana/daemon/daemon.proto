@@ -58,7 +58,7 @@ message DumpReq {
 }
 
 message DumpResp {
-  repeated string Message = 1;
+  repeated string Messages = 1;
   string Path = 2;
   ProcessState State = 3;
 }
@@ -79,7 +79,7 @@ message RestoreReq {
 }
 
 message RestoreResp {
-  repeated string Message = 1;
+  repeated string Messages = 1;
   uint32 PID = 2;
   ProcessState State = 3;
 }
@@ -99,7 +99,7 @@ message RunReq {
 }
 
 message RunResp {
-  repeated string Message = 1;
+  repeated string Messages = 1;
   uint32 PID = 2;
 }
 
@@ -142,7 +142,7 @@ message KillReq {
 }
 
 message KillResp {
-  repeated string Message = 1;
+  repeated string Messages = 1;
 }
 
 message DeleteReq {
@@ -150,7 +150,7 @@ message DeleteReq {
 }
 
 message DeleteResp {
-  repeated string Message = 1;
+  repeated string Messages = 1;
 }
 
 message Job {
