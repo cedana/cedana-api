@@ -7,4 +7,5 @@ message Containerd {
   string Address = 2;
   string Image = 3;
   string Namespace = 4;
+  bool RootfsOnly = 5;
 }
