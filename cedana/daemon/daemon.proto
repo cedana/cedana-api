@@ -53,8 +53,9 @@ message DumpReq {
   bool Stream = 2;
   string Type = 3;
   criu.criu_opts Criu = 4;
+  bool RootfsOnly = 5;
 
-  Details Details = 5;
+  Details Details = 6;
 }
 
 message DumpResp {
