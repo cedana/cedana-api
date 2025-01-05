@@ -89,14 +89,20 @@ message RestoreResp {
 ////// JOB //////
 /////////////////
 
+enum RunAction {
+  START_NEW = 0; // Start a new job
+  MANAGE_EXISTING = 1; // Manage an existing job
+}
+
 message RunReq {
   string JID = 1;
   bool GPUEnabled = 2;
   string Type = 3;
   string Log = 4;
   bool Attachable = 5;
+  RunAction Action = 6;
 
-  Details Details = 6;
+  Details Details = 7;
 }
 
 message RunResp {
