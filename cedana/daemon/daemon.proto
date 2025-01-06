@@ -50,12 +50,13 @@ service Daemon {
 
 message DumpReq {
   string Dir = 1;
-  bool Stream = 2;
-  string Type = 3;
-  criu.criu_opts Criu = 4;
-  bool External = 5; // indicates the dump is non-criu, handled externally by a plugin
+  string Compression = 2; // tar, gzip, lz4, none
+  bool Stream = 3;
+  string Type = 4;
+  criu.criu_opts Criu = 5;
+  bool External = 6; // indicates the dump is non-criu, handled externally by a plugin
 
-  Details Details = 6;
+  Details Details = 7;
 }
 
 message DumpResp {
@@ -69,7 +70,7 @@ message DumpResp {
 ////////////////////////
 
 message RestoreReq {
-  string Path = 1;
+  string Path = 1; // compression is auto-detected
   bool Stream = 2;
   string Type = 3;
   criu.criu_opts Criu = 4;
