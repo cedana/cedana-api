@@ -2,12 +2,7 @@
 
 syntax = "proto3";
 
-<<<<<<<< HEAD:cedana-image-streamer/img_streamer/img-streamer.proto
 package img_streamer;
-========
-package cedana.services.img_streamer;
-option go_package = "cedana_api/img_streamer";
->>>>>>>> main:img_streamer/img_streamer.proto
 
 // This message is sent from CRIU to the streamer.
 // * During dump, it communicates the name of the file that is about to be sent
@@ -39,15 +34,15 @@ message marker {
 }
 
 message marker {
-    uint64 seq = 1;
-    oneof body {
-        // Denotes the filename of the next upcoming markers (denoted as current file)
-        string filename = 2;
-        // Incoming data for the current file
-        uint32 file_data = 3;
-        // EOF of current file is reached
-        bool file_eof = 4;
-        // EOF of image is reached
-        bool image_eof = 5;
-    }
+  uint64 seq = 1;
+  oneof body {
+    // Denotes the filename of the next upcoming markers (denoted as current file)
+    string filename = 2;
+    // Incoming data for the current file
+    uint32 file_data = 3;
+    // EOF of current file is reached
+    bool file_eof = 4;
+    // EOF of image is reached
+    bool image_eof = 5;
+  }
 }
