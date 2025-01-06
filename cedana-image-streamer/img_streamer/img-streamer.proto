@@ -32,17 +32,3 @@ message marker {
     bool image_eof = 5;
   }
 }
-
-message marker {
-  uint64 seq = 1;
-  oneof body {
-    // Denotes the filename of the next upcoming markers (denoted as current file)
-    string filename = 2;
-    // Incoming data for the current file
-    uint32 file_data = 3;
-    // EOF of current file is reached
-    bool file_eof = 4;
-    // EOF of image is reached
-    bool image_eof = 5;
-  }
-}
