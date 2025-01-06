@@ -1,0 +1,665 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "cedanagpu/gpu.proto";
+
+option go_package = "cedana_api/task";
+
+package cedana.services.task;
+
+// Query functions here work just like your familiar query functions in HTTP GET requests,
+// where if you don't specify anything in the query, it will return all the valid results,
+// but if you do it will filter out based on the query parameters.
+
+service TaskService {
+  // Managed Job
+  rpc JobDump(JobDumpArgs) returns (JobDumpResp);
+  rpc JobRestore(JobRestoreArgs) returns (JobRestoreResp);
+  rpc JobRestoreAttach(stream AttachArgs) returns (stream AttachResp);
+  rpc JobQuery(JobQueryArgs) returns (JobQueryResp);
+
+  // Process
+  rpc Start(StartArgs) returns (StartResp);
+  rpc StartAttach(stream AttachArgs) returns (stream AttachResp);
+  rpc Dump(DumpArgs) returns (DumpResp);
+  rpc Restore(RestoreArgs) returns (RestoreResp);
+  rpc RestoreAttach(stream AttachArgs) returns (stream AttachResp);
+  rpc Manage(ManageArgs) returns (ManageResp);
+
+  // Containerd
+  rpc ContainerdDump(ContainerdDumpArgs) returns (ContainerdDumpResp);
+  rpc ContainerdRestore(ContainerdRestoreArgs) returns (ContainerdRestoreResp);
+  rpc ContainerdQuery(ContainerdQueryArgs) returns (ContainerdQueryResp);
+
+  rpc ContainerdRootfsDump(ContainerdRootfsDumpArgs) returns (ContainerdRootfsDumpResp);
+  rpc ContainerdRootfsRestore(ContainerdRootfsRestoreArgs) returns (ContainerdRootfsRestoreResp);
+
+  // Runc
+  rpc RuncDump(RuncDumpArgs) returns (RuncDumpResp);
+  rpc RuncRestore(RuncRestoreArgs) returns (RuncRestoreResp);
+  rpc RuncQuery(RuncQueryArgs) returns (RuncQueryResp);
+  rpc RuncGetPausePid(RuncGetPausePidArgs) returns (RuncGetPausePidResp);
+  rpc RuncManage(RuncManageArgs) returns (RuncManageResp);
+
+  // CRIO
+  rpc CRIORootfsDump(CRIORootfsDumpArgs) returns (CRIORootfsDumpResp);
+  rpc CRIOImagePush(CRIOImagePushArgs) returns (CRIOImagePushResp);
+
+  // Streaming
+  rpc LogStreaming(stream LogStreamingResp) returns (stream LogStreamingArgs);
+  rpc ProcessStateStreaming(ProcessStateStreamingArgs) returns (stream ProcessState);
+
+  // Health
+  rpc DetailedHealthCheck(DetailedHealthCheckRequest) returns (DetailedHealthCheckResponse) {}
+
+  // Kata
+  rpc KataDump(DumpArgs) returns (DumpResp);
+  rpc KataRestore(RestoreArgs) returns (RestoreResp);
+
+  // Config
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
+
+  // JobQueue
+  rpc QueueCheckpoint(QueueJobCheckpointRequest) returns (google.protobuf.BoolValue);
+  rpc QueueRestore(QueueJobRestoreRequest) returns (google.protobuf.BoolValue);
+  rpc JobStatus(QueueJobID) returns (QueueJobStatus);
+
+  // ASR
+  rpc GetContainerInfo(ContainerInfoRequest) returns (ContainersInfo);
+}
+
+/////////////////////
+////// Stats ////////
+/////////////////////
+
+message DumpStats {
+    DumpType DumpType = 1;
+    int64 PrepareDuration = 2;
+    int64 CRIUDuration = 3;
+    int64 GPUDuration = 4;
+    ContainerRuntime ContainerRuntime = 5;
+    bool Kubernetes = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
+}
+
+message CheckpointFileStats {
+    int64 Size = 1;
+    int64 Duration = 2;
+}
+
+message RestoreStats {
+    DumpType DumpType = 1;
+    ContainerRuntime ContainerRuntime = 2;
+    int64 PrepareDuration = 3;
+    int64 CRIUDuration = 4;
+    int64 GPUDuration = 5;
+    int64 DownloadDuration = 6;
+    CheckpointFileStats CheckpointFileStats = 7;
+    cedanagpu.GPURestoreStats GPURestoreStats = 8;
+}
+
+message ManageArgs {
+  int32 PID = 1;
+  string JID = 2;
+  bool GPU = 3;
+  repeated int32 Groups = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+}
+
+message ManageResp {
+  string Message = 1;
+  ProcessState State = 2;
+}
+
+enum DumpType {
+     PROCESS = 0;
+     RUNC = 1;
+     KATA = 2;
+     ROOTFS = 3;
+}
+
+enum ContainerRuntime {
+     CRIO = 0;
+     CONTAINERD = 1;
+}
+
+/////////////////////
+/////// CRIO ////////
+/////////////////////
+
+message CRIOImagePushArgs {
+  string OriginalImageRef = 1;
+  string NewImageRef = 2;
+  string RootfsDiffPath = 3;
+  string ContainerStorage = 4;
+  string RegistryAuthTokenPush = 5;
+  string RegistryAuthTokenPull = 6;
+}
+
+message CRIOImagePushResp {
+  string Message = 1;
+}
+
+message CRIORootfsDumpArgs {
+  string ContainerID = 1;
+  string Dest = 2;
+  string ContainerStorage = 3;
+}
+
+message CRIORootfsDumpResp {
+  string Dest = 1;
+}
+
+/////////////////////
+/////// Job /////////
+/////////////////////
+
+message JobDumpArgs {
+  string JID = 1;
+  string Dir = 2;
+  int32 Stream = 3;
+  CriuOpts CriuOpts = 4;
+}
+
+message JobDumpResp {
+  string Message = 1;
+  string CheckpointID = 2;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
+}
+
+message JobRestoreArgs {
+  string JID = 1;
+  CriuOpts CriuOpts = 2;
+  int32 Stream = 3;
+  RuncOpts RuncOpts = 4;
+  string CheckpointPath = 5;
+}
+
+message JobRestoreResp {
+  string Message = 1;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
+}
+
+message JobQueryArgs {
+  repeated int32 PIDs = 1;
+  repeated string JIDs = 2;
+}
+
+message JobQueryResp {
+  repeated ProcessState Processes = 1;
+}
+
+/////////////////////
+////// Process //////
+/////////////////////
+
+message StartArgs {
+  string Task = 1;
+  string JID = 2;
+  string WorkingDir = 3;
+  repeated string Env = 4;
+  string LogOutputFile = 5;
+  int32 UID = 6;
+  int32 GID = 7;
+  bool GPU = 8;
+  repeated int32 Groups = 9;
+}
+
+message StartResp {
+  string Message = 1;
+  int32 PID = 2;
+  string JID = 3;
+}
+
+message DumpArgs {
+  int32 PID = 1;
+  string Dir = 2;
+  string JID = 3;
+  int32 Stream = 4;
+  CriuOpts CriuOpts = 5;
+}
+
+message DumpResp {
+  string Message = 1;
+  string CheckpointID = 2;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
+}
+
+
+message RestoreArgs {
+  string CheckpointID = 1;
+  string CheckpointPath = 2;
+  string JID = 3;
+  int32 Stream = 4;
+  CriuOpts CriuOpts = 5;
+}
+
+message RestoreResp {
+  string Message = 1;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
+}
+
+/////////////////////////
+////// Containerd ///////
+/////////////////////////
+
+message ContainerdDumpArgs {
+  RuncDumpArgs RuncDumpArgs = 1;
+  ContainerdRootfsDumpArgs ContainerdRootfsDumpArgs = 2;
+}
+
+message ContainerdDumpResp {
+  string CheckpointPath = 1;
+  string Message = 2;
+}
+
+message ContainerdRestoreArgs {
+  string ImgPath = 1;
+  string ContainerID = 2;
+}
+
+message ContainerdRestoreResp {
+  string Message = 1;
+}
+
+message ContainerdQueryArgs {
+  string Root = 1;
+  string Namespace = 2;
+}
+
+message ContainerdQueryResp {
+  repeated ContainerdContainer Containers = 1;
+}
+
+message ContainerdContainer {
+  string ContainerName = 1;
+  string ImageName = 2;
+  string SandboxId = 3;
+  string SandboxName = 4;
+  string SandboxNamespace = 5;
+  string SandboxUid = 6;
+}
+
+message ContainerdRootfsDumpArgs {
+  string ContainerID = 1;
+  string ImageRef = 2;
+  string Address = 3;
+  string Namespace = 4;
+}
+
+message ContainerdRootfsDumpResp {
+  string ImageRef = 1;
+}
+
+message ContainerdRootfsRestoreArgs {
+  string ContainerID = 1;
+  string ImageRef = 2;
+  string Address = 3;
+  string Namespace = 4;
+}
+
+message ContainerdRootfsRestoreResp {
+  string ImageRef = 1;
+}
+
+///////////////////
+////// Runc ///////
+///////////////////
+
+message RuncDumpArgs {
+  string Root = 1;
+  string Dir = 2;
+  string ContainerID = 3;
+  CriuOpts CriuOpts = 4;
+}
+
+message RuncDumpResp {
+  string Message = 1;
+  string CheckpointID = 2;
+  ProcessState State = 3;
+  DumpStats DumpStats = 4;
+}
+
+message CriuOpts {
+  string ImagesDirectory = 1;
+  string WorkDirectory = 2;
+  string ParentImage = 3;
+  bool LeaveRunning = 4;
+  bool TcpEstablished = 5;
+  bool ExternalUnixConnections = 6;
+  bool ShellJob = 7;
+  bool FileLocks = 8;
+  bool PreDump = 9;
+  bool Stream = 10;
+  int32 EmptyNs = 12;
+  bool AutoDedup = 13;
+  bool LazyPages = 14;
+  int32 StatusFd = 15;
+  string LsmProfile = 16;
+  string LsmMountContext = 17;
+  repeated string External = 18;
+  bool TcpClose = 19;
+  bool TcpSkipInFlight = 20;
+  string NetworkLock = 21;
+}
+
+message RuncRestoreArgs {
+  string ImagePath = 1;
+  RuncOpts Opts = 2;
+  string CheckpointID = 3;
+  CriuOpts CriuOpts = 4;
+}
+
+message RuncRestoreResp {
+  string Message = 1;
+  ProcessState State = 2;
+  RestoreStats RestoreStats = 3;
+}
+
+message RuncOpts {
+  string Root = 1;
+  string ContainerID = 2;
+  string Bundle = 3;
+  bool SystemdCgroup = 4;
+  bool NoPivot = 5;
+  bool NoMountFallback = 6;
+  bool NoNewKeyring = 7;
+  string Rootless = 8;
+  bool NoSubreaper = 9;
+  bool Keep = 10;
+  string ConsoleSocket = 11;
+  bool Detach = 12;
+  string PidFile = 13;
+  int32 PreserveFds = 14;
+  int32 NetPid = 15;
+}
+
+message RuncQueryArgs {
+  string Root = 1;
+  string Namespace = 2;
+  repeated string ContainerNames = 3;
+  repeated string SandboxNames = 4;
+}
+
+message RuncQueryResp {
+  repeated RuncContainer Containers = 1;
+}
+
+message RuncContainer {
+  string ID = 1;
+  string BundlePath = 2;
+  string ContainerName = 3;
+  string ImageName = 4;
+  string SandboxId = 5;
+  string SandboxName = 6;
+  string SandboxUid = 7;
+}
+
+message RuncGetPausePidArgs {
+  string BundlePath = 1;
+}
+
+message RuncGetPausePidResp {
+  int64 PausePid = 1;
+}
+
+message RuncManageArgs {
+  string ContainerID = 1;
+  string Root = 2;
+  bool GPU = 3;
+  repeated int32 Groups = 4;
+  int32 UID = 5;
+  int32 GID = 6;
+}
+
+message RuncManageResp {
+  string Message = 1;
+  ProcessState State = 2;
+}
+
+///////////////////////
+////// Streaming //////
+///////////////////////
+
+message LogStreamingArgs {
+  string Timestamp = 1;
+  string Source = 2;
+  string Level = 3;
+  string Msg = 4;
+}
+
+message LogStreamingResp {
+  string Status = 1;
+}
+
+message ProcessState {
+  int32 PID = 1;
+  string Task = 2;
+  string ContainerID = 3;
+  string StartedAt = 4;
+  ProcessInfo ProcessInfo = 5;
+  string CheckpointPath = 6;
+  CheckpointState CheckpointState = 7;
+  JobState JobState = 8;
+  string JID = 10;
+  HostInfo HostInfo = 11;
+  CPUInfo CPUInfo = 12;
+  MemoryInfo MemoryInfo = 13;
+  repeated int32 UIDs = 14;
+  repeated int32 GIDs = 15;
+  repeated int32 Groups = 16;
+  bool GPU = 17;
+  string ContainerRoot = 18;
+  string ContainerBundle = 19;
+}
+
+message ProcessInfo {
+  int32 PID = 1;
+  bool AttachedToHardwareAccel = 2;
+  repeated OpenFilesStat OpenFds = 3;
+  string WorkingDir = 4;
+  repeated ConnectionStat OpenConnections = 5;
+  float MemoryPercent = 6;
+  bool IsRunning = 7;
+  string Status = 8;
+}
+
+message HostInfo {
+  string HostID = 1;
+  string Hostname = 4;
+  string OS = 5;
+  string Platform = 6;
+  string KernelVersion = 7;
+  string KernelArch = 8;
+  string VirtualizationSystem = 9;
+  string VirtualizationRole = 10;
+}
+
+message CPUInfo {
+  int32 Count = 1;
+  int32 CPU = 2;
+  string VendorID = 3;
+  string Family = 4;
+  string PhysicalID = 5;
+}
+
+message MemoryInfo {
+  uint64 Total = 1;
+  uint64 Available = 2;
+  uint64 Used = 3;
+}
+
+message OpenFilesStat {
+  string Path = 1;
+  uint64 Fd = 2;
+  string Mode = 3;
+  StreamType Stream = 5;
+  enum StreamType {
+    STDIN = 0;
+    STDOUT = 1;
+    STDERR = 2;
+    NONE = 3;
+  }
+}
+
+message ConnectionStat {
+  uint32 Fd = 1;
+  uint32 Family = 2;
+  uint32 Type = 3;
+  Addr Laddr = 4;
+  Addr Raddr = 5;
+  string Status = 6;
+  repeated int32 UIDs = 7;
+  int32 PID = 8;
+}
+
+message Addr {
+  string IP = 1;
+  uint32 Port = 2;
+}
+
+enum JobState {
+  JOB_STARTUP_FAILED = 0;
+  JOB_KILLED = 1;
+  JOB_IDLE = 2;
+  JOB_RUNNING = 3;
+  JOB_PENDING = 4;
+  JOB_DONE = 5;
+}
+
+message ProcessStateStreamingArgs {
+  string JID = 1;
+}
+
+message CheckpointReason {
+  enum CheckpointReasonEnum {
+    INSTANCE_TERMINATION = 0;
+    JOB_TERMINATION = 1;
+    HEARTBEAT = 2;
+  }
+  CheckpointReasonEnum Reason = 1;
+}
+
+enum CheckpointState {
+  CHECKPOINTED = 0;
+  CHECKPOINT_FAILED = 1;
+  RESTORED = 2;
+  RESTORE_FAILED = 3;
+}
+
+message AttachArgs {
+  oneof Args {
+    RestoreArgs RestoreArgs = 1;
+    JobRestoreArgs JobRestoreArgs = 2;
+    StartArgs StartArgs = 3;
+  }
+  string Stdin = 4;
+  // TODO: add signals
+}
+
+message AttachResp {
+  string Stdout = 1;
+  string Stderr = 2;
+  int32 ExitCode = 3;
+}
+
+/////////////////////
+///////Health////////
+/////////////////////
+
+message DetailedHealthCheckRequest {
+    int32 UID = 1;
+    int32 GID = 2;
+    repeated int32 Groups = 3;
+}
+
+message DetailedHealthCheckResponse {
+    HealthCheckStats HealthCheckStats = 1;
+    repeated string unhealthyReasons = 2;
+}
+
+message HealthCheckStats {
+   string criuVersion = 1;
+   cedanagpu.HealthCheckResponse GPUHealthCheck = 2;
+}
+
+/////////////////////
+///////Config////////
+/////////////////////
+
+message GetConfigRequest {
+}
+
+message GetConfigResponse {
+  string JSON = 1;
+}
+
+/////////////////////
+//////JobQueue///////
+/////////////////////
+
+message QueueJobCheckpointRequest {
+    string ContainerName = 1;
+    string Namespace = 2;
+    string PodName = 3;
+    string ImageName = 4;
+    string Id = 5;
+    optional string RuntimeRoot = 6;
+    optional string RuntimeSock = 7;
+}
+
+message QueueJobRestoreRequest {
+    string ContainerName = 1;
+    string Namespace = 2;
+    string PodName = 3;
+    string SourceName = 4;
+    string Id = 5;
+}
+
+message QueueJobID {
+    string JobID = 1;
+}
+
+enum QueueJobStatusEnum {
+	StatusUnvalidated = 0;
+	StatusWaiting = 1;
+	StatusActive = 2;
+	StatusFail = 3;
+	StatusSuccess = 4;
+	StatusInvalid = 5;
+	StatusEnded = 6;
+	StatusUnknown = 7;
+}
+
+message QueueJobStatus {
+  QueueJobStatusEnum Status = 1;
+}
+
+/////////////////////////
+//////////ASR////////////
+/////////////////////////
+
+message ContainerInfoRequest {
+}
+
+message ContainerInfo {
+  double CpuTime = 1;
+  double FilesystemIoTime = 2;
+  double AcceleratorMemory = 3;
+  double CurrentMemory = 4;
+  double NetworkIO = 5;
+  double DiskIO = 6;
+  string ContainerName = 7;
+  string Processes = 8;
+  string Labels = 9;
+  string Image = 10;
+}
+
+message ContainersInfo {
+    repeated ContainerInfo containers = 1;
+}
