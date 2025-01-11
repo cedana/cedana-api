@@ -165,9 +165,8 @@ message Job {
   string JID = 1;
   string Type = 2;
   ProcessState State = 3;
-  bool GPUEnabled = 4;
-  string Log = 5;
-  Details Details = 6;
+  string Log = 4;
+  Details Details = 5;
 }
 
 // Details are plugin-specific or 'type' specific details.

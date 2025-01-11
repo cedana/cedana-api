@@ -15,6 +15,8 @@ message Process {
   int32 UID = 6;
   int32 GID = 7;
   repeated int32 Groups = 8;
+
+  bool GPUEnabled = 9;
 }
 
 message ProcessState {
