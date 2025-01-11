@@ -54,9 +54,9 @@ message AvailableCUDAAPIs {
 }
 
 message GPURestoreStats {
-    int64 copyHostMemTime = 1;
-    int64 copyMemTime = 2;
-    int64 replayCallsTime = 3;
+    int64 copyMemTime = 1;
+    int64 replayCallsTime = 2;
+    int64 copyHostMemTime = 3;
 }
 
 message UnblockBarrierRequest {}
