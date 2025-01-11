@@ -159,8 +159,8 @@ message JobDumpArgs {
   string JID = 1;
   string Dir = 2;
   int32 Stream = 3;
-  string Bucket = 4;
-  CriuOpts CriuOpts = 5;
+  CriuOpts CriuOpts = 4;
+  string Bucket = 5;
 }
 
 message JobDumpResp {
@@ -221,8 +221,8 @@ message DumpArgs {
   string Dir = 2;
   string JID = 3;
   int32 Stream = 4;
-  string Bucket = 5;
-  CriuOpts CriuOpts = 6;
+  CriuOpts CriuOpts = 5;
+  string Bucket = 6;
 }
 
 message DumpResp {
@@ -238,8 +238,8 @@ message RestoreArgs {
   string CheckpointPath = 2;
   string JID = 3;
   int32 Stream = 4;
-  string Bucket = 5;
-  CriuOpts CriuOpts = 6;
+  CriuOpts CriuOpts = 5;
+  string Bucket = 6;
 }
 
 message RestoreResp {
