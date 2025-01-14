@@ -11,11 +11,15 @@ message Runc {
   bool NoPivot = 4;
   bool NoNewKeyring = 5;
   string WorkingDir = 6;
+
+  // Misc
+  string Name = 7;
 }
 
 message QueryReq {
   string Root = 1;
   repeated string IDs = 2;
+  repeated string Names = 3;
 }
 
 message QueryResp {
