@@ -27,6 +27,8 @@ service Daemon {
   rpc Run(RunReq) returns (RunResp) {}
   // Manage a running process/container (job)
   rpc Manage(RunReq) returns (RunResp) {}
+  // Get details of a managed process/container (job)
+  rpc Get(GetReq) returns (GetResp) {}
   // List all managed processes/containers (jobs)
   rpc List(ListReq) returns (ListResp) {}
   // Kill a managed process/container (job)
@@ -134,6 +136,14 @@ message AttachResp {
     bytes Stderr = 2;
     int32 ExitCode = 3;
   }
+}
+
+message GetReq {
+  string JID = 1;
+}
+
+message GetResp {
+  Job Job = 1;
 }
 
 message ListReq {
