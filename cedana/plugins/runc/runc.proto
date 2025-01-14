@@ -16,7 +16,6 @@ message Runc {
 message QueryReq {
   string Root = 1;
   repeated string IDs = 2;
-  repeated string Names = 3;
 }
 
 message QueryResp {
