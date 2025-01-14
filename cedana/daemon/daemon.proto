@@ -11,6 +11,8 @@ import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
 
 service Daemon {
+  ///// C/R /////
+
   // Dump a process/container/job
   rpc Dump(DumpReq) returns (DumpResp) {}
   // Restore a process/container/job
@@ -18,18 +20,20 @@ service Daemon {
   // Attach to a process/container
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
 
+  ///// JOBS /////
+
   // Run a managed process/container (job)
   rpc Run(RunReq) returns (RunResp) {}
   // Manage a running process/container (job)
   rpc Manage(RunReq) returns (RunResp) {}
-  // Get details of a managed process/container (job)
-  rpc Get(GetReq) returns (GetResp) {}
   // List all managed processes/containers (jobs)
   rpc List(ListReq) returns (ListResp) {}
   // Kill a managed process/container (job)
   rpc Kill(KillReq) returns (KillResp) {}
   // Delete a managed process/container (job)
   rpc Delete(DeleteReq) returns (DeleteResp) {}
+
+  ///// CHECKPOINTS /////
 
   // Get a specific checkpoint, or the latest checkpoint for a job (if JID is provided)
   rpc GetCheckpoint(GetCheckpointReq) returns (GetCheckpointResp) {}
@@ -38,6 +42,10 @@ service Daemon {
   // Delete a checkpoint
   rpc DeleteCheckpoint(DeleteCheckpointReq) returns (DeleteCheckpointResp) {}
 
+  ///// MISC /////
+
+  // Generic query call
+  rpc Query(QueryReq) returns (QueryResp) {}
   // Health check the daemon, and installed plugins
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
   // Reload plugins in the daemon. Call after installing/removing any plugins.
@@ -125,14 +133,6 @@ message AttachResp {
     bytes Stderr = 2;
     int32 ExitCode = 3;
   }
-}
-
-message GetReq {
-  string JID = 1;
-}
-
-message GetResp {
-  Job Job = 1;
 }
 
 message ListReq {
