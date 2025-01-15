@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package daemon;
+
+import "daemon/host.proto";
+
+message Process {
+  uint32 PID = 1;
+
+  // For run
+  string Path = 2;
+  string WorkingDir = 3;
+  repeated string Args = 4;
+  repeated string Env = 5;
+  int32 UID = 6;
+  int32 GID = 7;
+  repeated int32 Groups = 8;
+}
+
+message ProcessState {
+  uint32 PID = 1;
+  string Cmdline = 2; // the original command line of the process
+  uint64 StartTime = 3; // in Unix milliseconds
+
+  repeated File OpenFiles = 4;
+  repeated Connection OpenConnections = 5;
+  repeated Mount Mounts = 6;
+  string WorkingDir = 7;
+  string Status = 8;
+  bool IsRunning = 9;
+
+  Host Host = 11;
+
+  repeated uint32 UIDs = 12;
+  repeated uint32 GIDs = 13;
+  repeated uint32 Groups = 14;
+  uint32 SID = 15; // session ID
+
+  bool GPUEnabled = 16;
+}
+
+message File {
+  string Path = 1;
+  uint64 Fd = 2;
+  string Mode = 3;
+  uint64 MountID = 4;
+  uint64 Inode = 5;
+  bool IsTTY = 6;
+  uint64 Dev = 7;
+  uint64 Rdev = 8;
+}
+
+message Connection {
+  uint32 Fd = 1;
+  uint32 Family = 2;
+  uint32 Type = 3;
+  Addr Laddr = 4;
+  Addr Raddr = 5;
+  string Status = 6;
+  repeated int32 UIDs = 7;
+  uint32 PID = 8;
+}
+
+message Addr {
+  string IP = 1;
+  uint32 Port = 2;
+}
+
+message Mount {
+  uint64 ID = 1;
+  int32 Parent = 2;
+  int32 Major = 3;
+  int32 Minor = 4;
+  string Root = 5;
+  string MountPoint = 6;
+  string Options = 7;
+  string FSType = 8;
+}

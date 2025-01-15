@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package daemon;
+
+message HealthCheckReq {
+  bool Full = 1; // Health check installed plugins too.
+}
+
+message HealthCheckResp {
+  repeated HealthCheckResult Results = 1;
+}
+
+message HealthCheckResult {
+  string Name = 1;
+  repeated HealthCheckComponent Components = 2;
+}
+
+message HealthCheckComponent {
+  string Name = 1;
+  string Data = 2;
+
+  repeated string Errors = 3;
+  repeated string Warnings = 4;
+}

@@ -1,0 +1,191 @@
+syntax = "proto3";
+
+package daemon;
+
+import "criu/criu.proto";
+import "daemon/checkpoint.proto";
+import "daemon/health.proto";
+import "daemon/misc.proto";
+import "daemon/process.proto";
+import "daemon/query.proto";
+import "plugins/containerd/containerd.proto";
+import "plugins/runc/runc.proto";
+
+service Daemon {
+  ///// C/R /////
+
+  // Dump a process/container/job
+  rpc Dump(DumpReq) returns (DumpResp) {}
+  // Restore a process/container/job
+  rpc Restore(RestoreReq) returns (RestoreResp) {}
+  // Attach to a process/container
+  rpc Attach(stream AttachReq) returns (stream AttachResp) {}
+
+  ///// JOBS /////
+
+  // Run a managed process/container (job)
+  rpc Run(RunReq) returns (RunResp) {}
+  // Manage a running process/container (job)
+  rpc Manage(RunReq) returns (RunResp) {}
+  // Get details of a managed process/container (job)
+  rpc Get(GetReq) returns (GetResp) {}
+  // List all managed processes/containers (jobs)
+  rpc List(ListReq) returns (ListResp) {}
+  // Kill a managed process/container (job)
+  rpc Kill(KillReq) returns (KillResp) {}
+  // Delete a managed process/container (job)
+  rpc Delete(DeleteReq) returns (DeleteResp) {}
+
+  ///// CHECKPOINTS /////
+
+  // Get a specific checkpoint, or the latest checkpoint for a job (if JID is provided)
+  rpc GetCheckpoint(GetCheckpointReq) returns (GetCheckpointResp) {}
+  // List all checkpoints for a job
+  rpc ListCheckpoints(ListCheckpointsReq) returns (ListCheckpointsResp) {}
+  // Delete a checkpoint
+  rpc DeleteCheckpoint(DeleteCheckpointReq) returns (DeleteCheckpointResp) {}
+
+  ///// MISC /////
+
+  // Generic query call
+  rpc Query(QueryReq) returns (QueryResp) {}
+  // Health check the daemon, and installed plugins
+  rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
+  // Reload plugins in the daemon. Call after installing/removing any plugins.
+  rpc ReloadPlugins(Empty) returns (Empty) {}
+}
+
+////////////////////////
+//////// DUMP //////////
+////////////////////////
+
+message DumpReq {
+  string Dir = 1; // directory to dump to
+  string Name = 2; // name of the dump
+  string Compression = 3; // tar, gzip, lz4, none
+  bool Stream = 4;
+  string Type = 5;
+  criu.criu_opts Criu = 6;
+
+  Details Details = 7;
+}
+
+message DumpResp {
+  repeated string Messages = 1;
+  string Path = 2;
+  ProcessState State = 3;
+}
+
+////////////////////////
+/////// RESTORE ////////
+////////////////////////
+
+message RestoreReq {
+  string Path = 1; // compression is auto-detected
+  bool Stream = 2;
+  string Type = 3;
+  criu.criu_opts Criu = 4;
+  string Log = 5; // standard IO log file
+  bool Attachable = 6;
+
+  Details Details = 7;
+}
+
+message RestoreResp {
+  repeated string Messages = 1;
+  uint32 PID = 2;
+  ProcessState State = 3;
+}
+
+/////////////////
+////// JOB //////
+/////////////////
+
+enum RunAction {
+  START_NEW = 0; // Start a new job
+  MANAGE_EXISTING = 1; // Manage an existing job
+}
+
+message RunReq {
+  string JID = 1;
+  bool GPUEnabled = 2;
+  string Type = 3;
+  string Log = 4;
+  bool Attachable = 5;
+  RunAction Action = 6;
+
+  Details Details = 7;
+}
+
+message RunResp {
+  repeated string Messages = 1;
+  uint32 PID = 2;
+}
+
+message AttachReq {
+  uint32 PID = 1;
+  oneof Input {
+    bytes Stdin = 2;
+    int32 Signal = 3;
+  }
+}
+
+message AttachResp {
+  oneof Output {
+    bytes Stdout = 1;
+    bytes Stderr = 2;
+    int32 ExitCode = 3;
+  }
+}
+
+message GetReq {
+  string JID = 1;
+}
+
+message GetResp {
+  Job Job = 1;
+}
+
+message ListReq {
+  bool Remote = 1; // Include jobs from remote hosts
+  repeated string JIDs = 2;
+}
+
+message ListResp {
+  repeated Job Jobs = 1;
+}
+
+message KillReq {
+  repeated string JIDs = 1;
+  int32 Signal = 2;
+}
+
+message KillResp {
+  repeated string Messages = 1;
+}
+
+message DeleteReq {
+  repeated string JIDs = 1;
+}
+
+message DeleteResp {
+  repeated string Messages = 1;
+}
+
+message Job {
+  string JID = 1;
+  string Type = 2;
+  ProcessState State = 3;
+  string Log = 4;
+  Details Details = 5;
+}
+
+// Details are plugin-specific or 'type' specific details.
+message Details {
+  optional string JID = 1;
+  optional Process Process = 2;
+
+  // Plugin-specific job details:
+  optional plugins.runc.Runc Runc = 3;
+  optional plugins.containerd.Containerd Containerd = 4;
+}

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package daemon;
+
+message Checkpoint {
+  string ID = 1; // Unique ID of the checkpoint
+  string JID = 2; // Job ID of the job that was checkpointed
+  string Path = 3;
+  int64 Time = 4; // Cached time in Unix milliseconds
+  int64 Size = 5; // Cached size in bytes
+}
+
+message GetCheckpointReq {
+  optional string ID = 1; // Get a specific checkpoint
+  optional string JID = 2; // Get latest checkpoint for a job
+}
+
+message GetCheckpointResp {
+  optional Checkpoint Checkpoint = 1;
+}
+
+message ListCheckpointsReq {
+  string JID = 1;
+}
+
+message ListCheckpointsResp {
+  repeated Checkpoint Checkpoints = 1;
+}
+
+message DeleteCheckpointReq {
+  string ID = 1;
+}
+
+message DeleteCheckpointResp {}

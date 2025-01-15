@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package daemon;
+
+import "plugins/k8s/k8s.proto";
+import "plugins/runc/runc.proto";
+
+message QueryReq {
+  string Type = 1;
+  optional plugins.runc.QueryReq Runc = 2;
+  optional plugins.k8s.QueryReq K8s = 3;
+
+  // Can add more plugin-specific queries here
+}
+
+message QueryResp {
+  repeated string Messages = 1;
+
+  optional plugins.runc.QueryResp Runc = 2;
+  optional plugins.k8s.QueryResp K8s = 3;
+}

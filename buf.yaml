@@ -1,13 +1,15 @@
 version: v2
+
 modules:
-  - path: task  
-    name: buf.build/cedana/task
-  - path: gpu
-    name: buf.build/cedana/gpu 
-  - path: criu 
+  - path: cedana
+    name: buf.build/cedana/cedana
+  - path: cedana-gpu
+    name: buf.build/cedana/cedana-gpu
+  - path: cedana-image-streamer
+    name: buf.build/cedana/cedana-image-streamer
+  - path: criu
     name: buf.build/cedana/criu
-  - path: img_streamer
-    name: buf.build/cedana/img-streamer
+
 lint:
   use:
-    - STANDARD
+    - MINIMAL
