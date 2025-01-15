@@ -65,9 +65,8 @@ message DumpReq {
   bool Stream = 3;
   string Type = 4;
   criu.criu_opts Criu = 5;
-  bool External = 6; // indicates the dump is non-criu, handled externally by a plugin
 
-  Details Details = 7;
+  Details Details = 6;
 }
 
 message DumpResp {
