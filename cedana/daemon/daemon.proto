@@ -60,13 +60,14 @@ service Daemon {
 ////////////////////////
 
 message DumpReq {
-  string Dir = 1;
-  string Compression = 2; // tar, gzip, lz4, none
-  bool Stream = 3;
-  string Type = 4;
-  criu.criu_opts Criu = 5;
+  string Dir = 1; // directory to dump to
+  string Name = 2; // name of the dump
+  string Compression = 3; // tar, gzip, lz4, none
+  bool Stream = 4;
+  string Type = 5;
+  criu.criu_opts Criu = 6;
 
-  Details Details = 6;
+  Details Details = 7;
 }
 
 message DumpResp {
