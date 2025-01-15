@@ -25,6 +25,7 @@ message DetachResp {}
 
 message DumpReq {
   string Dir = 1;
+  bool Stream = 2;
 }
 
 message DumpResp {
@@ -34,6 +35,7 @@ message DumpResp {
 
 message RestoreReq {
   string Dir = 1;
+  bool Stream = 2;
 }
 
 message RestoreResp {
