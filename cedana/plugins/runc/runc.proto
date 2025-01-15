@@ -15,7 +15,9 @@ message Runc {
 
 message QueryReq {
   string Root = 1;
-  repeated string IDs = 2;
+  optional string Name = 2;
+  optional string SandboxName = 3;
+  optional string Namespace = 4;
 }
 
 message QueryResp {
