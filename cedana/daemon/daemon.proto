@@ -63,7 +63,7 @@ message DumpReq {
   string Dir = 1; // directory to dump to
   string Name = 2; // name of the dump
   string Compression = 3; // tar, gzip, lz4, none
-  bool Stream = 4;
+  int32 Stream = 4;
   string Type = 5;
   criu.criu_opts Criu = 6;
 
@@ -82,7 +82,7 @@ message DumpResp {
 
 message RestoreReq {
   string Path = 1; // compression is auto-detected
-  bool Stream = 2;
+  int32 Stream = 2;
   string Type = 3;
   criu.criu_opts Criu = 4;
   string Log = 5; // standard IO log file
