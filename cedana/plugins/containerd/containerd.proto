@@ -1,9 +1,11 @@
 syntax = "proto3";
 
+import "plugins/runc/runc.proto";
+
 package plugins.containerd;
 
 message Containerd {
-  string ID = 1;
+  plugins.runc.Runc Runc = 1;
   string Address = 2;
   string Image = 3;
   string Namespace = 4;
