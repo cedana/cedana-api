@@ -12,9 +12,9 @@ message Process {
   string WorkingDir = 3;
   repeated string Args = 4;
   repeated string Env = 5;
-  int32 UID = 6;
-  int32 GID = 7;
-  repeated int32 Groups = 8;
+  uint32 UID = 6;
+  uint32 GID = 7;
+  repeated uint32 Groups = 8;
 }
 
 message ProcessState {
@@ -57,7 +57,7 @@ message Connection {
   Addr Laddr = 4;
   Addr Raddr = 5;
   string Status = 6;
-  repeated int32 UIDs = 7;
+  repeated uint32 UIDs = 7;
   uint32 PID = 8;
 }
 
