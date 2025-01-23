@@ -26,6 +26,7 @@ message DetachResp {}
 message DumpReq {
   string Dir = 1;
   bool Stream = 2;
+  bool LeaveRunning = 3;
 }
 
 message DumpResp {
