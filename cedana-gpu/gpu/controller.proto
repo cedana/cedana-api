@@ -28,7 +28,11 @@ message DetachResp {}
 
 message FreezeReq {}
 
+message FreezeResp {}
+
 message UnfreezeReq {}
+
+message UnfreezeResp {}
 
 message DumpReq {
   string Dir = 1;
