@@ -10,6 +10,7 @@ import "daemon/process.proto";
 import "daemon/query.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
+import "plugins/k8s/k8s.proto";
 
 service Daemon {
   ///// C/R /////
@@ -188,4 +189,5 @@ message Details {
   // Plugin-specific job details:
   optional plugins.runc.Runc Runc = 3;
   optional plugins.containerd.Containerd Containerd = 4;
+  optional plugins.k8s.Pod Pod = 5;
 }
