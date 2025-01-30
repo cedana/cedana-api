@@ -26,6 +26,6 @@ message Container {
   // Can add more lower-level runtime details here
 }
 
-message pod {
+message Pod {
   string PodSpec = 1;
 }
