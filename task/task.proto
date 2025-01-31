@@ -678,6 +678,7 @@ message HostRestoreKataArgs {
   bool VMSnapshot = 1;
   string VMSocketPath = 2;
   string VMSnapshotPath = 3;
+  string SandboxID = 4;
 }
 
 message HostRestoreKataResp {
