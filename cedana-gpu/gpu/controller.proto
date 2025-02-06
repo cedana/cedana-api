@@ -8,6 +8,8 @@ service Controller {
   rpc Attach(AttachReq) returns (AttachResp) {}
   rpc Detach(DetachReq) returns (DetachResp) {}
 
+  rpc Freeze(FreezeReq) returns (FreezeResp) {}
+
   rpc Dump(DumpReq) returns (DumpResp) {}
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
@@ -23,6 +25,10 @@ message DetachReq {}
 
 message DetachResp {}
 
+message FreezeReq {}
+
+message FreezeResp {}
+
 message DumpReq {
   string Dir = 1;
   bool Stream = 2;
@@ -30,9 +36,7 @@ message DumpReq {
 }
 
 message DumpResp {
-  string MemPath = 1;
-  string CkptPath = 2;
-  int32 nvCOMPMaxSize = 3;
+  int32 nvCOMPMaxSize = 1;
 }
 
 message RestoreReq {
