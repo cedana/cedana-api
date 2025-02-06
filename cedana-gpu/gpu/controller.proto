@@ -32,11 +32,13 @@ message DumpReq {
 message DumpResp {
   string MemPath = 1;
   string CkptPath = 2;
+  int32 nvCOMPMaxSize = 3;
 }
 
 message RestoreReq {
   string Dir = 1;
   bool Stream = 2;
+  int32 nvCOMPMaxSize = 3;
 }
 
 message RestoreResp {
