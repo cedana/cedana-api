@@ -20,6 +20,10 @@ service Daemon {
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   // Attach to a process/container
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
+  // Dump a VM
+  rpc DumpVM(DUMPVMReq) returns (DumpVMResp) {}
+  // Restore a VM
+  rpc RestoreVM(RestoreVMReq) returns (RestoreVMResp) {}
 
   ///// JOBS /////
 
@@ -95,6 +99,47 @@ message RestoreResp {
   repeated string Messages = 1;
   uint32 PID = 2;
   ProcessState State = 3;
+}
+
+/////////////////////////
+/////// DUMP VM /////////
+/////////////////////////
+
+message DUMPVMReq {
+  string VmName = 1;
+  uint32 Port = 2;
+  string Dir = 3;
+  bool   VMSnapshot = 4;
+  string VMSocketPath = 5;
+}
+
+message DumpVMResp {
+  string TarDumpDir = 1;
+}
+
+/////////////////////////
+////// RESTORE VM ///////
+/////////////////////////
+
+message RestoreVMReq {
+  bool VMSnapshot = 1;
+  string VMSocketPath = 2;
+  string VMSnapshotPath = 3;
+  repeated RestoredNetConfig RestoredNetConfig = 4;
+}
+
+message SocketResp {
+    string socket_path = 1;
+}
+
+message RestoredNetConfig {
+    string ID = 1;
+    int64 NumFDs = 2;
+    repeated int64 Fds = 3;
+}
+
+message RestoreVMResp {
+  string State = 1;
 }
 
 /////////////////
