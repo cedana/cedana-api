@@ -8,6 +8,7 @@ import "daemon/health.proto";
 import "daemon/misc.proto";
 import "daemon/process.proto";
 import "daemon/query.proto";
+import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
 
