@@ -21,7 +21,7 @@ service Daemon {
   // Attach to a process/container
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
   // Dump a VM
-  rpc DumpVM(DUMPVMReq) returns (DumpVMResp) {}
+  rpc DumpVM(DumpVMReq) returns (DumpVMResp) {}
   // Restore a VM
   rpc RestoreVM(RestoreVMReq) returns (RestoreVMResp) {}
 
@@ -109,7 +109,7 @@ message RestoreResp {
 /////// DUMP VM /////////
 /////////////////////////
 
-message DUMPVMReq {
+message DumpVMReq {
   string VmName = 1;
   uint32 Port = 2;
   string Dir = 3;
