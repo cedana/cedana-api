@@ -116,6 +116,7 @@ message DumpVMReq {
   string Dir = 3;
   bool   VMSnapshot = 4;
   string VMSocketPath = 5;
+  string Type = 6;
 }
 
 message DumpVMResp {
