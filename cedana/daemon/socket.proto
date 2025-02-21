@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package daemon;
 
-message Empty {}
-
 message SocketResp {
     string socket_path = 1;
 }
