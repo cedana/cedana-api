@@ -57,7 +57,11 @@ service Daemon {
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
   // Reload plugins in the daemon. Call after installing/removing any plugins.
   rpc ReloadPlugins(Empty) returns (Empty) {}
+  // Create a unix socket
+  rpc CreateUnixSocket(Empty) returns (SocketResp);
 }
+
+
 
 ////////////////////////
 //////// DUMP //////////
