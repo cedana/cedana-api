@@ -132,10 +132,6 @@ message RestoreVMReq {
   repeated RestoredNetConfig RestoredNetConfig = 4;
 }
 
-message SocketResp {
-    string socket_path = 1;
-}
-
 message RestoredNetConfig {
     string ID = 1;
     int64 NumFDs = 2;
