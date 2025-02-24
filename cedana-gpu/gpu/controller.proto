@@ -8,6 +8,8 @@ service Controller {
   rpc Attach(AttachReq) returns (AttachResp) {}
   rpc Detach(DetachReq) returns (DetachResp) {}
 
+  rpc Freeze(FreezeReq) returns (FreezeResp) {}
+
   rpc Dump(DumpReq) returns (DumpResp) {}
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
@@ -23,16 +25,16 @@ message DetachReq {}
 
 message DetachResp {}
 
+message FreezeReq {}
+
+message FreezeResp {}
+
 message DumpReq {
   string Dir = 1;
   bool Stream = 2;
-  bool LeaveRunning = 3;
 }
 
-message DumpResp {
-  string MemPath = 1;
-  string CkptPath = 2;
-}
+message DumpResp {}
 
 message RestoreReq {
   string Dir = 1;
