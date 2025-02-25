@@ -5,6 +5,6 @@ package plugins.kata;
 message Kata {
   string Dir = 1;
   string VmType = 2;
-  string Port = 3;
+  uint32 Port = 3;
   string VmSocket = 4;
 }
