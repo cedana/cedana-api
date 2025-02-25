@@ -11,6 +11,7 @@ import "daemon/query.proto";
 import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
+import "plugins/kata/kata.proto";
 
 service Daemon {
   ///// C/R /////
@@ -235,4 +236,5 @@ message Details {
   // Plugin-specific job details:
   optional plugins.runc.Runc Runc = 3;
   optional plugins.containerd.Containerd Containerd = 4;
+  optional plugins.kata.Kata Kata = 5;
 }
