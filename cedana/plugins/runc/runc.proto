@@ -9,7 +9,8 @@ message Runc {
   bool NoPivot = 4;
   bool NoNewKeyring = 5;
   string WorkingDir = 6;
-  string SandboxPid = 7;
+  string ConsoleSocketPath = 7;
+  bool Detach = 8;
 }
 
 message QueryReq {
