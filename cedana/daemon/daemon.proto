@@ -112,12 +112,10 @@ message RestoreResp {
 /////////////////////////
 
 message DumpVMReq {
-  string VmName = 1;
-  uint32 Port = 2;
-  string Dir = 3;
-  bool   VMSnapshot = 4;
-  string VMSocketPath = 5;
-  string Type = 6;
+  string Dir = 1;
+  string Type = 2;
+
+  Details Details = 7;
 }
 
 message DumpVMResp {
