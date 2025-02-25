@@ -7,4 +7,5 @@ message Kata {
   string VmType = 2;
   uint32 Port = 3;
   string VmSocket = 4;
+  string VmID = 5;
 }
