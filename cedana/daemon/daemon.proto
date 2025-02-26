@@ -131,6 +131,7 @@ message RestoreVMReq {
   string VMSocketPath = 2;
   string VMSnapshotPath = 3;
   repeated RestoredNetConfig RestoredNetConfig = 4;
+  string Type = 5;
 }
 
 message RestoredNetConfig {
