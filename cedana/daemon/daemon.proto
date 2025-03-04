@@ -159,6 +159,7 @@ message ListResp {
 message KillReq {
   repeated string JIDs = 1;
   int32 Signal = 2;
+  uint32 PID = 3;
 }
 
 message KillResp {
