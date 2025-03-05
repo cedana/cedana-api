@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package plugins.kata;
+
+message Kata {
+  string Dir = 1;
+  string VmType = 2;
+  uint32 Port = 3;
+  string VmSocket = 4;
+  string VmID = 5;
+}
