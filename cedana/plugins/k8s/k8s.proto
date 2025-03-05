@@ -25,3 +25,7 @@ message Container {
   optional plugins.runc.Runc Runc = 6;
   // Can add more lower-level runtime details here
 }
+
+message Pod {
+  string PodSpec = 1;
+}
