@@ -90,6 +90,7 @@ message RestoreReq {
   bool Attachable = 6;
 
   Details Details = 7;
+  repeated string Env = 8;
 }
 
 message RestoreResp {
