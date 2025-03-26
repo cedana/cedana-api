@@ -76,7 +76,6 @@ message DumpResp {
   repeated string Messages = 1;
   string Path = 2;
   ProcessState State = 3;
-  int64 NvCOMPMaxSize = 4;
 }
 
 ////////////////////////
@@ -92,7 +91,6 @@ message RestoreReq {
   bool Attachable = 6;
 
   Details Details = 7;
-  int64 NvCOMPMaxSize = 8;
 }
 
 message RestoreResp {

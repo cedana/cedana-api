@@ -36,14 +36,11 @@ message DumpReq {
   bool UseNvCOMP = 4;
 }
 
-message DumpResp {
-  int32 nvCOMPMaxSize = 1;
-}
+message DumpResp {}
 
 message RestoreReq {
   string Dir = 1;
   bool Stream = 2;
-  int32 nvCOMPMaxSize = 3;
 }
 
 message RestoreResp {
