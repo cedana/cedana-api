@@ -100,6 +100,7 @@ message RestoreReq {
   bool Attachable = 6;
 
   Details Details = 7;
+  repeated string Env = 8;
 }
 
 message RestoreResp {
@@ -164,6 +165,7 @@ message RunReq {
   RunAction Action = 6;
 
   Details Details = 7;
+  repeated string Env = 8;
 }
 
 message RunResp {
