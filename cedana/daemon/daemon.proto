@@ -8,8 +8,10 @@ import "daemon/health.proto";
 import "daemon/misc.proto";
 import "daemon/process.proto";
 import "daemon/query.proto";
+import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
+import "plugins/kata/kata.proto";
 import "plugins/k8s/k8s.proto";
 
 service Daemon {
@@ -21,6 +23,10 @@ service Daemon {
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   // Attach to a process/container
   rpc Attach(stream AttachReq) returns (stream AttachResp) {}
+  // Dump a VM
+  rpc DumpVM(DumpVMReq) returns (DumpVMResp) {}
+  // Restore a VM
+  rpc RestoreVM(RestoreVMReq) returns (RestoreVMResp) {}
 
   ///// JOBS /////
 
@@ -54,7 +60,11 @@ service Daemon {
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
   // Reload plugins in the daemon. Call after installing/removing any plugins.
   rpc ReloadPlugins(Empty) returns (Empty) {}
+  // Create a unix socket
+  rpc CreateUnixSocket(Empty) returns (SocketResp);
 }
+
+
 
 ////////////////////////
 //////// DUMP //////////
@@ -97,6 +107,44 @@ message RestoreResp {
   repeated string Messages = 1;
   uint32 PID = 2;
   ProcessState State = 3;
+}
+
+/////////////////////////
+/////// DUMP VM /////////
+/////////////////////////
+
+message DumpVMReq {
+  string Dir = 1;
+  string Type = 2;
+
+  Details Details = 7;
+}
+
+message DumpVMResp {
+  string TarDumpDir = 1;
+}
+
+/////////////////////////
+////// RESTORE VM ///////
+/////////////////////////
+
+message RestoreVMReq {
+  bool VMSnapshot = 1;
+  string VMSocketPath = 2;
+  string VMSnapshotPath = 3;
+  repeated RestoredNetConfig RestoredNetConfig = 4;
+  string Type = 5;
+  repeated string RequestIDs = 6;
+}
+
+message RestoredNetConfig {
+    string ID = 1;
+    int64 NumFDs = 2;
+    repeated int64 Fds = 3;
+}
+
+message RestoreVMResp {
+  string State = 1;
 }
 
 /////////////////
@@ -192,4 +240,5 @@ message Details {
   optional plugins.runc.Runc Runc = 3;
   optional plugins.containerd.Containerd Containerd = 4;
   optional plugins.k8s.Pod Pod = 5;
+  optional plugins.kata.Kata Kata = 6;
 }
