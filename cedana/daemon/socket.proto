@@ -3,5 +3,5 @@ syntax = "proto3";
 package daemon;
 
 message SocketResp {
-    string socket_path = 1;
+    string SocketPath = 1;
 }
