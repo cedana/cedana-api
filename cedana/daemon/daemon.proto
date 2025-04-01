@@ -99,8 +99,12 @@ message RestoreReq {
   string Log = 5; // standard IO log file
   bool Attachable = 6;
 
-  Details Details = 7;
-  repeated string Env = 8;
+  uint32 UID = 7;
+  uint32 GID = 8;
+  repeated uint32 Groups = 9;
+  repeated string Env = 10;
+
+  Details Details = 11;
 }
 
 message RestoreResp {
