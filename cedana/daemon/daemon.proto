@@ -164,8 +164,8 @@ message RunReq {
   bool Attachable = 5;
   RunAction Action = 6;
 
-  repeated uint32 UIDs = 7;
-  repeated uint32 GIDs = 8;
+  uint32 UID = 7;
+  uint32 GID = 8;
   repeated uint32 Groups = 9;
   repeated string Env = 10;
 
