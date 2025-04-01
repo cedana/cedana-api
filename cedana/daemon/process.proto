@@ -30,12 +30,9 @@ message ProcessState {
 
   Host Host = 11;
 
-  repeated uint32 UIDs = 12;
-  repeated uint32 GIDs = 13;
-  repeated uint32 Groups = 14;
-  uint32 SID = 15; // session ID
+  uint32 SID = 12; // session ID
 
-  bool GPUEnabled = 16;
+  bool GPUEnabled = 13;
 }
 
 message File {
