@@ -11,9 +11,6 @@ message Process {
   string Path = 2;
   string WorkingDir = 3;
   repeated string Args = 4;
-  uint32 UID = 6;
-  uint32 GID = 7;
-  repeated uint32 Groups = 8;
 }
 
 message ProcessState {
