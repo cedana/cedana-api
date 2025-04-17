@@ -250,5 +250,5 @@ message Details {
   optional plugins.containerd.Containerd Containerd = 4;
   optional plugins.k8s.Pod Pod = 5;
   optional plugins.kata.Kata Kata = 6;
-  optional plugins.vm.vm Vm = 7;
+  optional plugins.vm.Vm Vm = 7;
 }
