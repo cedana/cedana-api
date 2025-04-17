@@ -13,6 +13,7 @@ import "plugins/containerd/containerd.proto";
 import "plugins/runc/runc.proto";
 import "plugins/kata/kata.proto";
 import "plugins/k8s/k8s.proto";
+import "plugins/vm/vm.proto";
 
 service Daemon {
   ///// C/R /////
@@ -249,4 +250,5 @@ message Details {
   optional plugins.containerd.Containerd Containerd = 4;
   optional plugins.k8s.Pod Pod = 5;
   optional plugins.kata.Kata Kata = 6;
+  optional plugins.vm.vm Vm = 7;
 }
