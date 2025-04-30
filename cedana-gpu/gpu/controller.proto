@@ -9,6 +9,7 @@ service Controller {
   rpc Detach(DetachReq) returns (DetachResp) {}
 
   rpc Freeze(FreezeReq) returns (FreezeResp) {}
+  rpc Unfreeze(UnfreezeReq) returns (UnfreezeResp) {}
 
   rpc Dump(DumpReq) returns (DumpResp) {}
   rpc Restore(RestoreReq) returns (RestoreResp) {}
@@ -28,6 +29,10 @@ message DetachResp {}
 message FreezeReq {}
 
 message FreezeResp {}
+
+message UnfreezeReq {}
+
+message UnfreezeResp {}
 
 message DumpReq {
   string Dir = 1;
