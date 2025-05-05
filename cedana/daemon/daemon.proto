@@ -249,4 +249,7 @@ message Details {
   optional plugins.containerd.Containerd Containerd = 4;
   optional plugins.k8s.Pod Pod = 5;
   optional plugins.kata.Kata Kata = 6;
+
+  // Other
+  optional string GPUFreezeType = 7; // IPC or NCCL
 }
