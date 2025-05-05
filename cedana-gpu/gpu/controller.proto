@@ -26,7 +26,14 @@ message DetachReq {}
 
 message DetachResp {}
 
-message FreezeReq {}
+enum FreezeType {
+  FREEZE_TYPE_IPC = 0;
+  FREEZE_TYPE_NCCL = 1;
+}
+
+message FreezeReq {
+  FreezeType Type = 1;
+}
 
 message FreezeResp {}
 
