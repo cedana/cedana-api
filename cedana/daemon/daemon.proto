@@ -76,9 +76,10 @@ message DumpReq {
   string Compression = 3; // tar, gzip, lz4, none
   int32 Stream = 4;
   string Type = 5;
-  criu.criu_opts Criu = 6;
+  string GPUFreezeType = 6; // IPC or NCCL
+  criu.criu_opts Criu = 7;
 
-  Details Details = 7;
+  Details Details = 8;
 }
 
 message DumpResp {
