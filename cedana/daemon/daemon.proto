@@ -94,18 +94,19 @@ message DumpResp {
 
 message RestoreReq {
   string Path = 1; // compression is auto-detected
-  int32 Stream = 2;
-  string Type = 3;
-  criu.criu_opts Criu = 4;
-  string Log = 5; // standard IO log file
-  bool Attachable = 6;
+  string PidFile = 2; // file to write the PID to
+  int32 Stream = 3;
+  string Type = 4;
+  criu.criu_opts Criu = 5;
+  string Log = 6; // standard IO log file
+  bool Attachable = 7;
 
-  uint32 UID = 7;
-  uint32 GID = 8;
-  repeated uint32 Groups = 9;
-  repeated string Env = 10;
+  uint32 UID = 8;
+  uint32 GID = 9;
+  repeated uint32 Groups = 10;
+  repeated string Env = 11;
 
-  Details Details = 11;
+  Details Details = 12;
 }
 
 message RestoreResp {
@@ -163,18 +164,19 @@ enum RunAction {
 
 message RunReq {
   string JID = 1;
-  bool GPUEnabled = 2;
-  string Type = 3;
-  string Log = 4;
-  bool Attachable = 5;
-  RunAction Action = 6;
+  string PidFile = 2; // file to write the PID to
+  bool GPUEnabled = 3;
+  string Type = 4;
+  string Log = 5;
+  bool Attachable = 6;
+  RunAction Action = 7;
 
-  uint32 UID = 7;
-  uint32 GID = 8;
-  repeated uint32 Groups = 9;
-  repeated string Env = 10;
+  uint32 UID = 8;
+  uint32 GID = 9;
+  repeated uint32 Groups = 10;
+  repeated string Env = 11;
 
-  Details Details = 11;
+  Details Details = 12;
 }
 
 message RunResp {
