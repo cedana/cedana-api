@@ -160,6 +160,7 @@ message RestoreVMResp {
 enum RunAction {
   START_NEW = 0; // Start a new job
   MANAGE_EXISTING = 1; // Manage an existing job
+  MANAGE_UPCOMING = 2; // Manage an upcoming job
 }
 
 message RunReq {
