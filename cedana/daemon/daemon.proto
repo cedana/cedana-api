@@ -85,6 +85,7 @@ message DumpResp {
   repeated string Messages = 1;
   string Path = 2;
   ProcessState State = 3;
+
   optional string Id = 4;
 }
 
