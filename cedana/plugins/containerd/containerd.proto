@@ -8,4 +8,6 @@ message Containerd {
   string Image = 3;
   string Namespace = 4;
   bool RootfsOnly = 5;
+  string Username = 6;
+  string Secret = 7;
 }
