@@ -17,7 +17,7 @@ service Controller {
 }
 
 message AttachReq {
-  string JID = 1;
+  uint32 PID = 1; // PID to attach to
 }
 
 message AttachResp {}
