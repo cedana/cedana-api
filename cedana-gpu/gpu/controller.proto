@@ -5,9 +5,6 @@ package gpu;
 import "gpu/health.proto";
 
 service Controller {
-  rpc Attach(AttachReq) returns (AttachResp) {}
-  rpc Detach(DetachReq) returns (DetachResp) {}
-
   rpc Freeze(FreezeReq) returns (FreezeResp) {}
   rpc Unfreeze(UnfreezeReq) returns (UnfreezeResp) {}
 
@@ -15,16 +12,6 @@ service Controller {
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
 }
-
-message AttachReq {
-  uint32 PID = 1; // PID to attach to
-}
-
-message AttachResp {}
-
-message DetachReq {}
-
-message DetachResp {}
 
 enum FreezeType {
   FREEZE_TYPE_IPC = 0;
