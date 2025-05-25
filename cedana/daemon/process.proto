@@ -33,6 +33,7 @@ message ProcessState {
   uint32 SID = 15; // session ID
 
   bool GPUEnabled = 16;
+  string GPUID = 17; // GPU controller ID
 }
 
 message File {
