@@ -34,6 +34,7 @@ message ProcessState {
 
   bool GPUEnabled = 16;
   string GPUID = 17; // GPU controller ID
+  string GPUMultiprocessType = 18; // GPU multiprocess type 
 }
 
 message File {
