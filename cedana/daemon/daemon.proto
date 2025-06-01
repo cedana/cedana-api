@@ -9,7 +9,6 @@ import "daemon/misc.proto";
 import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
-import "gpu/controller.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/k8s/k8s.proto";
 import "plugins/kata/kata.proto";
@@ -78,7 +77,7 @@ message DumpReq {
   int32 Stream = 5; // parallelism for streaming dumps, 0 for no streaming
   string Type = 6; // type of the dump, e.g., runc, containerd, kata
   criu.criu_opts Criu = 7; // CRIU overrides for the dump
-  gpu.FreezeType GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
+  string GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
 }
 
 message DumpResp {
