@@ -9,6 +9,7 @@ import "daemon/misc.proto";
 import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
+import "gpu/controller.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/k8s/k8s.proto";
 import "plugins/kata/kata.proto";
@@ -77,6 +78,7 @@ message DumpReq {
   int32 Stream = 5; // parallelism for streaming dumps, 0 for no streaming
   string Type = 6; // type of the dump, e.g., runc, containerd, kata
   criu.criu_opts Criu = 7; // CRIU overrides for the dump
+  gpu.FreezeType GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
 }
 
 message DumpResp {
@@ -166,16 +168,15 @@ message RunReq {
   string JID = 2; // job ID, if empty a new one will be generated
   string PidFile = 3; // file to write the PID to
   bool GPUEnabled = 4; // whether the job requires GPU support
-  string GPUMultiprocessType = 5; // GPU Multi-process Type
-  string Type = 6; // type of the job, e.g., runc, containerd, kata
-  string Log = 7; // standard IO log file
-  bool Attachable = 8; // whether to run the job with attachable standard IO
-  RunAction Action = 9; // action to use for the job
+  string Type = 5; // type of the job, e.g., runc, containerd, kata
+  string Log = 6; // standard IO log file
+  bool Attachable = 7; // whether to run the job with attachable standard IO
+  RunAction Action = 8; // action to use for the job
 
-  uint32 UID = 10; // user ID of the calling process
-  uint32 GID = 11; // group ID of the calling process
-  repeated uint32 Groups = 12; // groups of the calling process
-  repeated string Env = 13; // environment variables of the calling process
+  uint32 UID = 9; // user ID of the calling process
+  uint32 GID = 10; // group ID of the calling process
+  repeated uint32 Groups = 11; // groups of the calling process
+  repeated string Env = 12; // environment variables of the calling process
 }
 
 message RunResp {
