@@ -71,5 +71,5 @@ message InfoReq {}
 message InfoResp {
   uint32 AttachedPID = 1; // PID of the process that is attached to the controller, 0 if none attached
   string ShmSize = 2; // Size of the shared memory segment used for IPC
-  string ShmPath = 3; // Path to the shared memory file used for IPC
+  string ShmName = 3; // Name of the shared memory segment used for IPC
 }
