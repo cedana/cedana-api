@@ -69,7 +69,9 @@ message RestoreStats {
 message InfoReq {}
 
 message InfoResp {
-  uint32 AttachedPID = 1; // PID of the process that is attached to the controller, 0 if none attached
-  uint64 ShmSize = 2; // Size of the shared memory segment used for IPC
-  string ShmName = 3; // Name of the shared memory segment used for IPC
+  uint32 PID = 1; // PID of the controller process
+  uint32 AttachedPID = 2; // PID of the process that is attached to the controller, 0 if none attached
+  uint64 ShmSize = 3; // Size of the shared memory segment used for IPC
+  string ShmName = 4; // Name of the shared memory segment used for IPC
+  string Version = 5; // Version of the controller
 }
