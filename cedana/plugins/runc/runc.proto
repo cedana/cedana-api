@@ -12,7 +12,7 @@ message Runc {
   string ConsoleSocket = 7;
   bool Detach = 8;
   string PidFile = 9;
-  bool Rootless = 10;
+  string Rootless = 10;
   bool SystemdCgroup = 11;
   bool NoSubreaper = 12;
   int32 PreserveFDs = 13;
