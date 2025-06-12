@@ -74,7 +74,7 @@ message DumpReq {
   string Dir = 2; // directory to dump to
   string Name = 3; // name of the dump
   string Compression = 4; // tar, gzip, lz4, none
-  int32 Stream = 5; // parallelism for streaming dumps, 0 for no streaming
+  int32 Streams = 5; // number of parallel streams for dumping, 0 for no streaming
   string Type = 6; // type of the dump, e.g., runc, containerd, kata
   criu.criu_opts Criu = 7; // CRIU overrides for the dump
   string GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
@@ -95,16 +95,15 @@ message RestoreReq {
 
   string Path = 2; // compression is auto-detected
   string PidFile = 3; // file to write the PID to
-  int32 Stream = 4; // parallelism for streaming restores, 0 for no streaming
-  string Type = 5; // type of the restore, e.g., runc, containerd, kata
-  criu.criu_opts Criu = 6;
-  string Log = 7; // standard IO log file
-  bool Attachable = 8; // whether to restore with attachable standard IO
+  string Type = 4; // type of the restore, e.g., runc, containerd, kata
+  criu.criu_opts Criu = 5;
+  string Log = 6; // standard IO log file
+  bool Attachable = 7; // whether to restore with attachable standard IO
 
-  uint32 UID = 9; // user ID of calling process
-  uint32 GID = 10; // group ID of calling process
-  repeated uint32 Groups = 11; // groups of the calling process
-  repeated string Env = 12; // environment variables of the calling process
+  uint32 UID = 8; // user ID of calling process
+  uint32 GID = 9; // group ID of calling process
+  repeated uint32 Groups = 10; // groups of the calling process
+  repeated string Env = 11; // environment variables of the calling process
 }
 
 message RestoreResp {
