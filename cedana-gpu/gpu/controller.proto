@@ -5,9 +5,6 @@ package gpu;
 import "gpu/health.proto";
 
 service Controller {
-  rpc Attach(AttachReq) returns (AttachResp) {}
-  rpc Detach(DetachReq) returns (DetachResp) {}
-
   rpc Freeze(FreezeReq) returns (FreezeResp) {}
   rpc Unfreeze(UnfreezeReq) returns (UnfreezeResp) {}
 
@@ -16,17 +13,16 @@ service Controller {
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
 
   rpc Info(InfoReq) returns (InfoResp) {}
+
+  // Only use if forcefully attaching to a PID, so that the Info RPC will return this PID.
+  rpc Attach(AttachReq) returns (AttachResp) {}
 }
 
 message AttachReq {
-  string JID = 1;
+  uint32 PID = 1; // PID of the process to forcefully attach to the controller
 }
 
 message AttachResp {}
-
-message DetachReq {}
-
-message DetachResp {}
 
 enum FreezeType {
   FREEZE_TYPE_IPC = 0;
