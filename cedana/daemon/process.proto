@@ -34,6 +34,8 @@ message ProcessState {
 
   bool GPUEnabled = 16;
   string GPUID = 17; // GPU controller ID
+
+  repeated ProcessState Children = 18; // child processes
 }
 
 message File {
