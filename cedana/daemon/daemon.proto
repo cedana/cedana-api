@@ -2,17 +2,17 @@ syntax = "proto3";
 
 package daemon;
 
-import "criu/criu.proto";
-import "daemon/checkpoint.proto";
-import "daemon/health.proto";
-import "daemon/misc.proto";
-import "daemon/process.proto";
-import "daemon/query.proto";
-import "daemon/socket.proto";
-import "plugins/containerd/containerd.proto";
-import "plugins/k8s/k8s.proto";
-import "plugins/kata/kata.proto";
-import "plugins/runc/runc.proto";
+import "criu/criu/criu.proto";
+import "cedana/daemon/checkpoint.proto";
+import "cedana/daemon/health.proto";
+import "cedana/daemon/misc.proto";
+import "cedana/daemon/process.proto";
+import "cedana/daemon/query.proto";
+import "cedana/daemon/socket.proto";
+import "cedana/plugins/containerd/containerd.proto";
+import "cedana/plugins/k8s/k8s.proto";
+import "cedana/plugins/kata/kata.proto";
+import "cedana/plugins/runc/runc.proto";
 
 service Daemon {
   ///// C/R /////

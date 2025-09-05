@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package plugins.k8s;
 
-import "plugins/runc/runc.proto";
+import "cedana/plugins/runc/runc.proto";
 
 message QueryReq {
   string Root = 1;
