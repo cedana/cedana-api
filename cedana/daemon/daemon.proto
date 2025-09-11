@@ -248,6 +248,6 @@ message Details {
   // Plugin-specific job details:
   optional plugins.runc.Runc Runc = 3; // runc plugin details
   optional plugins.containerd.Containerd Containerd = 4; // containerd plugin details
-  optional plugins.k8s.Pod Pod = 5; // kubernetes pod details
+  optional plugins.k8s.Sandbox K8s = 5; // kubernetes sandbox (pod) details
   optional plugins.kata.Kata Kata = 6; // kata containers plugin details
 }
