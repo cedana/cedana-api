@@ -5,9 +5,13 @@ package plugins.containerd;
 message Containerd {
   string ID = 1;
   string Address = 2;
-  string Image = 3;
-  string Namespace = 4;
+  string Namespace = 3;
+  Image Image = 4;
   bool RootfsOnly = 5;
-  string Username = 6;
-  string Secret = 7;
+}
+
+message Image {
+  string Name = 1;
+  string Username = 2;
+  string Secret = 3;
 }

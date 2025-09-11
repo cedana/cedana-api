@@ -2,12 +2,17 @@ syntax = "proto3";
 
 package plugins.k8s;
 
-import "plugins/runc/runc.proto";
+import "plugins/runc/containerd.proto";
 
-message Sandbox {
-  string Name = 1;
-  string Namespace = 2;
-  string Root = 3;
+message K8s {
+  string SandboxID = 1;
+  string SandboxName = 2;
+  string SandboxNamespace = 3;
+  string SandboxUID = 4;
+  Image Image = 5;
+  bool RootfsOnly = 6;
+
+  optional plugins.runc.Runc Runc = 7;
 }
 
 message QueryReq {
@@ -18,16 +23,11 @@ message QueryReq {
 }
 
 message QueryResp {
-  repeated Container Containers = 1;
+  repeated K8s Containers = 1;
 }
 
-message Container {
-  string SandboxID = 1;
-  string SandboxName = 2;
-  string SandboxNamespace = 3;
-  string SandboxUID = 4;
-  string Image = 5;
-
-  optional plugins.runc.Runc Runc = 6;
-  // Can add more lower-level runtime details here
+message Image {
+  string Name = 1;
+  string Username = 2;
+  string Secret = 3;
 }
