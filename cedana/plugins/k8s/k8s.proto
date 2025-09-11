@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package plugins.k8s;
 
-import "plugins/runc/runc.proto";
+import "plugins/containerd/containerd.proto";
 
 message Pod {
   string ID = 1;
@@ -10,17 +10,10 @@ message Pod {
   string Namespace = 3;
   string UID = 4;
   string Root = 5;
-  Image Image = 6;
-  bool RootfsOnly = 7;
+  bool RootfsOnly = 6;
 
-  repeated plugins.runc.Runc Runc = 8;
-  // Can add additional lower-level runtimes here
-}
-
-message Image {
-  string Name = 1;
-  string Username = 2;
-  string Secret = 3;
+  repeated plugins.containerd.Containerd Containerd = 7;
+  // Can add additional runtimes here
 }
 
 message QueryReq {
