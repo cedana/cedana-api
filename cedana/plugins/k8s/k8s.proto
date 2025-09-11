@@ -4,30 +4,31 @@ package plugins.k8s;
 
 import "plugins/runc/runc.proto";
 
-message K8s {
-  string SandboxID = 1;
-  string SandboxName = 2;
-  string SandboxNamespace = 3;
-  string SandboxUID = 4;
-  Image Image = 5;
-  bool RootfsOnly = 6;
+message Pod {
+  string ID = 1;
+  string Name = 2;
+  string Namespace = 3;
+  string UID = 4;
+  string Root = 5;
+  Image Image = 6;
+  bool RootfsOnly = 7;
 
-  optional plugins.runc.Runc Runc = 7;
-}
-
-message QueryReq {
-  string Root = 1;
-  string Namespace = 2;
-  repeated string ContainerNames = 3;
-  repeated string SandboxNames = 4;
-}
-
-message QueryResp {
-  repeated K8s Containers = 1;
+  repeated plugins.runc.Runc Runc = 8;
+  // Can add additional lower-level runtimes here
 }
 
 message Image {
   string Name = 1;
   string Username = 2;
   string Secret = 3;
+}
+
+message QueryReq {
+  string Root = 1;
+  string Namespace = 2;
+  repeated string Names = 3;
+}
+
+message QueryResp {
+  repeated Pod Pods = 1;
 }
