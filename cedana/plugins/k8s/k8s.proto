@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package plugins.k8s;
 
+import "plugins/runc/runc.proto";
+
 message K8s {
   string SandboxID = 1;
   string SandboxName = 2;
