@@ -87,7 +87,7 @@ message DumpReq {
 message DumpResp {
   repeated string Messages = 1; // messages from the dump
   repeated string Paths = 2; // path to the dump file(s)
-  ProcessState States = 3; // state of the process(es) during the dump
+  ProcessState State = 3; // state of the process(es) during the dump
 }
 
 ////////////////////////
