@@ -19,6 +19,10 @@ service Daemon {
 
   // Dump a process/container/job
   rpc Dump(DumpReq) returns (DumpResp) {}
+  // Freeze a process/container/job
+  rpc Freeze(FreezeReq) returns (FreezeResp) {}
+  // Unfreeze a process/container/job
+  rpc Unfreeze(UnfreezeReq) returns (UnfreezeResp) {}
   // Restore a process/container/job
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   // Attach to a process/container
@@ -84,6 +88,35 @@ message DumpResp {
   repeated string Messages = 1; // messages from the dump
   repeated string Paths = 2; // path to the dump file(s)
   ProcessState States = 3; // state of the process(es) during the dump
+}
+
+////////////////////////
+//////// FREEZE ////////
+////////////////////////
+
+message FreezeReq {
+  Details Details = 1; // details about the job, process, or container to freeze
+
+  string Type = 2; // type of the freeze, e.g., runc, containerd, kata
+  string GPUFreezeType = 3; // type of GPU freeze to use, e.g., IPC, NCCL
+}
+
+message FreezeResp {
+  repeated string Messages = 1; // messages from the freeze
+}
+
+//////////////////////////
+//////// UNFREEZE ////////
+//////////////////////////
+
+message UnfreezeReq {
+  Details Details = 1; // details about the job, process, or container to unfreeze
+
+  string Type = 2; // type of the unfreeze, e.g., runc, containerd, kata
+}
+
+message UnfreezeResp {
+  repeated string Messages = 1; // messages from the unfreeze
 }
 
 ////////////////////////
