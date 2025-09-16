@@ -10,7 +10,6 @@ import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
-import "plugins/k8s/k8s.proto";
 import "plugins/kata/kata.proto";
 import "plugins/runc/runc.proto";
 
