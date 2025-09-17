@@ -21,6 +21,7 @@ message Container {
   string SandboxNamespace = 3;
   string SandboxUID = 4;
   string Image = 5;
+  string Name = 7;
 
   optional plugins.runc.Runc Runc = 6;
   // Can add more lower-level runtime details here
