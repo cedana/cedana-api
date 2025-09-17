@@ -19,7 +19,8 @@ message Pod {
 message QueryReq {
   string Root = 1;
   string Namespace = 2;
-  repeated string Names = 3;
+  string ContainerType = 3; // "container" or "sandbox"
+  repeated string Names = 4;
 }
 
 message QueryResp {
