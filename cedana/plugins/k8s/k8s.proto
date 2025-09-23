@@ -2,31 +2,27 @@ syntax = "proto3";
 
 package plugins.k8s;
 
-import "plugins/runc/runc.proto";
+import "plugins/containerd/containerd.proto";
+
+message Pod {
+  string ID = 1;
+  string Name = 2;
+  string Namespace = 3;
+  string UID = 4;
+  string Root = 5;
+  bool RootfsOnly = 6;
+
+  repeated plugins.containerd.Containerd Containerd = 7;
+  // Can add additional high-level runtimes here
+}
 
 message QueryReq {
   string Root = 1;
   string Namespace = 2;
-  repeated string ContainerNames = 3;
-  repeated string SandboxNames = 4;
+  string ContainerType = 3; // "container" or "sandbox"
+  repeated string Names = 4;
 }
 
 message QueryResp {
-  repeated Container Containers = 1;
-}
-
-message Container {
-  string SandboxID = 1;
-  string SandboxName = 2;
-  string SandboxNamespace = 3;
-  string SandboxUID = 4;
-  string Image = 5;
-  string Name = 7;
-
-  optional plugins.runc.Runc Runc = 6;
-  // Can add more lower-level runtime details here
-}
-
-message Pod {
-  string PodSpec = 1;
+  repeated Pod Pods = 1;
 }
