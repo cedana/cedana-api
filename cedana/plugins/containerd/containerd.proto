@@ -2,12 +2,17 @@ syntax = "proto3";
 
 package plugins.containerd;
 
+import "plugins/runc/runc.proto";
+
 message Containerd {
   string ID = 1;
   string Address = 2;
   string Namespace = 3;
   Image Image = 4;
   bool RootfsOnly = 5;
+
+  optional plugins.runc.Runc Runc = 6;
+  // Can add additional low-level runtimes here
 }
 
 message Image {

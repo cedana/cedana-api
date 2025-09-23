@@ -13,7 +13,7 @@ message Pod {
   bool RootfsOnly = 6;
 
   repeated plugins.containerd.Containerd Containerd = 7;
-  // Can add additional runtimes here
+  // Can add additional high-level runtimes here
 }
 
 message QueryReq {
