@@ -10,15 +10,18 @@ import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
-import "plugins/runc/runc.proto";
 import "plugins/kata/kata.proto";
-import "plugins/k8s/k8s.proto";
+import "plugins/runc/runc.proto";
 
 service Daemon {
   ///// C/R /////
 
   // Dump a process/container/job
   rpc Dump(DumpReq) returns (DumpResp) {}
+  // Freeze a process/container/job
+  rpc Freeze(DumpReq) returns (DumpResp) {}
+  // Unfreeze a process/container/job
+  rpc Unfreeze(DumpReq) returns (DumpResp) {}
   // Restore a process/container/job
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   // Attach to a process/container
@@ -64,30 +67,26 @@ service Daemon {
   rpc CreateUnixSocket(Empty) returns (SocketResp);
 }
 
-
-
 ////////////////////////
 //////// DUMP //////////
 ////////////////////////
 
 message DumpReq {
-  string Dir = 1; // directory to dump to
-  string Name = 2; // name of the dump
-  string Compression = 3; // tar, gzip, lz4, none
-  int32 Stream = 4;
-  string Type = 5;
-  string GPUFreezeType = 6; // IPC or NCCL
-  criu.criu_opts Criu = 7;
+  Details Details = 1; // details about the job, process, or container to dump
 
-  Details Details = 8;
+  string Dir = 2; // directory to dump to
+  string Name = 3; // name of the dump
+  string Compression = 4; // tar, gzip, lz4, none
+  int32 Streams = 5; // number of parallel streams for dumping, 0 for no streaming
+  string Type = 6; // type of the dump, e.g., runc, containerd, kata
+  criu.criu_opts Criu = 7; // CRIU overrides for the dump
+  string GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
 }
 
 message DumpResp {
-  repeated string Messages = 1;
-  string Path = 2;
-  ProcessState State = 3;
-
-  optional string Id = 4;
+  repeated string Messages = 1; // messages from the dump
+  repeated string Paths = 2; // path to the dump file(s)
+  ProcessState State = 3; // state of the process(es) during the dump
 }
 
 ////////////////////////
@@ -95,26 +94,25 @@ message DumpResp {
 ////////////////////////
 
 message RestoreReq {
-  string Path = 1; // compression is auto-detected
-  string PidFile = 2; // file to write the PID to
-  int32 Stream = 3;
-  string Type = 4;
+  Details Details = 1; // details about the job, process, or container to restore
+
+  string Path = 2; // compression is auto-detected
+  string PidFile = 3; // file to write the PID to
+  string Type = 4; // type of the restore, e.g., runc, containerd, kata
   criu.criu_opts Criu = 5;
   string Log = 6; // standard IO log file
-  bool Attachable = 7;
+  bool Attachable = 7; // whether to restore with attachable standard IO
 
-  uint32 UID = 8;
-  uint32 GID = 9;
-  repeated uint32 Groups = 10;
-  repeated string Env = 11;
-
-  Details Details = 12;
+  uint32 UID = 8; // user ID of calling process
+  uint32 GID = 9; // group ID of calling process
+  repeated uint32 Groups = 10; // groups of the calling process
+  repeated string Env = 11; // environment variables of the calling process
 }
 
 message RestoreResp {
-  repeated string Messages = 1;
-  uint32 PID = 2;
-  ProcessState State = 3;
+  repeated string Messages = 1; // messages from the restore
+  uint32 PID = 2; // PID of the restored process
+  ProcessState State = 3; // state of the process after restore
 }
 
 /////////////////////////
@@ -122,14 +120,14 @@ message RestoreResp {
 /////////////////////////
 
 message DumpVMReq {
-  string Dir = 1;
-  string Type = 2;
+  Details Details = 1; // details about the VM to dump
 
-  Details Details = 7;
+  string Dir = 2; // directory to dump the VM to
+  string Type = 3; // type of the VM, e.g., qemu, kvm
 }
 
 message DumpVMResp {
-  string TarDumpDir = 1;
+  string TarDumpDir = 1; // directory where the VM dump is stored
 }
 
 /////////////////////////
@@ -137,18 +135,18 @@ message DumpVMResp {
 /////////////////////////
 
 message RestoreVMReq {
-  bool VMSnapshot = 1;
-  string VMSocketPath = 2;
-  string VMSnapshotPath = 3;
+  bool VMSnapshot = 1; // whether to restore a VM snapshot
+  string VMSocketPath = 2; // path to the VM socket
+  string VMSnapshotPath = 3; // path to the VM snapshot
   repeated RestoredNetConfig RestoredNetConfig = 4;
-  string Type = 5;
+  string Type = 5; // type of the VM, e.g., clh
   repeated string RequestIDs = 6;
 }
 
 message RestoredNetConfig {
-    string ID = 1;
-    int64 NumFDs = 2;
-    repeated int64 Fds = 3;
+  string ID = 1; // ID of the network configuration
+  int64 NumFDs = 2;
+  repeated int64 Fds = 3;
 }
 
 message RestoreVMResp {
@@ -160,46 +158,46 @@ message RestoreVMResp {
 /////////////////
 
 enum RunAction {
-  START_NEW = 0; // Start a new job
-  MANAGE_EXISTING = 1; // Manage an existing job
-  MANAGE_UPCOMING = 2; // Manage an upcoming job
+  START_NEW = 0; // start a new job
+  MANAGE_EXISTING = 1; // manage an existing job
+  MANAGE_UPCOMING = 2; // manage an upcoming job
 }
 
 message RunReq {
-  string JID = 1;
-  string PidFile = 2; // file to write the PID to
-  bool GPUEnabled = 3;
-  string Type = 4;
-  string Log = 5;
-  bool Attachable = 6;
-  RunAction Action = 7;
+  Details Details = 1;
 
-  uint32 UID = 8;
-  uint32 GID = 9;
-  repeated uint32 Groups = 10;
-  repeated string Env = 11;
+  string JID = 2; // job ID, if empty a new one will be generated
+  string PidFile = 3; // file to write the PID to
+  bool GPUEnabled = 4; // whether the job requires GPU support
+  string Type = 5; // type of the job, e.g., runc, containerd, kata
+  string Log = 6; // standard IO log file
+  bool Attachable = 7; // whether to run the job with attachable standard IO
+  RunAction Action = 8; // action to use for the job
 
-  Details Details = 12;
+  uint32 UID = 9; // user ID of the calling process
+  uint32 GID = 10; // group ID of the calling process
+  repeated uint32 Groups = 11; // groups of the calling process
+  repeated string Env = 12; // environment variables of the calling process
 }
 
 message RunResp {
-  repeated string Messages = 1;
-  uint32 PID = 2;
+  repeated string Messages = 1; // messages from the run operation
+  uint32 PID = 2; // PID of the started or managed process
 }
 
 message AttachReq {
-  uint32 PID = 1;
+  uint32 PID = 1; // PID of the process to attach to
   oneof Input {
-    bytes Stdin = 2;
-    int32 Signal = 3;
+    bytes Stdin = 2; // standard input bytes
+    int32 Signal = 3; // signal to send to the process
   }
 }
 
 message AttachResp {
   oneof Output {
-    bytes Stdout = 1;
-    bytes Stderr = 2;
-    int32 ExitCode = 3;
+    bytes Stdout = 1; // standard output bytes
+    bytes Stderr = 2; // standard error bytes
+    int32 ExitCode = 3; // exit code of the process
   }
 }
 
@@ -212,8 +210,8 @@ message GetResp {
 }
 
 message ListReq {
-  bool Remote = 1; // Include jobs from remote hosts
-  repeated string JIDs = 2;
+  bool Remote = 1; // include jobs from remote hosts
+  repeated string JIDs = 2; // list specific jobs by JID
 }
 
 message ListResp {
@@ -221,38 +219,37 @@ message ListResp {
 }
 
 message KillReq {
-  repeated string JIDs = 1;
-  int32 Signal = 2;
+  repeated string JIDs = 1; // JIDs of the jobs to kill
+  int32 Signal = 2; // signal to send to the jobs
 }
 
 message KillResp {
-  repeated string Messages = 1;
+  repeated string Messages = 1; // messages from the kill operation
 }
 
 message DeleteReq {
-  repeated string JIDs = 1;
+  repeated string JIDs = 1; // JIDs of the jobs to delete
 }
 
 message DeleteResp {
-  repeated string Messages = 1;
+  repeated string Messages = 1; // messages from the delete operation
 }
 
 message Job {
-  string JID = 1;
-  string Type = 2;
-  ProcessState State = 3;
-  string Log = 4;
-  Details Details = 5;
+  Details Details = 1; // plugin-specific or type-specific details
+  string JID = 2; // unique job ID
+  string Type = 3; // type of the job, e.g., runc, containerd, kata
+  ProcessState State = 4; // process state of the job
+  string Log = 5; // standard IO log file for the job
 }
 
 // Details are plugin-specific or 'type' specific details.
 message Details {
-  optional string JID = 1;
-  optional Process Process = 2;
+  optional string JID = 1; // job ID, if applicable
+  optional Process Process = 2; // process details, if applicable
 
   // Plugin-specific job details:
-  optional plugins.runc.Runc Runc = 3;
-  optional plugins.containerd.Containerd Containerd = 4;
-  optional plugins.k8s.Pod Pod = 5;
-  optional plugins.kata.Kata Kata = 6;
+  optional plugins.runc.Runc Runc = 3; // runc plugin details
+  optional plugins.containerd.Containerd Containerd = 4; // containerd plugin details
+  optional plugins.kata.Kata Kata = 5; // kata containers plugin details
 }

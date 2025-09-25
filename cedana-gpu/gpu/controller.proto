@@ -5,26 +5,24 @@ package gpu;
 import "gpu/health.proto";
 
 service Controller {
-  rpc Attach(AttachReq) returns (AttachResp) {}
-  rpc Detach(DetachReq) returns (DetachResp) {}
-
   rpc Freeze(FreezeReq) returns (FreezeResp) {}
   rpc Unfreeze(UnfreezeReq) returns (UnfreezeResp) {}
 
   rpc Dump(DumpReq) returns (DumpResp) {}
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
+
+  rpc Info(InfoReq) returns (InfoResp) {}
+
+  // Only use if forcefully attaching to a PID, so that the Info RPC will return this PID.
+  rpc Attach(AttachReq) returns (AttachResp) {}
 }
 
 message AttachReq {
-  string JID = 1;
+  uint32 PID = 1; // PID of the process to forcefully attach to the controller
 }
 
 message AttachResp {}
-
-message DetachReq {}
-
-message DetachResp {}
 
 enum FreezeType {
   FREEZE_TYPE_IPC = 0;
@@ -62,4 +60,14 @@ message RestoreStats {
   int64 CopyMemTime = 1; // in milliseconds
   int64 ReplayCallsTime = 2; // in milliseconds
   int64 CopyHostMemTime = 3; // in milliseconds
+}
+
+message InfoReq {}
+
+message InfoResp {
+  uint32 PID = 1; // PID of the controller process
+  uint32 AttachedPID = 2; // PID of the process that is attached to the controller, 0 if none attached
+  uint64 ShmSize = 3; // Size of the shared memory segment used for IPC
+  string ShmName = 4; // Name of the shared memory segment used for IPC
+  string Version = 5; // Version of the controller
 }
