@@ -9,6 +9,7 @@ import "daemon/misc.proto";
 import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
+import "plugins/apptainer/apptainer.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
 import "plugins/runc/runc.proto";
@@ -252,4 +253,5 @@ message Details {
   optional plugins.runc.Runc Runc = 3; // runc plugin details
   optional plugins.containerd.Containerd Containerd = 4; // containerd plugin details
   optional plugins.kata.Kata Kata = 5; // kata containers plugin details
+  optional plugins.apptainer.Apptainer Apptainer = 6; // apptainer plugin details
 }
