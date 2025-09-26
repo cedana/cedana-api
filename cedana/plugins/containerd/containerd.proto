@@ -10,8 +10,9 @@ message Containerd {
   string Namespace = 3;
   Image Image = 4;
   bool RootfsOnly = 5;
+  repeated string Args = 6;
 
-  optional plugins.runc.Runc Runc = 6;
+  optional plugins.runc.Runc Runc = 7;
   // Can add additional low-level runtimes here
 }
 
