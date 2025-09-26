@@ -3,9 +3,9 @@ syntax = "proto3";
 package plugins.apptainer;
 
 message Apptainer {
-  int32 PID = 1;
-  string JSONConfig = 2;
-  string OCIConfig = 3;
+  int32  PID = 1;
+  bytes  JSONConfig = 2;
+  bytes  OCIConfig = 3;
   string ContainerID = 4;
   string ImagePath = 5;
   string BundlePath = 6;
