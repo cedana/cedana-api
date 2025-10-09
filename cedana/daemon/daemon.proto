@@ -257,7 +257,7 @@ message Details {
   optional Process Process = 2; // process details, if applicable
 
   // Plugin-specific job details:
-  optional plugins.runc.Runc Runc = 3; // runc plugin details
-  optional plugins.containerd.Containerd Containerd = 4; // containerd plugin details
-  optional plugins.kata.Kata Kata = 5; // kata containers plugin details
+  optional plugins.runc.Runc Runc = 101; // runc plugin details
+  optional plugins.containerd.Containerd Containerd = 102; // containerd plugin details
+  optional plugins.kata.Kata Kata = 103; // kata containers plugin details
 }
