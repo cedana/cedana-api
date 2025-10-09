@@ -10,7 +10,7 @@ message Containerd {
   string Namespace = 3;
   Image Image = 4;
   bool RootfsOnly = 5;
-  string GPUs = 6;
+  repeated int32 GPUs = 6;
   repeated string Args = 7;
 
   optional plugins.runc.Runc Runc = 8;
