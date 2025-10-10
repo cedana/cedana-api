@@ -72,6 +72,12 @@ service Daemon {
 //////// DUMP //////////
 ////////////////////////
 
+enum DumpAction {
+  DUMP = 0; // full dump
+  FREEZE_ONLY = 1; // freeze only
+  UNFREEZE_ONLY = 2; // unfreeze only
+}
+
 message DumpReq {
   Details Details = 1; // details about the job, process, or container to dump
 
@@ -82,6 +88,7 @@ message DumpReq {
   string Type = 6; // type of the dump, e.g., runc, containerd, kata
   criu.criu_opts Criu = 7; // CRIU overrides for the dump
   string GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
+  DumpAction Action = 9; // action to perform: dump, freeze only, unfreeze only
 }
 
 message DumpResp {
