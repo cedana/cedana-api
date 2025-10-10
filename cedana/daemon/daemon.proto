@@ -10,7 +10,6 @@ import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
-import "plugins/k8s/k8s.proto";
 import "plugins/kata/kata.proto";
 import "plugins/runc/runc.proto";
 import "plugins/slurm/slurm.proto";
@@ -20,6 +19,10 @@ service Daemon {
 
   // Dump a process/container/job
   rpc Dump(DumpReq) returns (DumpResp) {}
+  // Freeze a process/container/job
+  rpc Freeze(DumpReq) returns (DumpResp) {}
+  // Unfreeze a process/container/job
+  rpc Unfreeze(DumpReq) returns (DumpResp) {}
   // Restore a process/container/job
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   // Attach to a process/container
@@ -83,8 +86,8 @@ message DumpReq {
 
 message DumpResp {
   repeated string Messages = 1; // messages from the dump
-  string Path = 2; // path to the dump file
-  ProcessState State = 3; // state of the process during the dump
+  repeated string Paths = 2; // path to the dump file(s)
+  ProcessState State = 3; // state of the process(es) during the dump
 }
 
 ////////////////////////
@@ -249,7 +252,5 @@ message Details {
   // Plugin-specific job details:
   optional plugins.runc.Runc Runc = 3; // runc plugin details
   optional plugins.containerd.Containerd Containerd = 4; // containerd plugin details
-  optional plugins.k8s.Pod Pod = 5; // kubernetes pod details
-  optional plugins.kata.Kata Kata = 6; // kata containers plugin details
-  optional plugins.slurm.Slurm Slurm = 7; // slurm job details
+  optional plugins.kata.Kata Kata = 5; // kata containers plugin details
 }
