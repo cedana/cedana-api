@@ -16,6 +16,9 @@ service Controller {
 
   // Only use if forcefully attaching to a PID, so that the Info RPC will return this PID.
   rpc Attach(AttachReq) returns (AttachResp) {}
+
+  // Prepare shared memory files before CRIU restore, without doing full restore.
+  rpc PrepareFiles(PrepareFilesReq) returns (PrepareFilesResp) {}
 }
 
 message AttachReq {
@@ -70,4 +73,12 @@ message InfoResp {
   uint64 ShmSize = 3; // Size of the shared memory segment used for IPC
   string ShmName = 4; // Name of the shared memory segment used for IPC
   string Version = 5; // Version of the controller
+}
+
+message PrepareFilesReq {
+  string Dir = 1;
+}
+
+message PrepareFilesResp {
+  repeated string FilePaths = 1;
 }
