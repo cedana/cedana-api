@@ -12,7 +12,7 @@ message Pod {
   string Root = 5;
   bool RootfsOnly = 6;
 
-  repeated plugins.containerd.Containerd Containerd = 7;
+  repeated plugins.containerd.Containerd Containerd = 101;
   // Can add additional high-level runtimes here
 }
 
