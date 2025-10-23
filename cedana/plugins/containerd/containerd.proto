@@ -9,10 +9,13 @@ message Containerd {
   string Address = 2;
   string Namespace = 3;
   Image Image = 4;
-  bool RootfsOnly = 5;
-  repeated string Args = 6;
+  bool Rootfs = 5;
+  bool RootfsOnly = 6;
+  repeated int32 GPUs = 7;
+  repeated string Args = 8;
+  bool NoPivot = 9;
 
-  optional plugins.runc.Runc Runc = 7;
+  optional plugins.runc.Runc Runc = 101;
   // Can add additional low-level runtimes here
 }
 
