@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package plugins.slurm;
+
+message Slurm {
+  string ID = 1;
+  uint32 PID = 2;
+  uint32 JobID = 3;
+  uint32 ParentPID = 4;
+  string SlurmScript = 5;
+  string Hostname = 6;
+}
