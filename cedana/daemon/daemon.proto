@@ -12,6 +12,7 @@ import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
 import "plugins/runc/runc.proto";
+import "plugins/slurm/slurm.proto";
 
 service Daemon {
   ///// C/R /////
@@ -260,4 +261,5 @@ message Details {
   optional plugins.runc.Runc Runc = 101; // runc plugin details
   optional plugins.containerd.Containerd Containerd = 102; // containerd plugin details
   optional plugins.kata.Kata Kata = 103; // kata containers plugin details
+  optional plugins.slurm.Slurm Slurm = 104;
 }
