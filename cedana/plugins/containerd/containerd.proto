@@ -14,6 +14,7 @@ message Containerd {
   repeated int32 GPUs = 7;
   repeated string Args = 8;
   bool NoPivot = 9;
+  repeated string PersistentMounts = 10;
 
   optional plugins.runc.Runc Runc = 101;
   // Can add additional low-level runtimes here
