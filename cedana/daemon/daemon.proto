@@ -111,10 +111,12 @@ message RestoreReq {
   string Log = 6; // standard IO log file
   bool Attachable = 7; // whether to restore with attachable standard IO
 
-  uint32 UID = 8; // user ID of calling process
-  uint32 GID = 9; // group ID of calling process
-  repeated uint32 Groups = 10; // groups of the calling process
-  repeated string Env = 11; // environment variables of the calling process
+  uint32 UID = 10; // user ID of calling process
+  uint32 GID = 11; // group ID of calling process
+  repeated uint32 Groups = 12; // groups of the calling process
+  repeated string Env = 13; // environment variables of the calling process
+
+  string GPUID = 20; // Existing GPU controller ID to attach to
 }
 
 message RestoreResp {
@@ -176,17 +178,19 @@ message RunReq {
 
   string JID = 2; // job ID, if empty a new one will be generated
   string PidFile = 3; // file to write the PID to
-  bool GPUEnabled = 4; // whether to enable GPU C/R support for the job
-  bool GPUTracing = 5; // whether to enable GPU tracing for the job
-  string Type = 6; // type of the job, e.g., runc, containerd, kata
-  string Log = 7; // standard IO log file
-  bool Attachable = 8; // whether to run the job with attachable standard IO
-  RunAction Action = 9; // action to use for the job
+  string Type = 4; // type of the job, e.g., runc, containerd, kata
+  string Log = 5; // standard IO log file
+  bool Attachable = 6; // whether to run the job with attachable standard IO
+  RunAction Action = 7; // action to use for the job
 
   uint32 UID = 10; // user ID of the calling process
   uint32 GID = 11; // group ID of the calling process
   repeated uint32 Groups = 12; // groups of the calling process
   repeated string Env = 13; // environment variables of the calling process
+
+  bool GPUEnabled = 20; // whether to enable GPU C/R support for the job
+  bool GPUTracing = 21; // whether to enable GPU tracing for the job
+  string GPUID = 22; // Existing GPU controller ID to attach to
 }
 
 message RunResp {
