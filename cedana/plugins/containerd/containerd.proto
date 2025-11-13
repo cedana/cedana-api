@@ -37,5 +37,5 @@ message RWFile {
   map<string, string> Xattrs = 8;
   string SymlinkTarget = 9;
   uint64 Mtime = 10;
-  repeated bytes Content; // repeated for chunking large files to not take up ram
+  repeated bytes Content = 11; // repeated for chunking large files to not take up ram
 }
