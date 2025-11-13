@@ -16,6 +16,7 @@ message Runc {
   bool SystemdCgroup = 11;
   bool NoSubreaper = 12;
   int32 PreserveFDs = 13;
+  string Upperdir = 14;
 }
 
 message QueryReq {
