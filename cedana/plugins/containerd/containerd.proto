@@ -15,6 +15,7 @@ message Containerd {
   repeated string Args = 8;
   bool NoPivot = 9;
   repeated string Env = 10;
+  repeated string ExternalMounts = 11;
 
   optional plugins.runc.Runc Runc = 101;
   // Can add additional low-level runtimes here
