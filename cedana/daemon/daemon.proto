@@ -89,6 +89,7 @@ message DumpReq {
   criu.criu_opts Criu = 7; // CRIU overrides for the dump
   string GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
   DumpAction Action = 9; // action to perform: dump, freeze only, unfreeze only
+  bool Async = 10; // whether to perform the dump asynchronously
 }
 
 message DumpResp {
