@@ -17,6 +17,7 @@ message Runc {
   bool NoSubreaper = 12;
   int32 PreserveFDs = 13;
   string Upperdir = 14;
+  string NetnsEth0IPv4Addr = 15;
 }
 
 message QueryReq {
