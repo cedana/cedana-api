@@ -16,8 +16,7 @@ message Runc {
   bool SystemdCgroup = 11;
   bool NoSubreaper = 12;
   int32 PreserveFDs = 13;
-  string Upperdir = 14;
-  string NetnsEth0IPv4Addr = 15;
+  string NetnsEth0IPv4Addr = 14;
 }
 
 message QueryReq {
@@ -27,4 +26,18 @@ message QueryReq {
 
 message QueryResp {
   repeated Runc Containers = 1;
+}
+
+message RWFile {
+  string Path = 1;
+  uint32 Mode = 2;
+  uint32 Uid = 3;
+  uint32 Gid = 4;
+  string Type = 5; // "file", "dir", "symlink", "chardev", "blockdev"
+  uint32 DevMajor = 6;
+  uint32 DevMinor = 7;
+  map<string, string> Xattrs = 8;
+  string SymlinkTarget = 9;
+  uint64 Mtime = 10;
+  repeated bytes Content = 11; // repeated for chunking large files to not take up ram
 }
