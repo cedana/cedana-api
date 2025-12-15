@@ -8,6 +8,7 @@ import "plugins/runc/runc.proto";
 
 message QueryReq {
   string Type = 1;
+  bool Children = 2;
   optional plugins.runc.QueryReq Runc = 101;
   optional plugins.k8s.QueryReq K8s = 102;
 
