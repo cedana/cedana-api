@@ -9,8 +9,7 @@ message Pod {
   string Name = 2;
   string Namespace = 3;
   string UID = 4;
-  string Root = 5;
-  bool RootfsOnly = 6;
+  bool RootfsOnly = 5;
 
   repeated plugins.containerd.Containerd Containerd = 101;
   // Can add additional high-level runtimes here
