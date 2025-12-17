@@ -24,14 +24,7 @@ message AttachReq {
 
 message AttachResp {}
 
-enum FreezeType {
-  FREEZE_TYPE_IPC = 0;
-  FREEZE_TYPE_NCCL = 1;
-}
-
-message FreezeReq {
-  FreezeType Type = 1; // Deprecated, this is no longer used and is automatically detected
-}
+message FreezeReq {}
 
 message FreezeResp {}
 
