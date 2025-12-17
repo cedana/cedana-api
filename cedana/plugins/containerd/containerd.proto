@@ -26,3 +26,13 @@ message Image {
   string Username = 2;
   string Secret = 3;
 }
+
+message QueryReq {
+  string Address = 1;
+  string Namespace = 2;
+  repeated string IDs = 3;
+}
+
+message QueryResp {
+  repeated Containerd Containers = 1;
+}

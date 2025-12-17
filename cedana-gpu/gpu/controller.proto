@@ -30,7 +30,7 @@ enum FreezeType {
 }
 
 message FreezeReq {
-  FreezeType Type = 1;
+  FreezeType Type = 1; // Deprecated, this is no longer used and is automatically detected
 }
 
 message FreezeResp {}
