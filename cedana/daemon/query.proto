@@ -2,20 +2,28 @@ syntax = "proto3";
 
 package daemon;
 
+import "daemon/process.proto";
+import "plugins/containerd/containerd.proto";
 import "plugins/k8s/k8s.proto";
 import "plugins/runc/runc.proto";
 
 message QueryReq {
   string Type = 1;
-  optional plugins.runc.QueryReq Runc = 2;
-  optional plugins.k8s.QueryReq K8s = 3;
+  bool Tree = 2; // Include child processes in the query
+
+  repeated uint32 PIDs = 100;
+  optional plugins.runc.QueryReq Runc = 101;
+  optional plugins.k8s.QueryReq K8s = 102;
+  optional plugins.containerd.QueryReq Containerd = 103;
 
   // Can add more plugin-specific queries here
 }
 
 message QueryResp {
   repeated string Messages = 1;
+  repeated ProcessState States = 2;
 
-  optional plugins.runc.QueryResp Runc = 2;
-  optional plugins.k8s.QueryResp K8s = 3;
+  optional plugins.runc.QueryResp Runc = 101;
+  optional plugins.k8s.QueryResp K8s = 102;
+  optional plugins.containerd.QueryResp Containerd = 103;
 }

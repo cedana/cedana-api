@@ -15,6 +15,7 @@ message Containerd {
   repeated string Args = 8;
   bool NoPivot = 9;
   repeated string Env = 10;
+  string Snapshotter = 11;
 
   optional plugins.runc.Runc Runc = 101;
   // Can add additional low-level runtimes here
@@ -24,4 +25,14 @@ message Image {
   string Name = 1;
   string Username = 2;
   string Secret = 3;
+}
+
+message QueryReq {
+  string Address = 1;
+  string Namespace = 2;
+  repeated string IDs = 3;
+}
+
+message QueryResp {
+  repeated Containerd Containers = 1;
 }

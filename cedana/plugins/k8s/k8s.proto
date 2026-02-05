@@ -9,18 +9,16 @@ message Pod {
   string Name = 2;
   string Namespace = 3;
   string UID = 4;
-  string Root = 5;
-  bool RootfsOnly = 6;
+  bool RootfsOnly = 5;
 
   repeated plugins.containerd.Containerd Containerd = 101;
   // Can add additional high-level runtimes here
 }
 
 message QueryReq {
-  string Root = 1;
-  string Namespace = 2;
-  string ContainerType = 3; // "container" or "sandbox"
-  repeated string Names = 4;
+  string Namespace = 1;
+  string ContainerType = 2; // "container" or "sandbox"
+  repeated string Names = 3;
 }
 
 message QueryResp {
