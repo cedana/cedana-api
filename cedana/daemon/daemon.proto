@@ -13,6 +13,7 @@ import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
 import "plugins/runc/runc.proto";
 import "plugins/slurm/slurm.proto";
+import "plugins/multinode/multinode.proto";
 
 service Daemon {
   ///// C/R /////
@@ -66,6 +67,12 @@ service Daemon {
   rpc ReloadPlugins(Empty) returns (Empty) {}
   // Create a unix socket
   rpc CreateUnixSocket(Empty) returns (SocketResp);
+  // Send IP from cedana-runc to daemon
+  rpc RegisterRestoredIP(plugins.multinode.IPReportReq) returns (plugins.multinode.IPReportResp) {}
+  // Helper listens to calls for events from runc
+  rpc MonitorIPEvents(plugins.multinode.MonitorIPEventsReq) returns (stream plugins.multinode.IPReportReq);
+  // Helper calls this when it gets the map from RabbitMQ
+  rpc SubmitGlobalMap(plugins.multinode.GlobalMapReq) returns (plugins.multinode.GlobalMapResp);
 }
 
 ////////////////////////
