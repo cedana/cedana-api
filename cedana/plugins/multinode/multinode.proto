@@ -10,6 +10,7 @@ message IPReportReq {
   string old_ip = 1;
   string new_ip = 2;
   string checkpoint_id = 3;
+  int64 pid = 4;
 }
 
 message IPReportResp {
