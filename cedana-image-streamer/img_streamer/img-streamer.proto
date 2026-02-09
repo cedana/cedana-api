@@ -19,6 +19,14 @@ message img_streamer_reply_entry {
   bool exists = 1;
 }
 
+message img_streamer_ready_request_entry {
+  string filename = 1;
+}
+
+message img_streamer_ready_reply_entry {
+  bool ready = 1;
+}
+
 // This message is sent from the streamer to CRIU for listing all image files
 message img_streamer_list_reply_entry {
   repeated string filenames = 1;
