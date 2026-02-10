@@ -13,18 +13,17 @@ message img_streamer_request_entry {
   string filename = 1;
 }
 
+enum file_status {
+  DOES_NOT_EXIST = 0;
+  NOT_READY = 1;
+  READY = 2;
+};
+
 // This message is sent from the streamer to CRIU. It is only used during
-// restore to report whether the requested file exists.
+// restore to report whether the requested file exists, or is ready or not.
 message img_streamer_reply_entry {
   bool exists = 1;
-}
-
-message img_streamer_ready_request_entry {
-  string filename = 1;
-}
-
-message img_streamer_ready_reply_entry {
-  bool ready = 1;
+  optional file_status status = 2;
 }
 
 // This message is sent from the streamer to CRIU for listing all image files
