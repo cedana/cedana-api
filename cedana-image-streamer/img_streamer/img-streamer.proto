@@ -22,6 +22,7 @@ enum file_status {
 // This message is sent from the streamer to CRIU. It is only used during
 // restore to report whether the requested file exists, or is ready or not.
 message img_streamer_reply_entry {
+  // for backwards compatibilty, in case clients can't read status
   bool exists = 1;
   optional file_status status = 2;
 }
