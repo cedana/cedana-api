@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package plugins.multinode;
+
+////////////////////////
+///// IP Exchange //////
+////////////////////////
+
+message IPReportReq {
+  string old_ip = 1;
+  string new_ip = 2;
+  string checkpoint_id = 3;
+  int64 pid = 4;
+}
+
+message IPReportResp {
+  bool success = 1;
+  string message = 2;
+}
+
+message MonitorIPEventsReq{
+  // empty
+}
+
+message GlobalMapEntry {
+  string original_ip = 1;
+  string current_ip = 2;
+  string pod_name = 3;
+  string namespace = 4;
+  string job_name = 5;
+}
+
+message GlobalMapReq {
+  string cluster_id = 1;
+  repeated GlobalMapEntry entries = 2;
+}
+
+message GlobalMapResp {
+  bool success = 1;
+}
