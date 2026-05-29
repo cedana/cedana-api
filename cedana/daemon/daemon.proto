@@ -11,9 +11,9 @@ import "daemon/query.proto";
 import "daemon/socket.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
+import "plugins/multinode/multinode.proto";
 import "plugins/runc/runc.proto";
 import "plugins/slurm/slurm.proto";
-import "plugins/multinode/multinode.proto";
 
 service Daemon {
   ///// C/R /////
@@ -118,6 +118,7 @@ message RestoreReq {
   criu.criu_opts Criu = 5;
   string Log = 6; // standard IO log file
   bool Attachable = 7; // whether to restore with attachable standard IO
+  bool WaitFirstMaster = 8; // whether to wait for the first master to attach IO
 
   uint32 UID = 10; // user ID of calling process
   uint32 GID = 11; // group ID of calling process
@@ -189,7 +190,8 @@ message RunReq {
   string Type = 4; // type of the job, e.g., runc, containerd, kata
   string Log = 5; // standard IO log file
   bool Attachable = 6; // whether to run the job with attachable standard IO
-  RunAction Action = 7; // action to use for the job
+  bool WaitFirstMaster = 7; // whether to wait for the first master to attach IO
+  RunAction Action = 8; // action to use for the job
 
   uint32 UID = 10; // user ID of the calling process
   uint32 GID = 11; // group ID of the calling process
