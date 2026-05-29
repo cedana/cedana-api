@@ -38,7 +38,9 @@ message DumpReq {
   bool LeaveRunning = 3;
 }
 
-message DumpResp {}
+message DumpResp {
+  GpuProfile Profile = 1;
+}
 
 message RestoreReq {
   string Dir = 1;
@@ -47,12 +49,51 @@ message RestoreReq {
 
 message RestoreResp {
   RestoreStats RestoreStats = 1;
+  GpuProfile Profile = 2;
 }
 
 message RestoreStats {
   int64 CopyMemTime = 1; // in milliseconds
   int64 ReplayCallsTime = 2; // in milliseconds
   int64 CopyHostMemTime = 3; // in milliseconds
+}
+
+message GpuProfile {
+  repeated WorkerProfile Workers = 1;
+  WorkerProfileSummary Summary = 2;
+}
+
+message WorkerProfile {
+  int32 WorkerIndex = 1;
+  uint32 PID = 2;
+  int64 DurationMs = 3;
+  uint64 Bytes = 4; // bytes written during dump, bytes read during restore
+  repeated WorkerPhaseProfile Phases = 5;
+}
+
+message WorkerPhaseProfile {
+  string Name = 1;
+  int64 DurationMs = 2;
+}
+
+message WorkerProfileSummary {
+  uint32 Count = 1;
+  int64 AverageDurationMs = 2;
+  int32 SlowestWorkerIndex = 3;
+  uint32 SlowestPID = 4;
+  int64 SlowestDurationMs = 5;
+  uint64 TotalBytes = 6; // bytes written during dump, bytes read during restore
+  repeated WorkerPhaseProfileSummary Phases = 7;
+}
+
+message WorkerPhaseProfileSummary {
+  string Name = 1;
+  uint32 Count = 2;
+  int64 AverageDurationMs = 3;
+  int32 SlowestWorkerIndex = 4;
+  uint32 SlowestPID = 5;
+  int64 SlowestDurationMs = 6;
+  int64 TotalDurationMs = 7;
 }
 
 message InfoReq {}
