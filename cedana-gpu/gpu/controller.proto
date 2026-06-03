@@ -61,6 +61,14 @@ message RestoreStats {
 message GpuProfile {
   repeated WorkerProfile Workers = 1;
   WorkerProfileSummary Summary = 2;
+  repeated GpuFunctionProfile Functions = 3;
+}
+
+message GpuFunctionProfile {
+  string Name = 1;
+  int64 DurationMs = 2;
+  uint32 Count = 3; // number of workers
+  int64 TotalDurationMs = 4; // sum across all workers
 }
 
 message WorkerProfile {
