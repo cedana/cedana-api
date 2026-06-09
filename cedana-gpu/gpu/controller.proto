@@ -69,6 +69,7 @@ message GpuFunctionProfile {
   int64 DurationMs = 2;
   uint32 Count = 3; // number of workers
   int64 TotalDurationMs = 4; // sum across all workers
+  uint64 Bytes = 5; // total bytes written during dump, bytes read during restore
 }
 
 message WorkerProfile {
@@ -82,6 +83,7 @@ message WorkerProfile {
 message WorkerPhaseProfile {
   string Name = 1;
   int64 DurationMs = 2;
+  uint64 Bytes = 3; // bytes written during dump, bytes read during restore
 }
 
 message WorkerProfileSummary {
@@ -102,6 +104,9 @@ message WorkerPhaseProfileSummary {
   uint32 SlowestPID = 5;
   int64 SlowestDurationMs = 6;
   int64 TotalDurationMs = 7;
+  uint64 TotalBytes = 8; // total bytes written during dump, bytes read during restore
+  uint64 AverageBytes = 9; // average bytes per worker
+  uint64 SlowestBytes = 10; // bytes for the slowest worker
 }
 
 message InfoReq {}
