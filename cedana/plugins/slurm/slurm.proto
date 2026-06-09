@@ -5,5 +5,5 @@ package plugins.slurm;
 message Slurm {
   uint32 JobID = 1;
   uint32 PID = 2;
+  string Hostname = 3;
 }
-
