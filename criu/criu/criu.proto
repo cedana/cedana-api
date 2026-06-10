@@ -291,26 +291,15 @@ message restore_stats_entry {
 	optional uint64			pages_restored		= 5;
 	optional uint32			pre_restore_time	= 6;
 	optional uint32			post_restore_time	= 7;
-	optional uint32			namespaces_restore_time	= 8;
-	optional pid_restore_stats	per_pid_restore_stats	= 9;
+	repeated process_stats_entry	process_restore_stats	= 8;
 }
 
-message pid_restore_stats {
-	repeated pid_restore_stats_entry stats = 1;
+message process_stats_entry {
+	optional uint32		pid		= 1;
+	repeated time_entry	time_entries	= 2;
 }
 
-message pid_restore_stats_entry {
-	optional uint32 pid			= 1;
-	optional uint32 restore_resource_time	= 2;
-	optional uint32 pie_prepare_time	= 3;
-	optional uint32 restore_namespaces_time = 4;
-	optional uint32 pie_total_time		= 5;
-	optional uint32 pie_restore_mem_time	= 6;
-	optional uint32 pie_restore_thread_time = 7;
-	optional uint32 pie_post_restore_time	= 8;
-}
-
-message stats_entry {
-	optional dump_stats_entry	dump			= 1;
-	optional restore_stats_entry	restore			= 2;
+message time_entry {
+	optional string name = 1;
+	optional uint32 time = 2;
 }
