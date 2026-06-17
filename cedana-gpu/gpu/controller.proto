@@ -20,6 +20,15 @@ service Controller {
 
 message AttachReq {
   uint32 PID = 1; // PID of the process to forcefully attach to the controller
+  // CRIUPid, MntNsFd, RootFd used for spawning workers in the mount namespace
+  // the restored process is going to be in.
+  uint32 CRIUPid = 2; // Represents the PID assigned to CRIU while it's doing the restore.
+  // The number in the /proc/CRIUPid/fdinfo table which contains mnt_ns_fd for the process we are restoring
+  // use pidfd_getfd(CRIUPid, MntNsFd) to get the mnt_ns_fd.
+  uint32 MntNsFd = 3;
+  // The number in the /proc/CRIUPid/fdinfo table which contains the root for the process we are restoring
+  // use pidfd_getfd(CRIUPid, RootFd) to get a fd to root.
+  uint32 RootFd = 4;
 }
 
 message AttachResp {}

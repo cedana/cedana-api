@@ -160,9 +160,16 @@ message criu_restore_resp {
   required int32 pid = 1;
 }
 
+message post_setup_ns_notify_resp {
+	optional int32 criu_pid		= 3;
+	optional int32 mnt_ns_fd	= 4;
+	optional string root_path_fd	= 5;
+}
+
 message criu_notify {
-  optional string script = 1;
-  optional int32 pid = 2;
+	optional string script		= 1;
+	optional int32	pid		= 2;
+	optional post_setup_ns_notify_resp post_setup_ns_resp = 3;
 }
 
 enum criu_req_type {
