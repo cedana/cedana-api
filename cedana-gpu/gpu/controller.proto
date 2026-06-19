@@ -18,8 +18,8 @@ service Controller {
   rpc Attach(AttachReq) returns (AttachResp) {}
 }
 
-message MountInfoFromCRIU {
-  // CRIUPid, MntNsFd, RootFd used for spawning workers in the mount namespace
+message MountNsInfoFromCRIU {
+  // CRIUPid, MntNsFd, RootFd used for mounting checkpoint dir in the mount namespace
   // the restored process is going to be in.
   uint32 CRIUPid = 1; // Represents the PID assigned to CRIU while it's doing the restore.
   // The number in the /proc/CRIUPid/fdinfo table which contains mnt_ns_fd for the process we are restoring
@@ -32,7 +32,7 @@ message MountInfoFromCRIU {
 
 message AttachReq {
   uint32 PID = 1; // PID of the process to forcefully attach to the controller
-  optional MountInfoFromCRIU MountInfo = 2;
+  optional MountNsInfoFromCRIU MountNsInfo = 2;
 }
 
 message AttachResp {}

@@ -161,14 +161,14 @@ message criu_restore_resp {
 }
 
 message post_setup_ns_notify_resp {
-	optional int32 criu_pid		= 1;
-	optional int32 mnt_ns_fd	= 2;
-	optional int32 root_path_fd	= 3;
+	required int32 criu_pid		= 1;
+	required int32 mnt_ns_fd	= 2;
+	required int32 root_path_fd	= 3;
 }
 
 message criu_notify {
-	optional string script		= 1;
-	optional int32	pid		= 2;
+	optional string			   script	      = 1;
+	optional int32			   pid		      = 2;
 	optional post_setup_ns_notify_resp post_setup_ns_resp = 3;
 }
 
