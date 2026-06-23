@@ -19,14 +19,14 @@ service Controller {
 }
 
 message MountNsInfoFromCRIU {
-  // CRIUPid, MntNsFd, RootFd used for mounting checkpoint dir in the mount namespace
+  // CRIUPid, MntNsFd, RootFd are used for mounting checkpoint dir in the mount namespace
   // the restored process is going to be in.
   uint32 CRIUPid = 1; // Represents the PID assigned to CRIU while it's doing the restore.
   // The number in the /proc/CRIUPid/fdinfo table which contains mnt_ns_fd for the process we are restoring
-  // use pidfd_getfd(CRIUPid, MntNsFd) to get the mnt_ns_fd.
+  // use pidfd_open(CRIUPid) + pidfd_getfd(pidfd, MntNsFd) to get the mnt_ns_fd.
   uint32 MntNsFd = 2;
   // The number in the /proc/CRIUPid/fdinfo table which contains the root for the process we are restoring
-  // use pidfd_getfd(CRIUPid, RootFd) to get a fd to root.
+  // use pidfd_open(CRIUPid) + pidfd_getfd(pidfd, MntNsFd) to get the mnt_ns_fd.
   uint32 RootFd = 3;
 }
 

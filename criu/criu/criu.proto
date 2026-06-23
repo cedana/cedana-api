@@ -160,6 +160,10 @@ message criu_restore_resp {
   required int32 pid = 1;
 }
 
+// information for client to get fd to
+// the mount namespace the root process is
+// going to enter into during restore.
+// client can use pidfd_open() + pidfd_getfd()
 message post_setup_ns_notify_resp {
 	required int32 criu_pid		= 1;
 	required int32 mnt_ns_fd	= 2;
