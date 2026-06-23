@@ -66,32 +66,32 @@ message GpuProfile {
 
 message GpuFunctionProfile {
   string Name = 1;
-  int64 DurationMs = 2;
+  int64 DurationNs = 2;
   uint32 Count = 3; // number of workers
-  int64 TotalDurationMs = 4; // sum across all workers
+  int64 TotalDurationNs = 4; // sum across all workers
   uint64 Bytes = 5; // total bytes written during dump, bytes read during restore
 }
 
 message WorkerProfile {
   int32 WorkerIndex = 1;
   uint32 PID = 2;
-  int64 DurationMs = 3;
+  int64 DurationNs = 3;
   uint64 Bytes = 4; // bytes written during dump, bytes read during restore
   repeated WorkerPhaseProfile Phases = 5;
 }
 
 message WorkerPhaseProfile {
   string Name = 1;
-  int64 DurationMs = 2;
+  int64 DurationNs = 2;
   uint64 Bytes = 3; // bytes written during dump, bytes read during restore
 }
 
 message WorkerProfileSummary {
   uint32 Count = 1;
-  int64 AverageDurationMs = 2;
+  int64 AverageDurationNs = 2;
   int32 SlowestWorkerIndex = 3;
   uint32 SlowestPID = 4;
-  int64 SlowestDurationMs = 5;
+  int64 SlowestDurationNs = 5;
   uint64 TotalBytes = 6; // bytes written during dump, bytes read during restore
   repeated WorkerPhaseProfileSummary Phases = 7;
 }
@@ -99,11 +99,11 @@ message WorkerProfileSummary {
 message WorkerPhaseProfileSummary {
   string Name = 1;
   uint32 Count = 2;
-  int64 AverageDurationMs = 3;
+  int64 AverageDurationNs = 3;
   int32 SlowestWorkerIndex = 4;
   uint32 SlowestPID = 5;
-  int64 SlowestDurationMs = 6;
-  int64 TotalDurationMs = 7;
+  int64 SlowestDurationNs = 6;
+  int64 TotalDurationNs = 7;
   uint64 TotalBytes = 8; // total bytes written during dump, bytes read during restore
   uint64 AverageBytes = 9; // average bytes per worker
   uint64 SlowestBytes = 10; // bytes for the slowest worker
