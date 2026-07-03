@@ -84,6 +84,14 @@ message WorkerPhaseProfile {
   string Name = 1;
   int64 DurationNs = 2;
   uint64 Bytes = 3; // bytes written during dump, bytes read during restore
+  repeated WorkerPhaseInterval Intervals = 4; // phase intervals, offset from worker start
+  bool IntervalsTruncated = 5; // true when not every interval fit in this profile
+}
+
+message WorkerPhaseInterval {
+  int64 StartNs = 1; // offset from worker start
+  int64 EndNs = 2; // offset from worker start
+  uint64 Bytes = 3; // bytes written during dump, bytes read during restore
 }
 
 message WorkerProfileSummary {
