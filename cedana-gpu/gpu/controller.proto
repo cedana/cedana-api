@@ -62,6 +62,17 @@ message GpuProfile {
   repeated WorkerProfile Workers = 1;
   WorkerProfileSummary Summary = 2;
   repeated GpuFunctionProfile Functions = 3;
+
+  // Throughput limits collected when the controller starts.
+  repeated Measurement TheoreticalLimits = 4;
+}
+
+// A value produced by the controller that Cedana can include in a profile.
+message Measurement {
+  string Name = 1; // Stable metric name.
+  uint64 Value = 2; // Value in Unit.
+  string Unit = 3; // For example, bytes_per_second.
+  string Device = 4; // GPU name and UUID when the metric is device-specific.
 }
 
 message GpuFunctionProfile {
