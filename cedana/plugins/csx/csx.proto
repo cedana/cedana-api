@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package csx;
+package plugins.csx;
 
 service CSX {
   rpc GetDir(GetDirReq) returns (GetDirResp) {}
