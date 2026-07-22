@@ -9,6 +9,8 @@ modules:
     name: buf.build/cedana/cedana-image-streamer
   - path: criu
     name: buf.build/cedana/criu
+  - path: csx
+    name: buf.build/cedana/csx
 
 lint:
   use:

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package csx;
+
+service CSX {
+  rpc GetDir(GetDirReq) returns (GetDirResp) {}
+}
+
+message GetDirReq {}
+
+message GetDirResp {
+  string Path = 1;
+}
