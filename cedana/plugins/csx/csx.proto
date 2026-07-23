@@ -3,11 +3,14 @@ syntax = "proto3";
 package plugins.csx;
 
 service CSX {
-  rpc GetDir(GetDirReq) returns (GetDirResp) {}
+  rpc Create(CreateReq) returns (CreateResp) {}
 }
 
-message GetDirReq {}
-
-message GetDirResp {
+message CreateReq {
   string Path = 1;
+  uint64 Size = 2;
+}
+
+message CreateResp {
+  string Path = 3;
 }
