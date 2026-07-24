@@ -5,7 +5,7 @@ package plugins.csx;
 service CSX {
   rpc Create(CreateReq) returns (CreateResp) {}
   rpc Writer(stream WriteReq) returns (WriteResp) {}
-  rcp Reader(ReadReq) returns (stream ReadReq) {}
+  rpc Reader(ReadReq) returns (stream ReadResp) {}
 }
 
 message CreateReq {
