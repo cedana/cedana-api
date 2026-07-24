@@ -4,29 +4,29 @@ package plugins.csx;
 
 service CSX {
   rpc Create(CreateReq) returns (CreateResp) {}
-  rpc Writer(stream WriteReq) returns (WriteResp) {}
-  rpc Reader(ReadReq) returns (stream ReadResp) {}
+  rpc Close(CloseReq) returns (CloseResp) {}
+  rpc Open(OpenReq) returns (OpenResp) {}
 }
 
 message CreateReq {
   string ID = 1;
+  uint64 size = 2;
 }
 
-message CreateResp {}
+message CreateResp {
+  string path = 1;
+}
 
-message WriteReq {
+message CloseReq {
+  string path = 1;
+}
+
+message CloseResp {}
+
+message OpenReq {
   string ID = 1;
-  bytes chunks = 2;
 }
 
-message WriteResp {
-  string error = 1;
-}
-
-message ReadReq {
-  string ID = 1;
-}
-
-message ReadResp {
-  bytes chunks = 1;
+message OpenResp {
+  string path = 1;
 }
