@@ -4,7 +4,8 @@ package plugins.csx;
 
 service CSX {
   rpc Create(CreateReq) returns (CreateResp) {}
-  rpc Close(CloseReq) returns (CloseResp) {}
+  rpc CloseWrite(CloseReq) returns (CloseResp) {}
+  rpc CloseRead(CloseReq) return (CloseResp) {}
   rpc Open(OpenReq) returns (OpenResp) {}
 }
 
