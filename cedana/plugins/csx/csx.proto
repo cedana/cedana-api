@@ -4,7 +4,8 @@ package plugins.csx;
 
 service CSX {
   rpc Create(CreateReq) returns (CreateResp) {}
-  rpc Write(stream WriteReq) returns (WriteResp) {}
+  rpc Writer(stream WriteReq) returns (WriteResp) {}
+  rcp Reader(ReadReq) returns (stream ReadReq) {}
 }
 
 message CreateReq {
@@ -20,4 +21,12 @@ message WriteReq {
 
 message WriteResp {
   string error = 1;
+}
+
+message ReadReq {
+  string ID = 1;
+}
+
+message ReadResp {
+  bytes chunks = 1;
 }
