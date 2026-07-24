@@ -11,15 +11,15 @@ service CSX {
 
 message CreateReq {
   string ID = 1;
-  uint64 size = 2;
+  uint64 Size = 2;
 }
 
 message CreateResp {
-  string path = 1;
+  string Path = 1;
 }
 
 message CloseReq {
-  string path = 1;
+  string ID = 1;
 }
 
 message CloseResp {}
@@ -29,5 +29,5 @@ message OpenReq {
 }
 
 message OpenResp {
-  string path = 1;
+  string Path = 1;
 }
