@@ -10,13 +10,12 @@ service CSX {
 }
 
 message CreateReq {
-  string CreateID = 1;
-  string ObjectID = 2;
-  uint64 Size = 3;
+  string ObjectID = 1;
 }
 
 message CreateResp {
   string Path = 1;
+  string CreateID = 2;
 }
 
 message CloseReq {
@@ -27,10 +26,10 @@ message CloseReq {
 message CloseResp {}
 
 message OpenReq {
-  string ReadID = 1;
-  string ObjectID = 2;
+  string ObjectID = 1;
 }
 
 message OpenResp {
   string Path = 1;
+  string ReadID = 2;
 }
