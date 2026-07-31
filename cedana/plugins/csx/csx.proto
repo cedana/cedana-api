@@ -7,6 +7,7 @@ service CSX {
   rpc CloseWrite(CloseReq) returns (CloseResp) {}
   rpc CloseRead(CloseReq) returns (CloseResp) {}
   rpc Open(OpenReq) returns (OpenResp) {}
+  rpc Delete(DeleteReq) returns (DeleteResp) {}
 }
 
 message CreateReq {
@@ -33,3 +34,9 @@ message OpenResp {
   string Path = 1;
   string ReadID = 2;
 }
+
+message DeleteReq {
+  string ObjectID = 1;
+}
+
+message DeleteResp {}
