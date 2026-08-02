@@ -23,7 +23,8 @@ message GetPathResp {
 }
 
 message ClosePathReq {
-  string ActionID = 1;
+  string ID = 1;
+  string ActionID = 2;
 }
 
 message ClosePathResp {}
