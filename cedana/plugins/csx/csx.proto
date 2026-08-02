@@ -3,40 +3,27 @@ syntax = "proto3";
 package plugins.csx;
 
 service CSX {
-  rpc Create(CreateReq) returns (CreateResp) {}
-  rpc CloseWrite(CloseReq) returns (CloseResp) {}
-  rpc CloseRead(CloseReq) returns (CloseResp) {}
-  rpc Open(OpenReq) returns (OpenResp) {}
-  rpc Delete(DeleteReq) returns (DeleteResp) {}
+  rpc GetPath(GetPathReq) returns (GetPathResp) {}
+  rpc ClosePath(ClosePathReq) returns (ClosePathResp) {}
 }
 
-message CreateReq {
-  string ObjectID = 1;
+enum Mode {
+  READ_ONLY = 0;
+  WRITE_ONLY = 1;
 }
 
-message CreateResp {
-  string Path = 1;
-  string CreateID = 2;
+message GetPathReq {
+  string ID = 1;
+  Mode Mode = 2;
 }
 
-message CloseReq {
+message GetPathResp {
   string ActionID = 1;
-  string ObjectID = 2;
+  string Path = 2;
 }
 
-message CloseResp {}
-
-message OpenReq {
-  string ObjectID = 1;
+message ClosePathReq {
+  string ActionID = 1;
 }
 
-message OpenResp {
-  string Path = 1;
-  string ReadID = 2;
-}
-
-message DeleteReq {
-  string ObjectID = 1;
-}
-
-message DeleteResp {}
+message ClosePathResp {}
