@@ -25,6 +25,8 @@ message GetPathResp {
 message ClosePathReq {
   string ID = 1;
   string ActionID = 2;
+  // Deletes the underlying object, in case of a write
+  bool Errored = 3;
 }
 
 message ClosePathResp {}
