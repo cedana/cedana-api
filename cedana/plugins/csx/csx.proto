@@ -34,6 +34,4 @@ message DeleteObjectReq {
   string ID = 1;
 }
 
-message DeleteObjectResp {
-  string error = 1;
-}
+message DeleteObjectResp {}
