@@ -5,6 +5,7 @@ package plugins.csx;
 service CSX {
   rpc GetPath(GetPathReq) returns (GetPathResp) {}
   rpc ClosePath(ClosePathReq) returns (ClosePathResp) {}
+  rpc DeleteObject(DeleteObjectReq) returns (DeleteObjectResp) {}
 }
 
 enum Mode {
@@ -25,8 +26,14 @@ message GetPathResp {
 message ClosePathReq {
   string ID = 1;
   string ActionID = 2;
-  // Deletes the underlying object, in case of a write
-  bool Errored = 3;
 }
 
 message ClosePathResp {}
+
+message DeleteObjectReq {
+  string ID = 1;
+}
+
+message DeleteObjectResp {
+  string error = 1;
+}
