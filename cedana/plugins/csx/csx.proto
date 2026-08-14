@@ -40,11 +40,8 @@ message GetMetricsResp {
   int64 FailedReads = 3;
   int64 FailedWrites = 4;
   // median amount of time it takes for a object to be
-  // added to memory cache
-  double MedianMemCacheTime = 5;
-  // median amount of time it takes for a object to be
-  // added to disk cache
-  double MedianDiskCacheTime = 6;
+  // added to memory or disk cache
+  double MedianCacheTime = 5;
   // median amount of time it takes for a write to persist
   double MedianWritePersistTime = 7;
 }
