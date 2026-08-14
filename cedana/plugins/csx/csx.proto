@@ -5,6 +5,7 @@ package plugins.csx;
 service CSX {
   rpc GetPath(GetPathReq) returns (GetPathResp) {}
   rpc ClosePath(ClosePathReq) returns (ClosePathResp) {}
+  rpc GetMetrics(GetMetricsReq) returns (GetMetricsResp) {}
 }
 
 enum Mode {
@@ -30,3 +31,20 @@ message ClosePathReq {
 }
 
 message ClosePathResp {}
+
+message GetMetricsReq {}
+
+message GetMetricsResp {
+  double MemCacheHitRatio = 1;
+  double DiskCacheHitRatio = 2;
+  int64 FailedReads = 3;
+  int64 FailedWrites = 4;
+  // median amount of time it takes for a object to be
+  // added to memory cache
+  double MedianMemCacheTime = 5;
+  // median amount of time it takes for a object to be
+  // added to disk cache
+  double MedianDiskCacheTime = 6;
+  // median amount of time it takes for a write to persist
+  double MedianWritePersistTime = 7;
+}
