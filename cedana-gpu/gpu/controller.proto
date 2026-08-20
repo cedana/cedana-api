@@ -36,10 +36,13 @@ message DumpReq {
   string Dir = 1;
   bool Stream = 2;
   bool LeaveRunning = 3;
+  optional bool Delta = 4; // per-dump override of CEDANA_GPU_DELTA_ENABLED; unset = env default
 }
 
 message DumpResp {
   GpuProfile Profile = 1;
+  bool Delta = 2; // whether this dump was written as a delta
+  string ParentDir = 3; // checkpoint dir this dump chained to; empty if full/base
 }
 
 message RestoreReq {
