@@ -29,6 +29,7 @@ message ListCheckpointsResp {
 
 message DeleteCheckpointReq {
   string ID = 1;
+  optional string Path = 2;
 }
 
 message DeleteCheckpointResp {}
