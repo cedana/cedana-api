@@ -29,6 +29,8 @@ message ListCheckpointsResp {
 
 message DeleteCheckpointReq {
   string ID = 1;
+  // provide Path in case it is not a job managed by the daemon
+  // so that the storage plugin can perform the deletion
   optional string Path = 2;
 }
 
