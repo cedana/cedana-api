@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package plugins.csx;
+
+service CSX {
+  rpc GetPath(GetPathReq) returns (GetPathResp) {}
+  rpc ClosePath(ClosePathReq) returns (ClosePathResp) {}
+  rpc GetMetrics(GetMetricsReq) returns (GetMetricsResp) {}
+}
+
+enum Mode {
+  READ_ONLY = 0;
+  WRITE_ONLY = 1;
+}
+
+message GetPathReq {
+  string ID = 1;
+  Mode Mode = 2;
+}
+
+message GetPathResp {
+  // ActionID should be passed back to CSX as part of ClosePathReq.
+  // It is used by CSX to verify that the same client is closing an object.
+  string ActionID = 1;
+  string Path = 2;
+}
+
+message ClosePathReq {
+  string ID = 1;
+  string ActionID = 2;
+  // In case of a write, if cancel is true the underlying object is deleted.
+  bool Cancel = 3;
+}
+
+message ClosePathResp {}
+
+message GetMetricsReq {}
+
+message GetMetricsResp {
+  double MemCacheHitRatio = 1;
+  double DiskCacheHitRatio = 2;
+  int64 FailedReads = 3;
+  int64 FailedWrites = 4;
+  // median amount of time it takes for a object to be
+  // added to memory or disk cache
+  double MedianCacheTime = 5;
+  // median amount of time it takes for a write to persist
+  double MedianWritePersistTime = 7;
+}
