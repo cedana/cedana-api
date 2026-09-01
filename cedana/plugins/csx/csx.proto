@@ -19,6 +19,8 @@ message GetPathReq {
 }
 
 message GetPathResp {
+  // ActionID should be passed back to CSX as part of ClosePathReq.
+  // It is used by CSX to verify that the same client is closing an object.
   string ActionID = 1;
   string Path = 2;
 }
