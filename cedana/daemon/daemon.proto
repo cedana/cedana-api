@@ -97,12 +97,15 @@ message DumpReq {
   string GPUFreezeType = 8; // type of GPU freeze to use, e.g., IPC, NCCL
   DumpAction Action = 9; // action to perform: dump, freeze only, unfreeze only
   bool Async = 10; // whether to perform the dump asynchronously
+  string AsyncDir = 11; // where to stage dump when performing asynchronously
+  optional bool GPUDelta = 12; // GPU delta (incremental) dump; unset = controller env default
 }
 
 message DumpResp {
   repeated string Messages = 1; // messages from the dump
   repeated string Paths = 2; // path to the dump file(s)
   ProcessState State = 3; // state of the process(es) during the dump
+  string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
 }
 
 ////////////////////////
