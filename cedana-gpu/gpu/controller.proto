@@ -32,22 +32,50 @@ message UnfreezeReq {}
 
 message UnfreezeResp {}
 
+// Byte-level verification of GPU state across checkpoint/restore.
+enum VerifyMode {
+  VERIFY_UNSPECIFIED = 0; // use the controller's CEDANA_GPU_VERIFY default
+  VERIFY_OFF = 1; // no verification
+  VERIFY_WARN = 2; // report mismatches and continue
+  VERIFY_STRICT = 3; // any mismatch fails the RPC
+}
+
 message DumpReq {
   string Dir = 1;
   bool Stream = 2;
   bool LeaveRunning = 3;
   optional bool Delta = 4; // per-dump override of CEDANA_GPU_DELTA_ENABLED; unset = env default
+  VerifyMode Verify = 5; // per-dump override of CEDANA_GPU_VERIFY; VERIFY_UNSPECIFIED = env default
 }
 
 message DumpResp {
   GpuProfile Profile = 1;
   bool Delta = 2; // whether this dump was written as a delta
   string ParentDir = 3; // checkpoint dir this dump chained to; empty if full/base
+  VerifySummary Verify = 4; // digests recorded for this dump; Mode = VERIFY_OFF when skipped
+}
+
+// Outcome of byte-level GPU state verification for one Dump or Restore, summed
+// over all workers. On dump the counts are the regions whose digests were
+// recorded; on restore they are the comparison results against those digests.
+message VerifySummary {
+  VerifyMode Mode = 1; // mode the controller resolved for this request; never VERIFY_UNSPECIFIED
+  uint64 Expected = 2; // regions with a recorded digest (device allocations, module globals, host memory)
+  uint64 Verified = 3; // re-hashed and equal (restore only)
+  uint64 Mismatched = 4; // re-hashed and different, or extent changed (restore only)
+  uint64 Unverified = 5; // expected but never restored (restore only)
+  uint64 Unhashed = 6; // restored but absent from the sidecar: older image, or VERIFY_OFF at dump (restore only)
+  uint64 Excluded = 7; // regions skipped by design (non-coverage documented in docs/gpu-state-verification.md)
+  uint64 Bytes = 8; // bytes hashed
+  string Hasher = 9; // SHA-256 of the device hash kernel source that produced the digests
+  bool Incomparable = 10; // sidecar was produced by a different hash kernel or chunk geometry (restore only)
+  repeated string Failures = 11; // first few human-readable mismatches (restore only)
 }
 
 message RestoreReq {
   string Dir = 1;
   bool Stream = 2;
+  VerifyMode Verify = 3; // per-restore override of CEDANA_GPU_VERIFY; VERIFY_UNSPECIFIED = env default
 }
 
 message RestoreResp {
@@ -59,6 +87,8 @@ message RestoreStats {
   int64 CopyMemTime = 1; // in milliseconds
   int64 ReplayCallsTime = 2; // in milliseconds
   int64 CopyHostMemTime = 3; // in milliseconds
+  int64 VerifyTime = 4; // in milliseconds
+  VerifySummary Verify = 5; // comparison results; Mode = VERIFY_OFF when skipped
 }
 
 message GpuProfile {
