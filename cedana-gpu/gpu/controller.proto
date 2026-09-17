@@ -89,6 +89,7 @@ message WorkerProfile {
   int64 DurationNs = 3;
   uint64 Bytes = 4; // bytes written during dump, bytes read during restore
   repeated WorkerPhaseProfile Phases = 5;
+  string GPUDevice = 6; // Matches Measurement.Device for the GPU used by this worker.
 }
 
 message WorkerPhaseProfile {
