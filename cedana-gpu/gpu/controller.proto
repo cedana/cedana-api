@@ -9,6 +9,9 @@ service Controller {
   rpc Unfreeze(UnfreezeReq) returns (UnfreezeResp) {}
 
   rpc Dump(DumpReq) returns (DumpResp) {}
+  // Blocks until the last dump's image is fully written 
+  // Only needed when DumpResp.FlushPending is set
+  rpc WaitFlush(WaitFlushReq) returns (WaitFlushResp) {}
   rpc Restore(RestoreReq) returns (RestoreResp) {}
   rpc HealthCheck(HealthCheckReq) returns (HealthCheckResp) {}
 
@@ -43,7 +46,12 @@ message DumpResp {
   GpuProfile Profile = 1;
   bool Delta = 2; // whether this dump was written as a delta
   string ParentDir = 3; // checkpoint dir this dump chained to; empty if full/base
+  bool FlushPending = 4; // image still being written after return so call WaitFlush before using it
 }
+
+message WaitFlushReq {}
+
+message WaitFlushResp {}
 
 message RestoreReq {
   string Dir = 1;
