@@ -85,6 +85,15 @@ enum DumpAction {
   UNFREEZE_ONLY = 2; // unfreeze only
 }
 
+// Byte-level verification of checkpointed state across dump/restore. Shared by
+// the GPU controller (gpu.VerifyMode) and the daemon's host-state verifier.
+enum VerifyMode {
+  VERIFY_UNSPECIFIED = 0; // use the daemon's configured default (gpu.verify)
+  VERIFY_OFF = 1; // no verification
+  VERIFY_WARN = 2; // report mismatches and continue
+  VERIFY_STRICT = 3; // any mismatch fails the dump or restore
+}
+
 message DumpReq {
   Details Details = 1; // details about the job, process, or container to dump
 
@@ -99,6 +108,7 @@ message DumpReq {
   bool Async = 10; // whether to perform the dump asynchronously
   string AsyncDir = 11; // where to stage dump when performing asynchronously
   optional bool GPUDelta = 12; // GPU delta (incremental) dump; unset = controller env default
+  VerifyMode Verify = 13; // record digests of dumped state for verification on restore
 }
 
 message DumpResp {
@@ -129,6 +139,7 @@ message RestoreReq {
   repeated string Env = 13; // environment variables of the calling process
 
   string GPUID = 20; // Existing GPU controller ID to attach to
+  VerifyMode Verify = 21; // verify restored state against the digests recorded at dump
 }
 
 message RestoreResp {
