@@ -95,17 +95,6 @@ message GpuProfile {
   repeated WorkerProfile Workers = 1;
   WorkerProfileSummary Summary = 2;
   repeated GpuFunctionProfile Functions = 3;
-
-  // Throughput limits collected when the controller starts.
-  repeated Measurement TheoreticalLimits = 4;
-}
-
-// A value produced by the controller that Cedana can include in a profile.
-message Measurement {
-  string Name = 1; // Stable metric name.
-  uint64 Value = 2; // Value in Unit.
-  string Unit = 3; // For example, bytes_per_second.
-  string Device = 4; // GPU name and UUID when the metric is device-specific.
 }
 
 message GpuFunctionProfile {
@@ -122,7 +111,6 @@ message WorkerProfile {
   int64 DurationNs = 3;
   uint64 Bytes = 4; // bytes written during dump, bytes read during restore
   repeated WorkerPhaseProfile Phases = 5;
-  string GPUDevice = 6; // Matches Measurement.Device for the GPU used by this worker.
 }
 
 message WorkerPhaseProfile {
@@ -131,6 +119,7 @@ message WorkerPhaseProfile {
   uint64 Bytes = 3; // bytes written during dump, bytes read during restore
   repeated WorkerPhaseInterval Intervals = 4; // phase intervals, offset from worker start
   bool IntervalsTruncated = 5; // true when not every interval fit in this profile
+  int64 ReferenceDurationNs = 6; // derived from the phase's modeled data path
 }
 
 message WorkerPhaseInterval {
