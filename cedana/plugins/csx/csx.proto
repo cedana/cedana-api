@@ -6,6 +6,7 @@ service CSX {
   rpc GetPath(GetPathReq) returns (GetPathResp) {}
   rpc ClosePath(ClosePathReq) returns (ClosePathResp) {}
   rpc GetMetrics(GetMetricsReq) returns (GetMetricsResp) {}
+  rpc Delete(DeleteReq) returns (DeleteResp) {}
 }
 
 enum Mode {
@@ -47,3 +48,9 @@ message GetMetricsResp {
   // median amount of time it takes for a write to persist
   double MedianWritePersistTime = 7;
 }
+
+message DeleteReq {
+  string ID = 1;
+}
+
+message DeleteResp {}
