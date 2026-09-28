@@ -77,7 +77,7 @@ service Daemon {
 
   ///// STORAGE /////
   // Use storage plugin to delete provided path
-  rpc DeletePath(DeletePathReq) returns (DeleteCheckpointResp) {}
+  rpc DeletePath(DeletePathReq) returns (DeletePathResp) {}
 }
 
 ////////////////////////
