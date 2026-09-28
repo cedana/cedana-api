@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package daemon;
+
+message DeletePathReq {
+  string Path = 1;
+}
+
+message DeletePathResp {}
