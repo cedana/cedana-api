@@ -121,6 +121,7 @@ message DumpResp {
   repeated string Paths = 2; // path to the dump file(s)
   ProcessState State = 3; // state of the process(es) during the dump
   string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
+  map<string, string> Checksums = 5; // path -> "<algorithm>:<hex>" of that path as stored; no entry if not computed
 }
 
 ////////////////////////
