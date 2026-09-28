@@ -9,6 +9,7 @@ import "daemon/misc.proto";
 import "daemon/process.proto";
 import "daemon/query.proto";
 import "daemon/socket.proto";
+import "daemon/storage.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
 import "plugins/multinode/multinode.proto";
@@ -73,6 +74,10 @@ service Daemon {
   rpc MonitorIPEvents(plugins.multinode.MonitorIPEventsReq) returns (stream plugins.multinode.IPReportReq);
   // Helper calls this when it gets the map from RabbitMQ
   rpc SubmitGlobalMap(plugins.multinode.GlobalMapReq) returns (plugins.multinode.GlobalMapResp);
+
+  ///// STORAGE /////
+  // Use storage plugin to delete provided path
+  rpc DeletePath(DeletePathReq) returns (DeletePathResp) {}
 }
 
 ////////////////////////
