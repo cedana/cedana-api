@@ -57,6 +57,8 @@ service Daemon {
   rpc ListCheckpoints(ListCheckpointsReq) returns (ListCheckpointsResp) {}
   // Delete a checkpoint
   rpc DeleteCheckpoint(DeleteCheckpointReq) returns (DeleteCheckpointResp) {}
+  // Wait for the background upload of an asynchronous dump to end
+  rpc WaitUpload(WaitUploadReq) returns (WaitUploadResp) {}
 
   ///// MISC /////
 
@@ -122,6 +124,16 @@ message DumpResp {
   ProcessState State = 3; // state of the process(es) during the dump
   string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
   map<string, string> Checksums = 5; // path -> "<algorithm>:<hex>" of that path as stored; no entry if not computed
+  repeated string Pending = 6; // paths whose upload was still running when the response was returned
+}
+
+message WaitUploadReq {
+  string Path = 1; // a path from DumpResp.Pending
+}
+
+message WaitUploadResp {
+  string Checksum = 1; // "<algorithm>:<hex>" of the path as stored; empty if the upload failed
+  string Error = 2; // why the upload failed; empty if it succeeded
 }
 
 ////////////////////////
