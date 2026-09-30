@@ -123,7 +123,7 @@ message DumpResp {
   repeated string Paths = 2; // path to the dump file(s)
   ProcessState State = 3; // state of the process(es) during the dump
   string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
-  map<string, string> Checksums = 5; // path -> "<algorithm>:<hex>" of that path as stored; no entry if not computed
+  reserved 5; // Checksums; checksums are computed by the storage, not the daemon
   repeated string Pending = 6; // paths whose upload was still running when the response was returned
 }
 
@@ -132,7 +132,7 @@ message WaitUploadReq {
 }
 
 message WaitUploadResp {
-  string Checksum = 1; // "<algorithm>:<hex>" of the path as stored; empty if the upload failed
+  reserved 1; // Checksum; checksums are computed by the storage, not the daemon
   string Error = 2; // why the upload failed; empty if it succeeded
 }
 
