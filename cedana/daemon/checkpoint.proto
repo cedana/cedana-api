@@ -8,6 +8,7 @@ message Checkpoint {
   string Path = 3;
   int64 Time = 4; // Cached time in Unix milliseconds
   int64 Size = 5; // Cached size in bytes
+  string Checksum = 6; // "<algorithm>:<hex>" of Path as stored, recorded by the storage; read only, empty if none
 }
 
 message GetCheckpointReq {
