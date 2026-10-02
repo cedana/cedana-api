@@ -7,3 +7,30 @@ message DeletePathReq {
 }
 
 message DeletePathResp {}
+
+message ListPathReq {
+  string Path = 1;
+}
+
+message ListPathResp {
+  repeated PathEntry Entries = 1;
+}
+
+// An entry inside a path. For an archive (e.g. a checkpoint tarball), the
+// entries are the archive's members.
+message PathEntry {
+  string Name = 1;
+  int64 Size = 2;    // bytes
+  int64 ModTime = 3; // Unix ms
+  bool IsDir = 4;
+}
+
+message ReadPathReq {
+  string Path = 1;
+  // Entry inside the archive at Path to read. Empty reads Path itself.
+  string Entry = 2;
+}
+
+message ReadPathResp {
+  bytes Data = 1;
+}
