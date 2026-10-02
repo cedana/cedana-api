@@ -78,6 +78,10 @@ service Daemon {
   ///// STORAGE /////
   // Use storage plugin to delete provided path
   rpc DeletePath(DeletePathReq) returns (DeletePathResp) {}
+  // List the entries of the provided path (archive members for a checkpoint tarball)
+  rpc ListPath(ListPathReq) returns (ListPathResp) {}
+  // Stream the contents of the provided path, or of an entry inside it
+  rpc ReadPath(ReadPathReq) returns (stream ReadPathResp) {}
 }
 
 ////////////////////////
