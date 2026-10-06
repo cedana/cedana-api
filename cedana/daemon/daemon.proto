@@ -78,6 +78,8 @@ service Daemon {
   ///// STORAGE /////
   // Use storage plugin to delete provided path
   rpc DeletePath(DeletePathReq) returns (DeletePathResp) {}
+  // Wait for the background upload of an asynchronous dump to end
+  rpc WaitUpload(WaitUploadReq) returns (WaitUploadResp) {}
   // List the entries of the provided path (archive members for a checkpoint tarball)
   rpc ListPath(ListPathReq) returns (ListPathResp) {}
   // Stream the contents of the provided path, or of an entry inside it
@@ -125,6 +127,16 @@ message DumpResp {
   repeated string Paths = 2; // path to the dump file(s)
   ProcessState State = 3; // state of the process(es) during the dump
   string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
+  repeated string Pending = 5; // paths whose upload was still running when the response was returned, or whose checksum the daemon holds
+}
+
+message WaitUploadReq {
+  string Path = 1; // a path from DumpResp.Pending
+}
+
+message WaitUploadResp {
+  string Checksum = 1; // "<algorithm>:<hex>" of the path as stored; empty if the upload failed or no checksum was computed
+  string Error = 2; // why the upload failed; empty if it succeeded
 }
 
 ////////////////////////
