@@ -33,7 +33,7 @@ message img_streamer_reply_entry {
 
 // This message is sent from the streamer to CRIU for listing all image files
 message img_streamer_list_reply_entry {
-  string filenames = 1;
+  repeated string filenames = 1;
 }
 
 message marker {
