@@ -25,6 +25,12 @@ message img_streamer_request_entry {
   img_streamer_file_protocol protocol = 2;
 }
 
+// This message is sent from the streamer to CRIU. It is only used during
+// restore to report whether the requested file exists.
+message img_streamer_reply_entry {
+	required bool exists = 1;
+}
+
 // This message is sent from the streamer to CRIU for listing all image files
 message img_streamer_list_reply_entry {
   repeated string filenames = 1;
