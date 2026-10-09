@@ -62,94 +62,116 @@ enum criu_pre_dump_mode {
   VM_READ = 2;
 }
 
+enum criu_image_io_mode {
+	IMAGE_IO_WRITEBACK	= 0;
+	IMAGE_IO_DIRECT	= 1;
+};
+
 message criu_opts {
-  optional int32 images_dir_fd = 1 [default = -1];
-  optional string images_dir = 68; /* used only if images_dir_fd == -1 */
-  optional int32 pid = 2; /* if not set on dump, will dump requesting process */
+	optional int32			images_dir_fd	= 1 [default = -1];
+	optional string			images_dir	= 68; /* used only if images_dir_fd == -1 */
+	optional int32			pid		= 2; /* if not set on dump, will dump requesting process */
 
-  optional bool leave_running = 3;
-  optional bool ext_unix_sk = 4;
-  optional bool tcp_established = 5;
-  optional bool evasive_devices = 6;
-  optional bool shell_job = 7;
-  optional bool file_locks = 8;
-  optional int32 log_level = 9 [default = 2];
-  optional string log_file = 10; /* No subdirs are allowed. Consider using work-dir */
+	optional bool			leave_running	= 3;
+	optional bool			ext_unix_sk	= 4;
+	optional bool			tcp_established	= 5;
+	optional bool			evasive_devices	= 6;
+	optional bool			shell_job	= 7;
+	optional bool			file_locks	= 8;
+	optional int32			log_level	= 9 [default = 2];
+	optional string			log_file	= 10; /* No subdirs are allowed. Consider using work-dir */
 
-  optional criu_page_server_info ps = 11;
+	optional criu_page_server_info	ps		= 11;
 
-  optional bool notify_scripts = 12;
+	optional bool			notify_scripts	= 12;
 
-  optional string root = 13;
-  optional string parent_img = 14;
-  optional bool track_mem = 15;
-  optional bool auto_dedup = 16;
+	optional string			root		= 13;
+	optional string			parent_img	= 14;
+	optional bool			track_mem	= 15;
+	optional bool			auto_dedup	= 16;
 
-  optional int32 work_dir_fd = 17;
-  optional bool link_remap = 18;
-  repeated criu_veth_pair veths = 19; /* DEPRECATED, use external instead */
+	optional int32			work_dir_fd	= 17;
+	optional bool			link_remap	= 18;
+	repeated criu_veth_pair		veths		= 19; /* DEPRECATED, use external instead */
 
-  optional uint32 cpu_cap = 20 [default = 0xffffffff];
-  optional bool force_irmap = 21;
-  repeated string exec_cmd = 22;
+	optional uint32			cpu_cap		= 20 [default = 0xffffffff];
+	optional bool			force_irmap	= 21;
+	repeated string			exec_cmd	= 22;
 
-  repeated ext_mount_map ext_mnt = 23; /* DEPRECATED, use external instead */
-  optional bool manage_cgroups = 24; /* backward compatibility */
-  repeated cgroup_root cg_root = 25;
+	repeated ext_mount_map		ext_mnt		= 23; /* DEPRECATED, use external instead */
+	optional bool			manage_cgroups	= 24; /* backward compatibility */
+	repeated cgroup_root		cg_root		= 25;
 
-  optional bool rst_sibling = 26; /* swrk only */
-  repeated inherit_fd inherit_fd = 27; /* swrk only */
+	optional bool			rst_sibling	= 26; /* swrk only */
+	repeated inherit_fd		inherit_fd	= 27; /* swrk only */
 
-  optional bool auto_ext_mnt = 28;
-  optional bool ext_sharing = 29;
-  optional bool ext_masters = 30;
+	optional bool			auto_ext_mnt	= 28;
+	optional bool			ext_sharing 	= 29;
+	optional bool			ext_masters	= 30;
 
-  repeated string skip_mnt = 31;
-  repeated string enable_fs = 32;
+	repeated string			skip_mnt	= 31;
+	repeated string			enable_fs	= 32;
 
-  repeated unix_sk unix_sk_ino = 33; /* DEPRECATED, use external instead */
+	repeated unix_sk                unix_sk_ino     = 33; /* DEPRECATED, use external instead */
 
-  optional criu_cg_mode manage_cgroups_mode = 34;
-  optional uint32 ghost_limit = 35 [default = 0x100000];
-  repeated string irmap_scan_paths = 36;
-  repeated string external = 37;
-  optional uint32 empty_ns = 38;
-  repeated join_namespace join_ns = 39;
+	optional criu_cg_mode		manage_cgroups_mode = 34;
+	optional uint32			ghost_limit	= 35 [default = 0x100000];
+	repeated string			irmap_scan_paths = 36;
+	repeated string			external	= 37;
+	optional uint32			empty_ns	= 38;
+	repeated join_namespace		join_ns		= 39;
 
-  optional string cgroup_props = 41;
-  optional string cgroup_props_file = 42;
-  repeated string cgroup_dump_controller = 43;
+	optional string			cgroup_props		= 41;
+	optional string			cgroup_props_file	= 42;
+	repeated string			cgroup_dump_controller	= 43;
 
-  optional string freeze_cgroup = 44;
-  optional uint32 timeout = 45;
-  optional bool tcp_skip_in_flight = 46;
-  optional bool weak_sysctls = 47;
-  optional bool lazy_pages = 48;
-  optional int32 status_fd = 49;
-  optional bool orphan_pts_master = 50;
-  optional string config_file = 51;
-  optional bool tcp_close = 52;
-  optional bool stream = 72;
-  optional string lsm_profile = 53;
-  optional string tls_cacert = 54;
-  optional string tls_cacrl = 55;
-  optional string tls_cert = 56;
-  optional string tls_key = 57;
-  optional bool tls = 58;
-  optional bool tls_no_cn_verify = 59;
-  optional string cgroup_yard = 60;
-  optional criu_pre_dump_mode pre_dump_mode = 61 [default = SPLICE];
-  optional int32 pidfd_store_sk = 62;
-  optional string lsm_mount_context = 63;
-  optional criu_network_lock_method network_lock = 64 [default = IPTABLES];
-  optional bool mntns_compat_mode = 65;
-  optional bool skip_file_rwx_check = 66;
-  optional bool unprivileged = 67;
-  optional bool leave_stopped = 69;
-  optional bool display_stats = 70;
-  optional bool log_to_stderr = 71;
-  repeated string sk_inet_redirect = 73;
-  /*	optional bool			check_mounts		= 128;	*/
+	optional string			freeze_cgroup		= 44;
+	optional uint32			timeout			= 45;
+	optional bool			tcp_skip_in_flight	= 46;
+	optional bool			weak_sysctls		= 47;
+	optional bool			lazy_pages		= 48;
+	optional int32			status_fd		= 49;
+	optional bool			orphan_pts_master	= 50;
+	optional string			config_file		= 51;
+	optional bool			tcp_close		= 52;
+	optional string			lsm_profile		= 53;
+	optional string			tls_cacert		= 54;
+	optional string			tls_cacrl		= 55;
+	optional string			tls_cert		= 56;
+	optional string			tls_key			= 57;
+	optional bool			tls			= 58;
+	optional bool			tls_no_cn_verify	= 59;
+	optional string			cgroup_yard		= 60;
+	optional criu_pre_dump_mode	pre_dump_mode		= 61 [default = SPLICE];
+	optional int32			pidfd_store_sk		= 62;
+	optional string			lsm_mount_context	= 63;
+	optional criu_network_lock_method	network_lock		= 64 [default = IPTABLES];
+	optional bool			mntns_compat_mode	= 65;
+	optional bool			skip_file_rwx_check	= 66;
+	optional bool			unprivileged		= 67;
+	optional bool			leave_stopped		= 69;
+	optional bool			display_stats		= 70;
+	optional bool			log_to_stderr		= 71;
+	optional criu_image_io_mode	image_io_mode		= 72 [default = IMAGE_IO_WRITEBACK];
+	/*
+	 * Memory page compression mode (enum compress_mode):
+	 *   0 = off, 1 = block. Default 0.
+	 */
+	optional uint32			compress		= 73;
+	optional uint32			compress_acceleration	= 74;
+	optional uint32			compress_block_size	= 75;
+	/*
+	 * Worker concurrency for LZ4 decoding and eligible large zero fills.
+	 * 0 selects automatic concurrency; 1, the default, keeps LZ4 decoding
+	 * serial and disables zero-fill workers; values above 1 limit aggregate
+	 * worker concurrency. Active concurrency also depends on available CPUs,
+	 * useful batch work, and the restore-wide CPU budget. Valid range: 0
+	 * through 1024. Restore-time only.
+	 */
+	optional uint32			decompress_threads	= 76 [default = 1];
+	optional bool			stream			= 126;
+	repeated string		        sk_inet_redirect	= 127;
+/*	optional bool			check_mounts		= 128;	*/
 }
 
 message criu_dump_resp {
