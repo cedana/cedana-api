@@ -4,27 +4,31 @@ syntax = "proto3";
 
 package img_streamer;
 
+// see img_streamer_request_entry below for explanation
+enum img_streamer_file_protocol {
+  SEND_PIPE_END = 0;
+  SEND_RECV_MEMFD = 1;
+}
+
 // This message is sent from CRIU to the streamer.
 // * During dump, it communicates the name of the file that is about to be sent
 //   to the streamer.
 // * During restore, CRIU requests image files from the streamer. The message is
 //   used to communicate the name of the desired file.
+//   file_protocol is used to communicate how the file should be sent by streamer:
+// * During dump, the client can either send a fully populated memfd with the data
+//   or provide the read end of a pipe.
+// * During restore, the client can either request a fully populated memfd or provide
+//   the write end of a pipe.
 message img_streamer_request_entry {
   string filename = 1;
+  img_streamer_file_protocol protocol = 2;
 }
 
-enum file_status {
-  DOES_NOT_EXIST = 0;
-  NOT_READY = 1;
-  READY = 2;
-};
-
 // This message is sent from the streamer to CRIU. It is only used during
-// restore to report whether the requested file exists, or is ready or not.
+// restore to report whether the requested file exists.
 message img_streamer_reply_entry {
-  // for backwards compatibilty, in case clients can't read status
-  bool exists = 1;
-  optional file_status status = 2;
+	bool exists = 1;
 }
 
 // This message is sent from the streamer to CRIU for listing all image files
