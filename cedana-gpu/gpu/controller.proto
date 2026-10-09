@@ -119,6 +119,7 @@ message WorkerPhaseProfile {
   uint64 Bytes = 3; // bytes written during dump, bytes read during restore
   repeated WorkerPhaseInterval Intervals = 4; // phase intervals, offset from worker start
   bool IntervalsTruncated = 5; // true when not every interval fit in this profile
+  int64 ReferenceDurationNs = 6; // derived from the phase's modeled data path
 }
 
 message WorkerPhaseInterval {
