@@ -149,6 +149,9 @@ message criu_opts {
   optional bool display_stats = 70;
   optional bool log_to_stderr = 71;
   repeated string sk_inet_redirect = 73;
+  optional bool shmem_zero_elide = 74;
+  optional int32 shmem_dump_threads = 75;
+  repeated string ghost_allow = 76;
   /*	optional bool			check_mounts		= 128;	*/
 }
 

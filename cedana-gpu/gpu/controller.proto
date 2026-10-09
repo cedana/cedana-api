@@ -53,6 +53,7 @@ message DumpResp {
   bool Delta = 2; // whether this dump was written as a delta
   string ParentDir = 3; // checkpoint dir this dump chained to; empty if full/base
   VerifySummary Verify = 4; // digests recorded for this dump; Mode = VERIFY_OFF when skipped
+  repeated string HostRegFiles = 5; // "dev:ino" of each host-registered shared file; exempted from CRIU's ghost limit
 }
 
 // Outcome of byte-level GPU state verification for one Dump or Restore, summed
