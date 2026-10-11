@@ -186,6 +186,7 @@ message RestoreResp {
   string Checksum = 4; // checksum of the checkpoint as read on restore, "<algorithm>:<hex>"; empty if not computed
   ChecksumResult ChecksumResult = 5; // outcome of the comparison with RestoreReq.Checksum
   ChecksumReason ChecksumReason = 6; // where a mismatch comes from; REASON_NONE otherwise
+  bool ChecksumStrict = 7; // the checksum was checked in strict mode: a mismatch fails the restore
 }
 
 /////////////////////////
