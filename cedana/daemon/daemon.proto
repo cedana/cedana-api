@@ -161,12 +161,32 @@ message RestoreReq {
 
   string GPUID = 20; // Existing GPU controller ID to attach to
   VerifyMode Verify = 21; // verify restored state against the digests recorded at dump
+  string Checksum = 22; // expected checksum of the checkpoint as stored, "<algorithm>:<hex>"; empty checks nothing
+}
+
+// Outcome of comparing a checkpoint's checksum on restore with the one recorded at dump
+enum ChecksumResult {
+  CHECKSUM_NOT_CHECKED = 0; // no expected checksum, verification off, or the value could not be computed
+  CHECKSUM_MATCH = 1; // the bytes read equal the bytes recorded
+  CHECKSUM_MISMATCH = 2; // the bytes read differ from the bytes recorded
+}
+
+// Where a checksum mismatch on restore comes from
+enum ChecksumReason {
+  REASON_NONE = 0; // no mismatch
+  REASON_STORED = 1; // the store's own value, or a local file, differs from the recorded one
+  REASON_TRANSFER = 2; // the store's value matches the recorded one and the bytes read do not
+  REASON_UNKNOWN = 3; // the store has no comparable value
 }
 
 message RestoreResp {
   repeated string Messages = 1; // messages from the restore
   uint32 PID = 2; // PID of the restored process
   ProcessState State = 3; // state of the process after restore
+  string Checksum = 4; // checksum of the checkpoint as read on restore, "<algorithm>:<hex>"; empty if not computed
+  ChecksumResult ChecksumResult = 5; // outcome of the comparison with RestoreReq.Checksum
+  ChecksumReason ChecksumReason = 6; // where a mismatch comes from; REASON_NONE otherwise
+  bool ChecksumStrict = 7; // the checksum was checked in strict mode: a mismatch fails the restore
 }
 
 /////////////////////////
