@@ -28,7 +28,7 @@ message img_streamer_request_entry {
 // This message is sent from the streamer to CRIU. It is only used during
 // restore to report whether the requested file exists.
 message img_streamer_reply_entry {
-	bool exists = 1;
+  bool exists = 1;
 }
 
 // This message is sent from the streamer to CRIU for listing all image files
