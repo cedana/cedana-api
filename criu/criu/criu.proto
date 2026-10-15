@@ -110,7 +110,7 @@ message criu_opts {
   repeated unix_sk unix_sk_ino = 33; /* DEPRECATED, use external instead */
 
   optional criu_cg_mode manage_cgroups_mode = 34;
-  optional uint32 ghost_limit = 35 [default = 0x100000];
+  optional uint64 ghost_limit = 35 [default = 0x100000];
   repeated string irmap_scan_paths = 36;
   repeated string external = 37;
   optional uint32 empty_ns = 38;
@@ -149,6 +149,8 @@ message criu_opts {
   optional bool display_stats = 70;
   optional bool log_to_stderr = 71;
   repeated string sk_inet_redirect = 73;
+  optional bool zero_elide = 74;
+  optional int32 shmem_dump_threads = 75;
   /*	optional bool			check_mounts		= 128;	*/
 }
 
