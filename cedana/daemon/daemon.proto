@@ -13,6 +13,7 @@ import "daemon/storage.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
 import "plugins/multinode/multinode.proto";
+import "plugins/podman/podman.proto";
 import "plugins/runc/runc.proto";
 import "plugins/slurm/slurm.proto";
 
@@ -299,4 +300,5 @@ message Details {
   optional plugins.containerd.Containerd Containerd = 102; // containerd plugin details
   optional plugins.kata.Kata Kata = 103; // kata containers plugin details
   optional plugins.slurm.Slurm Slurm = 104;
+  optional plugins.podman.Podman Podman = 105; // podman plugin details
 }
