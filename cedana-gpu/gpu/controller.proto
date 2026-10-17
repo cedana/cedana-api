@@ -76,6 +76,10 @@ message RestoreReq {
   string Dir = 1;
   bool Stream = 2;
   VerifyMode Verify = 3; // per-restore override of CEDANA_GPU_VERIFY; VERIFY_UNSPECIFIED = env default
+  // Device minors (/dev/nvidia<minor>) of the GPUs the restored container was allocated, when it is
+  // restored onto other GPUs than the checkpoint's. The controller creates their nodes in the
+  // restored /dev before its restore workers start. Empty: restore onto what the namespace shows.
+  repeated uint32 DeviceMinors = 4;
 }
 
 message RestoreResp {
