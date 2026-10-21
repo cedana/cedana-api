@@ -115,7 +115,7 @@ message criu_opts {
 	repeated unix_sk                unix_sk_ino     = 33; /* DEPRECATED, use external instead */
 
 	optional criu_cg_mode		manage_cgroups_mode = 34;
-	optional uint32			ghost_limit	= 35 [default = 0x100000];
+	optional uint64			ghost_limit	= 35 [default = 0x100000];
 	repeated string			irmap_scan_paths = 36;
 	repeated string			external	= 37;
 	optional uint32			empty_ns	= 38;
@@ -169,8 +169,11 @@ message criu_opts {
 	 * through 1024. Restore-time only.
 	 */
 	optional uint32			decompress_threads	= 76 [default = 1];
-	optional bool			stream			= 126;
-	repeated string		        sk_inet_redirect	= 127;
+	repeated string			plugin_options		= 77;
+	optional bool			stream			= 78;
+	repeated string		        sk_inet_redirect	= 301;
+	optional bool			zero_elide		= 302;
+	optional int32			shmem_dump_threads	= 303;
 /*	optional bool			check_mounts		= 128;	*/
 }
 
@@ -219,6 +222,7 @@ message criu_features {
   optional bool mem_track = 1;
   optional bool lazy_pages = 2;
   optional bool pidfd_store = 3;
+  optional bool mem_compression = 4;
 }
 
 /*
