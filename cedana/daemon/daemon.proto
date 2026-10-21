@@ -13,6 +13,7 @@ import "daemon/storage.proto";
 import "plugins/containerd/containerd.proto";
 import "plugins/kata/kata.proto";
 import "plugins/multinode/multinode.proto";
+import "plugins/podman/podman.proto";
 import "plugins/runc/runc.proto";
 import "plugins/slurm/slurm.proto";
 
@@ -78,6 +79,10 @@ service Daemon {
   ///// STORAGE /////
   // Use storage plugin to delete provided path
   rpc DeletePath(DeletePathReq) returns (DeletePathResp) {}
+  // List the entries of the provided path (archive members for a checkpoint tarball)
+  rpc ListPath(ListPathReq) returns (ListPathResp) {}
+  // Stream the contents of the provided path, or of an entry inside it
+  rpc ReadPath(ReadPathReq) returns (stream ReadPathResp) {}
 }
 
 ////////////////////////
@@ -295,4 +300,5 @@ message Details {
   optional plugins.containerd.Containerd Containerd = 102; // containerd plugin details
   optional plugins.kata.Kata Kata = 103; // kata containers plugin details
   optional plugins.slurm.Slurm Slurm = 104;
+  optional plugins.podman.Podman Podman = 105; // podman plugin details
 }

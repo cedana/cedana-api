@@ -120,11 +120,9 @@ message criu_opts {
 	repeated string			external	= 37;
 	optional uint32			empty_ns	= 38;
 	repeated join_namespace		join_ns		= 39;
-
 	optional string			cgroup_props		= 41;
 	optional string			cgroup_props_file	= 42;
 	repeated string			cgroup_dump_controller	= 43;
-
 	optional string			freeze_cgroup		= 44;
 	optional uint32			timeout			= 45;
 	optional bool			tcp_skip_in_flight	= 46;
@@ -171,7 +169,7 @@ message criu_opts {
 	optional uint32			decompress_threads	= 76 [default = 1];
 	repeated string			plugin_options		= 77;
 	optional bool			stream			= 78;
-	repeated string		        sk_inet_redirect	= 301;
+	repeated string			sk_inet_redirect	= 301;
 	optional bool			zero_elide		= 302;
 	optional int32			shmem_dump_threads	= 303;
 /*	optional bool			check_mounts		= 128;	*/
