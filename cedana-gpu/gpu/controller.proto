@@ -20,6 +20,10 @@ service Controller {
 
 message AttachReq {
   uint32 PID = 1; // PID of the process to forcefully attach to the controller
+  // Device minors (/dev/nvidia<minor>) of the GPUs the container was allocated, sent on a run.
+  // The controller confines the container's GPU workers to them. Empty: the controller reads the
+  // allocation from the container's /dev at its first worker spawn.
+  repeated uint32 DeviceMinors = 2;
 }
 
 message AttachResp {}
