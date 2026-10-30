@@ -129,6 +129,7 @@ message DumpResp {
   ProcessState State = 3; // state of the process(es) during the dump
   string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
   repeated string Pending = 5; // paths whose upload was still running when the response was returned, or whose checksum the daemon holds
+  map<string, string> Checksums = 6; // "<algorithm>:<hex>" of a path that is complete when the dump returns, by path: a directory, whose manifest the mem-verify plugin wrote during the dump
 }
 
 message WaitUploadReq {
