@@ -187,6 +187,7 @@ message criu_restore_resp {
 message criu_notify {
   optional string script = 1;
   optional int32 pid = 2;
+  optional bytes payload = 3; // data a plugin sends with its notification (criu_rpc_notify)
 }
 
 enum criu_req_type {
