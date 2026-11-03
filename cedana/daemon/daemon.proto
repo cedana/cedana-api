@@ -126,6 +126,8 @@ message DumpResp {
   repeated string Paths = 2; // path to the dump file(s)
   ProcessState State = 3; // state of the process(es) during the dump
   string GPUParent = 4; // name of the parent checkpoint if the GPU dump was a delta
+  // 5 and 6 were used on unmerged CED-2399 branches with published builds
+  string Checksum = 7; // GPU state checksum, "sha256:<hex>"; empty without GPU or with verify off
 }
 
 ////////////////////////
@@ -156,6 +158,8 @@ message RestoreResp {
   repeated string Messages = 1; // messages from the restore
   uint32 PID = 2; // PID of the restored process
   ProcessState State = 3; // state of the process after restore
+  // 4-7 were used on unmerged CED-2399 branches with published builds
+  string Checksum = 8; // GPU state checksum of the checkpoint as read on restore; matches DumpResp.Checksum
 }
 
 /////////////////////////

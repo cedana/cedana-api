@@ -70,6 +70,7 @@ message VerifySummary {
   string Hasher = 9; // SHA-256 of the device hash kernel source that produced the digests
   bool Incomparable = 10; // sidecar was produced by a different hash kernel or chunk geometry (restore only)
   repeated string Failures = 11; // first few human-readable mismatches (restore only)
+  string Checksum = 12; // "sha256:<hex>" over the digest sidecars written (dump) or read (restore); empty when VERIFY_OFF
 }
 
 message RestoreReq {
