@@ -119,6 +119,11 @@ message DumpReq {
   string AsyncDir = 11; // where to stage dump when performing asynchronously
   optional bool GPUDelta = 12; // GPU delta (incremental) dump; unset = controller env default
   VerifyMode Verify = 13; // record digests of dumped state for verification on restore
+
+  // Dumps that must capture one point in time (e.g. the containers of a pod), sent to the same
+  // daemon at once replacing the effective work of cgroup freeze
+  string SeizeGroup = 14; // unique id shared by every dump of the group
+  int32 SeizeGroupSize = 15; // number of dumps in the group
 }
 
 message DumpResp {
