@@ -151,6 +151,7 @@ message RestoreReq {
 
   string GPUID = 20; // Existing GPU controller ID to attach to
   VerifyMode Verify = 21; // verify restored state against the digests recorded at dump
+  string Checksum = 22; // expected GPU state checksum (DumpResp.Checksum); a mismatch fails a strict restore
 }
 
 message RestoreResp {
